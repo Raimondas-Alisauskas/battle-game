@@ -1,0 +1,12 @@
+
+body, html {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+}
+.background {
+  background-image: url("../images/acropolis-map.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
