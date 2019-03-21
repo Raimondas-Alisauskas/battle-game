@@ -1,0 +1,53 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Seimas Game</title>
+    <link rel="stylesheet" href="<c:url value="/resources/styles/index.css" />"/>
+</head>
+<body class="main">
+<div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+    <div class="login-form">
+        <form class="sign-in-htm">
+            <div class="group">
+                <label for="usernameLogin" class="label">Username</label>
+                <input id="usernameLogin" type="text" class="input">
+            </div>
+            <div class="group">
+                <label for="passwordLogin" class="label">Password</label>
+                <input id="passwordLogin" type="password" class="input" data-type="password">
+            </div>
+            <div class="group">
+                <input type="submit" class="button" value="Log In">
+            </div>
+            <div class="hr"></div>
+        </form>
+        <form class="sign-up-htm">
+            <div class="group">
+                <label for="usernameSignup" class="label">Username</label>
+                <input id="usernameSignup" type="text" class="input">
+            </div>
+            <div class="group">
+                <label for="passwordSignup" class="label">Password</label>
+                <input id="passwordSignup" type="password" class="input" data-type="password">
+            </div>
+            <div class="group">
+                <label for="email" class="label">Email Address</label>
+                <input id="email" type="text" class="input">
+            </div>
+            <div class="group">
+                <input type="submit" class="button" value="Sign Up">
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+                <label for="tab-1">Already Member?</label>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
