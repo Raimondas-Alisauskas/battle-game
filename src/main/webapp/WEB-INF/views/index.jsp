@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Seimas Game</title>
-    <link rel="stylesheet" href="<c:url value="/resources/styles/style.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/styles/index.css" />"/>
 </head>
 <body class="main">
 <div class="login-html">
