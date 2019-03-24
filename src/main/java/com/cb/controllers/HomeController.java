@@ -1,9 +1,5 @@
 package com.cb.controllers;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import com.cb.beans.UserBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +22,6 @@ public class HomeController {
     public String user(UserBean userBean, Model model) {
 
         model.addAttribute("userName", userBean.getUserName());
-        return "user";
+        return "userForm";
     }
 }

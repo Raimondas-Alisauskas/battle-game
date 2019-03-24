@@ -5,7 +5,7 @@ public class UserBean {
 	private String userName;
 	private String password;
 	private byte isAdmin;
-	private int rank;
+	private int rating;
 	private int money;
 	private int characterId;
 	private int partyId;
@@ -38,16 +38,16 @@ public class UserBean {
 		return isAdmin;
 	}
 
-	public void setAdmin(byte admin) {
-		isAdmin = admin;
+	public void setAdmin(byte isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
-	public int getRank() {
-		return rank;
+	public int getRating() {
+		return rating;
 	}
 
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 	public int getMoney() {

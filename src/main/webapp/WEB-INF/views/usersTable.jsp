@@ -8,20 +8,20 @@
         <th>Name</th>
         <th>Password</th>
         <th>Admin</th>
-        <th>Rank</th>
+        <th>Rating</th>
         <th>Money</th>
         <th>CharacterId</th>
         <th>PartyId</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th></th>
+        <th></th>
     </tr>
     <c:forEach var="u" items="${usersList}">
         <tr>
-            <td>${u.id}</td>
-            <td>${u.userName}</td>
+            <td>${u.id}</td>>
+            <td>${u.userName}</td>>
             <td>${u.password}</td>
             <td>${u.admin}</td>
-            <td>${u.rank}</td>
+            <td>${u.rating}</td>
             <td>${u.money}</td>
             <td>${u.characterId}</td>
             <td>${u.partyId}</td>
@@ -31,4 +31,4 @@
     </c:forEach>
 </table>
 <br/>
-<a href="insertUser">Add New User</a>
+<a href="userform">Add New User</a>
