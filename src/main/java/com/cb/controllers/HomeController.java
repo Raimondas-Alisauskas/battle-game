@@ -1,10 +1,10 @@
-package com.cb.controller;
+package com.cb.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.cb.model.User;
+import com.cb.beans.UserBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +31,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String user(User user, Model model) {
+    public String user(UserBean userBean, Model model) {
 
-        model.addAttribute("userName", user.getUserName());
+        model.addAttribute("userName", userBean.getUserName());
         return "user";
     }
 }
