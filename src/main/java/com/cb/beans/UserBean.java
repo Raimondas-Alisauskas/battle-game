@@ -7,6 +7,8 @@ public class UserBean {
 	private byte isAdmin;
 	private int rank;
 	private int money;
+	private int characterId;
+	private int partyId;
 
 	public int getId() {
 		return id;
@@ -54,5 +56,21 @@ public class UserBean {
 
 	public void setMoney(int money) {
 		this.money = money;
+	}
+
+	public int getCharacterId() {
+		return characterId;
+	}
+
+	public void setCharacterId(int characterId) {
+		this.characterId = characterId;
+	}
+
+	public int getPartyId() {
+		return partyId;
+	}
+
+	public void setPartyId(int partyId) {
+		this.partyId = partyId;
 	}
 }

@@ -26,13 +26,15 @@ public class UserDao {
                 u.setAdmin(rs.getByte(4));
                 u.setRank(rs.getInt(5));
                 u.setMoney(rs.getInt(6));
+                u.setCharacterId(rs.getInt(7));
+                u.setPartyId(rs.getInt(8));
                 return u;
             }
         });
     }
 
     public int insertUser(UserBean u) {
-        String sql = "INSERT INTO users(userName, password, isAdmin, rank, money) VALUES ("+u.getUserName()+","+u.getPassword()+", 1 , 50, 100)";
+        String sql = "INSERT INTO users(userName, password, isAdmin, rank, money, characterId, partyId) VALUES ("+u.getUserName()+","+u.getPassword()+", 0 , 50, 100, 1, 1)";
         return template.update(sql);
 
     }
