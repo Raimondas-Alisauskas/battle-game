@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+
     @Autowired
     UserDao userDao;
 
@@ -27,8 +28,8 @@ public class UserServiceImpl implements UserService {
         return userDao.insertUser(userBean);
     }
 
-    public int insertUser(UserBean userBean){
-        return userDao.insertUser(userBean);
+    public int updateUser(UserBean userBean){
+        return userDao.updateUser(userBean);
     }
 
     public UserBean getUserById (int id){

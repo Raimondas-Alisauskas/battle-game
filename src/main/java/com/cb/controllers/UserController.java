@@ -25,25 +25,9 @@ public class UserController {
         return "usersTable";
     }
 
-    /*Displays a form to input data, here "command" is a reserved request attribute
-     *which is used to display object data into form */
-    @RequestMapping("/newuserform")
-    public String showform(Model m){
-        m.addAttribute("command", new UserBean());
-        return "userForm";
-    }
-
     @RequestMapping(value="/insertnewuser")
     public String insertNewUser() {
         userService.insertNewUser();
-        return "redirect:/userstable";
-    }
-
-    /*Inserts object into database. The @ModelAttribute puts request data
-     *  into model object. */
-    @RequestMapping(value="/insert", method = RequestMethod.POST)
-    public String insertUser(@ModelAttribute("userBean") UserBean userBean) {
-        userService.insertUser(userBean);
         return "redirect:/userstable";
     }
 
@@ -55,12 +39,12 @@ public class UserController {
         return "userForm";
     }
 
-//    /*Updates object into database. The @ModelAttribute puts request data
-//     *  into model object. */
-//    @RequestMapping(value="/update", method = RequestMethod.POST)
-//    public String update(@ModelAttribute("userBean") UserBean userBean) {
-//        userDao.updateUser(userBean);
-//        return "redirect:/userstable";
-//    }
+    /*Inserts object into database. The @ModelAttribute puts request data
+     *  into model object. */
+    @RequestMapping(value="/edituser/update", method = RequestMethod.POST)
+    public String updateUser(@ModelAttribute("userBean") UserBean userBean) {
+        userService.updateUser(userBean);
+        return "redirect:/userstable";
+    }
 
 }
