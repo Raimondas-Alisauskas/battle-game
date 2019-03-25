@@ -1,7 +1,8 @@
-/out
-/.idea
+out
+.idea
 *.iml
-/target
-/classes
-
+target
+classes
+temp
+database
 
