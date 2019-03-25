@@ -18,6 +18,7 @@ public class UserDaoImpl implements UserDao {
         this.template = template;
     }
 
+    @Override
     public List<UserBean> getUsers() {
         return  template.query("SELECT * FROM users", new RowMapper<UserBean>() {
             @Override
@@ -36,6 +37,7 @@ public class UserDaoImpl implements UserDao {
         });
     }
 
+    @Override
     public int insertUser(UserBean u) {
         String sql = "INSERT INTO users(userName, password, isAdmin, rating, money, characterId, partyId) " +
             "VALUES ('"+u.getUserName()+"','"+u.getPassword()+"',"+u.getAdmin()+","+u.getRating()+","+u.getMoney()+","
@@ -43,16 +45,24 @@ public class UserDaoImpl implements UserDao {
         return template.update(sql);
     }
 
+    @Override
     public UserBean getUserById(int id) {
         String sql="select * from users where id=?";
         return template.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper<>(UserBean.class));
     }
 
+    @Override
     public int updateUser(UserBean u) {
         String sql = "UPDATE users SET userName = '"+u.getUserName()+"', password = '"+u.getPassword()+"', isAdmin = "+u.getAdmin()+"," +
             "rating = "+u.getRating()+", money = "+u.getMoney()+", characterId = "+u.getCharacterId()+", partyId = "+u.getPartyId()+" " +
             "WHERE id = "+u.getId()+"";
     return template.update(sql);
+    }
+
+    @Override
+    public int deleteUserById(int id) {
+        String sql="DELETE FROM users WHERE id="+id+"";
+        return template.update(sql);
     }
 
 }

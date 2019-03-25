@@ -12,10 +12,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
+    @Override
     public List<UserBean> getUsers(){
         return userDao.getUsers();
     }
 
+    @Override
     public int insertNewUser(){
         UserBean userBean = new UserBean();
         userBean.setUserName("Name");
@@ -28,12 +30,19 @@ public class UserServiceImpl implements UserService {
         return userDao.insertUser(userBean);
     }
 
+    @Override
     public int updateUser(UserBean userBean){
         return userDao.updateUser(userBean);
     }
 
+    @Override
     public UserBean getUserById (int id){
         return userDao.getUserById(id);
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        userDao.deleteUserById(id);
     }
 
 

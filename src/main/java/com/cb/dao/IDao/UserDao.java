@@ -14,4 +14,5 @@ public interface UserDao {
 
     int updateUser(UserBean userBean);
 
+    int deleteUserById(int id);
 }

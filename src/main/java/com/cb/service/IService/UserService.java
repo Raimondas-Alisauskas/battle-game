@@ -14,5 +14,5 @@ public interface UserService {
 
     UserBean getUserById (int id);
 
-
+    void deleteUserById(int id);
 }
