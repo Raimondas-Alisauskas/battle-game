@@ -37,10 +37,10 @@
 		<property name="dataSource" ref="ds"/>
 	</bean>
 
-	<bean id="userDao" class="com.cb.dao.IDao.UserDao">
+	<bean id="userDao" class="com.cb.dao.DaoImpl.UserDaoImpl">
 		<property name="template" ref="jt"/>
 	</bean>
 
-	<bean id="userService" class="com.cb.service.IService.UserService"/>
+	<bean id="userService" class="com.cb.service.ServiceImpl.UserServiceImpl"/>
 
 </beans>

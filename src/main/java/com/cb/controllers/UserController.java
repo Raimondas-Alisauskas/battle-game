@@ -1,7 +1,6 @@
 package com.cb.controllers;
 
 import com.cb.beans.UserBean;
-import com.cb.dao.IDao.UserDao;
 import com.cb.service.IService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +17,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-    @Autowired
-    UserDao userDao;
-
 
     @RequestMapping ("/userstable")
     public String getUsersTable(Model m){
