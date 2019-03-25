@@ -4,7 +4,7 @@ public class UserBean {
 	private int id;
 	private String userName;
 	private String password;
-	private byte isAdmin;
+	private int isAdmin;
 	private int rating;
 	private int money;
 	private int characterId;
@@ -34,11 +34,11 @@ public class UserBean {
 		this.password = password;
 	}
 
-	public byte getAdmin() {
+	public int getAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(byte isAdmin) {
+	public void setAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 

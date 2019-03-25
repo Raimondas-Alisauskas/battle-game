@@ -31,4 +31,4 @@
     </c:forEach>
 </table>
 <br/>
-<a href="newuserform">Add New User</a>
+<a href="insertnewuser">Add New User</a>

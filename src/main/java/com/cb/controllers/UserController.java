@@ -33,6 +33,12 @@ public class UserController {
         return "userForm";
     }
 
+    @RequestMapping(value="/insertnewuser")
+    public String insertNewUser() {
+        userService.insertNewUser();
+        return "redirect:/userstable";
+    }
+
     /*Inserts object into database. The @ModelAttribute puts request data
      *  into model object. */
     @RequestMapping(value="/insert", method = RequestMethod.POST)

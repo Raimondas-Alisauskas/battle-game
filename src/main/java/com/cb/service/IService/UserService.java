@@ -9,6 +9,8 @@ public interface UserService {
 
     List<UserBean> getUsers();
 
+    int insertNewUser();
+
     int insertUser(UserBean userBean);
 
     UserBean getUserById (int id);
