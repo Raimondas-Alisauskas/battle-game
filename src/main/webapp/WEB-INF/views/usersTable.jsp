@@ -25,10 +25,10 @@
             <td>${u.money}</td>
             <td>${u.characterId}</td>
             <td>${u.partyId}</td>
-            <td><a href="editUser/${u.id}">Edit</a></td>
-            <td><a href="deleteUser/${u.id}">Delete</a></td>
+            <td><a href="edituser/${u.id}">Edit</a></td>
+            <td><a href="deleteuser/${u.id}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
 <br/>
-<a href="userform">Add New User</a>
+<a href="newuserform">Add New User</a>
