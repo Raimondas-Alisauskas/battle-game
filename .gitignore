@@ -5,4 +5,5 @@ target
 classes
 temp
 database
+spring-servlet.xml
 

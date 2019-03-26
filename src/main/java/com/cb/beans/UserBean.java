@@ -5,6 +5,7 @@ public class UserBean {
 	private String userName;
 	private String password;
 	private int isAdmin;
+	private String email;
 	private int rating;
 	private int money;
 	private int characterId;
@@ -41,6 +42,10 @@ public class UserBean {
 	public void setAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+
+	public String getEmail() { return email; }
+
+	public void setEmail(String email) { this.email = email; }
 
 	public int getRating() {
 		return rating;

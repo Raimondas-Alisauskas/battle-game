@@ -8,11 +8,11 @@ public interface UserService {
 
     List<UserBean> getUsers();
 
-    int insertNewUser();
+    int insertNewUser(UserBean userBean);
 
     int updateUser(UserBean userBean);
 
-    UserBean getUserById (int id);
+    UserBean getUserById(int id);
 
     void deleteUserById(int id);
 }

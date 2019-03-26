@@ -39,8 +39,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int insertUser(UserBean u) {
-        String sql = "INSERT INTO users(userName, password, isAdmin, rating, money, characterId, partyId) " +
-            "VALUES ('"+u.getUserName()+"','"+u.getPassword()+"',"+u.getAdmin()+","+u.getRating()+","+u.getMoney()+","
+        String sql = "INSERT INTO users(userName, password, email, isAdmin, rating, money, characterId, partyId) " +
+            "VALUES ('"+u.getUserName()+"','"+u.getPassword()+"','"+u.getEmail()+"',"+u.getAdmin()+","+u.getRating()+","+u.getMoney()+","
             +u.getCharacterId()+","+u.getPartyId()+")";
         return template.update(sql);
     }
