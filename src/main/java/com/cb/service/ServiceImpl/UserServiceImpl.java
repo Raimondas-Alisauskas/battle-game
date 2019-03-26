@@ -23,6 +23,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int registerUser(UserBean userBean) {
+
+        userBean.setAdmin(0);
+        userBean.setRating(100);
+        userBean.setMoney(1000);
+        userBean.setCharacterId(1);
+        userBean.setPartyId(1);
+
+        return userDao.insertUser(userBean);
+
+    }
+
+
+    @Override
     public int updateUser(UserBean userBean) {
         return userDao.updateUser(userBean);
     }

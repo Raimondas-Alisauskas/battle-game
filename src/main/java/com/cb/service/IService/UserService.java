@@ -10,6 +10,8 @@ public interface UserService {
 
     int insertNewUser(UserBean userBean);
 
+    int registerUser(UserBean userBean);
+
     int updateUser(UserBean userBean);
 
     UserBean getUserById(int id);

@@ -31,6 +31,14 @@ public class UserController {
         return "member";
     }
 
+    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+    public String registerUser(@ModelAttribute("userBean") UserBean userBean) {
+
+        userService.registerUser(userBean);
+        return "member";
+
+    }
+
     /* Displays object data into form for the given id.
      * The @PathVariable puts URL data into variable.*/
     @RequestMapping(value = "/edituser/{id}")

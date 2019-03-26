@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Home</title>
-	<link rel="stylesheet" href="<c:url value="/resources/styles/home.css" />" />
+	<link rel="stylesheet" href="<c:url value="/resources/styles/member.css" />" />
 </head>
 	<body>
 		<div class="background">

@@ -27,7 +27,7 @@
             </div>
             <div class="hr"></div>
         </form>
-        <form method="post" action="insertnewuser" class="sign-up-htm">
+        <form method="post" action="registeruser" class="sign-up-htm">
             <div class="group">
                 <label for="usernameSignup" class="label">Username</label>
                 <input id="usernameSignup" name="userName" type="text" class="input">
