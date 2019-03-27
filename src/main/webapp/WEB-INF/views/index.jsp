@@ -12,15 +12,17 @@
 <div class="login-html">
     <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
     <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+
+
     <div class="login-form">
         <form method="post" class="sign-in-htm">
             <div class="group">
                 <label for="usernameLogin" class="label">Username</label>
-                <input id="usernameLogin" type="text" class="input">
+                <input id="usernameLogin" type="text" class="input" required>
             </div>
             <div class="group">
                 <label for="passwordLogin" class="label">Password</label>
-                <input id="passwordLogin" type="password" class="input" data-type="password">
+                <input id="passwordLogin" type="password" class="input" data-type="password" required>
             </div>
             <div class="group">
                 <input type="submit" class="button" value="Log In">
@@ -30,15 +32,15 @@
         <form method="post" action="registeruser" class="sign-up-htm">
             <div class="group">
                 <label for="usernameSignup" class="label">Username</label>
-                <input id="usernameSignup" name="userName" type="text" class="input">
+                <input id="usernameSignup" name="userName" type="text" class="input" required>
             </div>
             <div class="group">
                 <label for="passwordSignup" class="label">Password</label>
-                <input id="passwordSignup" name="password" type="password" class="input" data-type="password">
+                <input id="passwordSignup" name="password" type="password" class="input" data-type="password" required>
             </div>
             <div class="group">
                 <label for="email" class="label">Email Address</label>
-                <input id="email" name="email" type="text" class="input">
+                <input id="email" name="email" type="text" class="input" required>
             </div>
             <div class="group">
                 <input type="submit" class="button" value="Sign Up">
@@ -49,6 +51,7 @@
             </div>
         </form>
     </div>
+    <div class="error-message" style="color: red;text-align: center">${error}</div>
 </div>
 </body>
 </html>

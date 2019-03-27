@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -32,10 +33,20 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("userBean") UserBean userBean) {
+    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean) {
 
-        userService.registerUser(userBean);
-        return "member";
+        List<UserBean> allEmails = userService.getUserByEmail(userBean.getEmail());
+
+        if (allEmails.size() > 0) {
+
+            model.put("error", "User already exist");
+            return "index";
+        } else {
+
+            userService.registerUser(userBean);
+            return "member";
+
+        }
 
     }
 
