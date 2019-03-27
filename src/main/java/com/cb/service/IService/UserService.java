@@ -12,6 +12,8 @@ public interface UserService {
 
     int registerUser(UserBean userBean);
 
+    List<UserBean> getUserByEmail(String email);
+
     int updateUser(UserBean userBean);
 
     UserBean getUserById(int id);

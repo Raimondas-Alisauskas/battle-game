@@ -10,6 +10,8 @@ public interface UserDao {
 
     int insertUser(UserBean userBean);
 
+    List<UserBean> getUserByEmail(String email);
+
     UserBean getUserById(int id);
 
     int updateUser(UserBean userBean);
