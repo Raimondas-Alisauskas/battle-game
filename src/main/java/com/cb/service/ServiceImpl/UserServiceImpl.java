@@ -35,6 +35,8 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public List<UserBean> getUserByEmail(String email){ return userDao.getUserByEmail(email); }
 
     @Override
     public int updateUser(UserBean userBean) {
