@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public class HomeController {
+public class ArenaController {
 
-    @RequestMapping(value = "/")
-    public String home() {
-        return "index";
+    @RequestMapping(value = "/arena")
+    public String arena() {
+        return "arena";
     }
 
 }
