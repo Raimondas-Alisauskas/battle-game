@@ -18,22 +18,30 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping ("/userstable")
-    public String getUsersTable(Model m){
+    @RequestMapping("/userstable")
+    public String getUsersTable(Model m) {
         List<UserBean> usersList = userService.getUsers();
         m.addAttribute("usersList", usersList);
         return "usersTable";
     }
 
-    @RequestMapping(value="/insertnewuser")
-    public String insertNewUser() {
-        userService.insertNewUser();
-        return "redirect:/userstable";
+    @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
+    public String insertNewUser(@ModelAttribute("userBean") UserBean userBean) {
+        userService.insertNewUser(userBean);
+        return "member";
+    }
+
+    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+    public String registerUser(@ModelAttribute("userBean") UserBean userBean) {
+
+        userService.registerUser(userBean);
+        return "member";
+
     }
 
     /* Displays object data into form for the given id.
      * The @PathVariable puts URL data into variable.*/
-    @RequestMapping(value="/edituser/{id}")
+    @RequestMapping(value = "/edituser/{id}")
     public String getUserById(@PathVariable int id, Model m) {
         m.addAttribute("command", userService.getUserById(id));
         return "userForm";
@@ -41,15 +49,15 @@ public class UserController {
 
     /*Inserts object into database. The @ModelAttribute puts request data
      *  into model object. */
-    @RequestMapping(value="/edituser/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/edituser/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute("userBean") UserBean userBean) {
         userService.updateUser(userBean);
         return "redirect:/userstable";
     }
 
-    @RequestMapping(value="/deleteuser/{id}")
+    @RequestMapping(value = "/deleteuser/{id}")
     public String getUserById(@PathVariable int id) {
-         userService.deleteUserById(id);
+        userService.deleteUserById(id);
         return "redirect:/userstable";
     }
 
