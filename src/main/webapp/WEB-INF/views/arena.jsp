@@ -85,8 +85,8 @@
                         <table class="table table-sm table-hover table-responsive"><!--Table  with choices-->
                             <thead>
                                 <tr>
-                                    <th>Priemonė</th>
                                     <th>Taikinys</th>
+                                    <th>Priemonė</th>
                                     <th>Pinigai</th>
                                     <th>Puolimas</th>
                                     <th>Gynyba</th>
@@ -94,20 +94,13 @@
                             </thead>
                             <tbody>
                                     <tr>
+                                        <td class="form-group">Neturtingi rinkėjai</td>
                                         <td class="form-group">
                                             <select class="form-control" id="Priemone1">
                                                 <option>Deficitas: mažinamos pensijos</option>
                                                 <option>Skandalas: giminės ministerijoje</option>
                                                 <option>Skandalas: suklastotas aukštojo mokslo diplomas</option>
                                                 <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija</option>
-                                            </select>
-                                        </td>
-                                        <td class="form-group">
-                                            <select class="form-control" id="Taikinys1">
-                                                <option>Neturtingi rinkėjai</option>
-                                                <option>Rinkėjai-teisuoliai</option>
-                                                <option>Turtingi rinkėjai</option>
-                                                <option>Neapsisprendę rinkėjai</option>
                                             </select>
                                         </td>
                                         <td>
@@ -121,20 +114,13 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td class="form-group">Rinkėjai-teisuoliai</td>
                                         <td class="form-group">
                                             <select class="form-control" id="Priemone2">
                                                 <option>Deficitas: mažinamos pensijos</option>
                                                 <option>Skandalas: giminės ministerijoje</option>
                                                 <option>Skandalas: suklastotas aukštojo mokslo diplomas</option>
                                                 <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija</option>
-                                            </select>
-                                        </td>
-                                        <td class="form-group">
-                                            <select class="form-control" id="Taikinys2">
-                                                <option>Neturtingi rinkėjai</option>
-                                                <option>Rinkėjai-teisuoliai</option>
-                                                <option>Turtingi rinkėjai</option>
-                                                <option>Neapsisprendę rinkėjai</option>
                                             </select>
                                         </td>
                                         <td>
@@ -148,20 +134,13 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td class="form-group">Turtingi rinkėjai</td>
                                         <td class="form-group">
                                             <select class="form-control" id="Priemone3">
                                                 <option>Deficitas: mažinamos pensijos</option>
                                                 <option>Skandalas: giminės ministerijoje</option>
                                                 <option>Skandalas: suklastotas aukštojo mokslo diplomas</option>
                                                 <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija</option>
-                                            </select>
-                                        </td>
-                                        <td class="form-group">
-                                            <select class="form-control" id="Taikinys3">
-                                                <option>Neturtingi rinkėjai</option>
-                                                <option>Rinkėjai-teisuoliai</option>
-                                                <option>Turtingi rinkėjai</option>
-                                                <option>Neapsisprendę rinkėjai</option>
                                             </select>
                                         </td>
                                         <td>
@@ -175,20 +154,13 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td class="form-group">Neapsisprendę rinkėjai</td>
                                         <td class="form-group">
                                             <select class="form-control" id="Priemone4">
                                                 <option>Deficitas: mažinamos pensijos</option>
                                                 <option>Skandalas: giminės ministerijoje</option>
                                                 <option>Skandalas: suklastotas aukštojo mokslo diplomas</option>
                                                 <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija</option>
-                                            </select>
-                                        </td>
-                                        <td class="form-group">
-                                            <select class="form-control" id="Taikinys4">
-                                                <option>Neturtingi rinkėjai</option>
-                                                <option>Rinkėjai-teisuoliai</option>
-                                                <option>Turtingi rinkėjai</option>
-                                                <option>Neapsisprendę rinkėjai</option>
                                             </select>
                                         </td>
                                         <td>
@@ -228,32 +200,32 @@
                         <table class="table table-sm table-hover">
                             <thead>
                             <tr>
-                                <th>Priemonė</th>
                                 <th>Taikinys</th>
+                                <th>Priemonė</th>
                                 <th>Puolimas</th>
                                 <th>Gynyba</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Deficitas: mažinamos pensijos</td>
                                 <td>Neturtingi rinkėjai</td>
+                                <td>Deficitas: mažinamos pensijos</td>
                                 <td class = "text-center"></td>
                                 <td class = "text-center bg-danger"></td>
                             </tr>
                             <tr>
-                                <td>Skandalas: giminės ministerijoje</td>
                                 <td>Rinkėjai-teisuoliai</td>
+                                <td>Skandalas: giminės ministerijoje</td>
                                 <td class = "text-center "></td>
                                 <td class = "text-center bg-success">500</td>
                             </tr>
-                                <td>Įstatymas: viešieji darbai už klaidingas turto deklaracijas</td>
                                 <td>Turtingi rinkėjai</td>
+                                <td>Įstatymas: viešieji darbai už klaidingas turto deklaracijas</td>
                                 <td></td>
                                 <td></td>
                             </tr>
-                                <td>Skandalas: suklastotas aukštojo mokslo diplomas</td>
                                 <td>Neapsisprendę rinkėjai</td>
+                                <td>Skandalas: suklastotas aukštojo mokslo diplomas</td>
                                 <td class = "text-center bg-danger">1.000</td>
                                 <td class = "text-center"></td>
                             </tr>
@@ -268,34 +240,34 @@
                         <table class="table table-sm table-hover">
                             <thead>
                             <tr>
-                                <th>Priemonė</th>
                                 <th>Taikinys</th>
+                                <th>Priemonė</th>
                                 <th>Puolimas</th>
                                 <th>Gynyba</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Deficitas: mažinamos pensijos</td>
                                 <td>Neturtingi rinkėjai</td>
+                                <td>Deficitas: mažinamos pensijos</td>
                                 <td class = "text-center "></td>
                                 <td class = "text-center bg-success">1.000</td>
                             </tr>
                             <tr>
-                                <td>Skandalas: giminės ministerijoje</td>
                                 <td>Rinkėjai-teisuoliai</td>
+                                <td>Skandalas: giminės ministerijoje</td>
                                 <td class = "text-center"></td>
                                 <td class = "text-center bg-danger"></td>
                             </tr>
-                            <td>Įstatymas: viešieji darbai už klaidingas turto deklaracijas</td>
-                            <td>Turtingi rinkėjai</td>
-                            <td class = "text-center"></td>
-                            <td class = "text-center"></td>
+                                <td>Turtingi rinkėjai</td>
+                                <td>Įstatymas: viešieji darbai už klaidingas turto deklaracijas</td>
+                                <td class = "text-center"></td>
+                                <td class = "text-center"></td>
                             </tr>
-                            <td>Skandalas: suklastotas aukštojo mokslo diplomas</td>
-                            <td>Neapsisprendę rinkėjai</td>
-                            <td class = "text-center bg-success">2.000</td>
-                            <td class = "text-center"></td>
+                                <td>Neapsisprendę rinkėjai</td>
+                                <td>Skandalas: suklastotas aukštojo mokslo diplomas</td>
+                                <td class = "text-center bg-success">2.000</td>
+                                <td class = "text-center"></td>
                             </tr>
                             </tbody>
                         </table>
