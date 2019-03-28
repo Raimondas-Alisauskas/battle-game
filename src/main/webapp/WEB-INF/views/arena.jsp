@@ -10,7 +10,7 @@
 <body >
 <div class = "background">
     <div class="container">
-        <header class="blog-header py-3">
+        <header class="blog-header pt-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
                     <a class="text-muted" href="#">
@@ -29,10 +29,11 @@
             </div>
         </header>
 
-        <div class="nav-scroller py-1 mb-2">
+        <div class="nav-scroller py-1">
             <nav class="nav d-flex justify-content-between">
-                <a class="p-2 text-muted" href="#">Kautis</a>
                 <a class="p-2 text-muted" href="#">Įvaizdis</a>
+                <a class="p-2 text-muted" href="#">Rinktis varžovą</a>
+                <a class="p-2 text-muted" href="#">Kautis</a>
                 <a class="p-2 text-muted" href="#">Parduotuvė</a>
             </nav>
         </div>
