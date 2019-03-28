@@ -7,6 +7,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Password</th>
+        <th>Email</th>
         <th>Admin</th>
         <th>Rating</th>
         <th>Money</th>
@@ -17,9 +18,10 @@
     </tr>
     <c:forEach var="u" items="${usersList}">
         <tr>
-            <td>${u.id}</td>>
-            <td>${u.userName}</td>>
+            <td>${u.id}</td>
+            <td>${u.userName}</td>
             <td>${u.password}</td>
+            <td>${u.email}</td>
             <td>${u.admin}</td>
             <td>${u.rating}</td>
             <td>${u.money}</td>
