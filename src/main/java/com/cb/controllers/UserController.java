@@ -32,6 +32,12 @@ public class UserController {
         return "member";
     }
 
+    @RequestMapping(value="/insertnewuser")
+    public String insertNewUser() {
+        userService.insertNewUser();
+        return "redirect:/userstable";
+    }
+
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
     public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean) {
 

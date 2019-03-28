@@ -10,6 +10,8 @@ public interface UserService {
 
     int insertNewUser(UserBean userBean);
 
+    int insertNewUser();
+
     int registerUser(UserBean userBean);
 
     List<UserBean> getUserByEmail(String email);

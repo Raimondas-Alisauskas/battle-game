@@ -4,8 +4,8 @@ public class UserBean {
 	private int id;
 	private String userName;
 	private String password;
-	private int isAdmin;
 	private String email;
+	private int isAdmin;
 	private int rating;
 	private int money;
 	private int characterId;
