@@ -29,7 +29,7 @@ public class UserController {
     @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
     public String insertNewUser(@ModelAttribute("userBean") UserBean userBean) {
         userService.insertNewUser(userBean);
-        return "member";
+        return "createCharacter";
     }
 
     @RequestMapping(value="/insertnewuser")
@@ -41,6 +41,8 @@ public class UserController {
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
     public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean) {
 
+        System.out.println();
+
         List<UserBean> allEmails = userService.getUserByEmail(userBean.getEmail());
 
         if (allEmails.size() > 0) {
@@ -50,7 +52,7 @@ public class UserController {
         } else {
 
             userService.registerUser(userBean);
-            return "member";
+            return "createCharacter";
 
         }
 

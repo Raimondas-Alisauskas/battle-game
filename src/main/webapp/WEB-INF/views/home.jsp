@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Home</title>
-	<link rel="stylesheet" href="<c:url value="/resources/styles/member.css" />" />
+	<link rel="stylesheet" href="<c:url value="/resources/styles/createCharacter.css" />" />
 </head>
 	<body>
 		<div class="background">
