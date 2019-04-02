@@ -24,9 +24,12 @@
                 <div class="btn-group">
                     <div class="group">
                         <select class="form-control" id="selectParty">
-                            <option>Lietuvos žaliųjų partija</option>
-                            <option>Lietuvos socialdemokratų partija</option>
-                            <option>Darbo partija</option>
+                            <c:forEach var="c" items="${partiesList}">
+                                <option>${c.name}</option>
+                            </c:forEach>
+                            <%--<option>Lietuvos žaliųjų partija</option>--%>
+                            <%--<option>Lietuvos socialdemokratų partija</option>--%>
+                            <%--<option>Darbo partija</option>--%>
                         </select>
                     </div>
                 </div>

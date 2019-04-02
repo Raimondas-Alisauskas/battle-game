@@ -1,7 +1,10 @@
 package com.cb.controllers;
 
+import com.cb.beans.CharacterBean;
+import com.cb.beans.PartyBean;
 import com.cb.beans.UserBean;
 import com.cb.service.IService.UserService;
+import com.cb.service.IService.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    PartyService partyService;
 
     @RequestMapping("/userstable")
     public String getUsersTable(Model m) {
@@ -38,8 +44,15 @@ public class UserController {
         return "redirect:/userstable";
     }
 
+//    @RequestMapping("/registeruser")
+//    public String getParties(Model m) {
+//        List<CharacterBean> partiesList = characterService.getParties();
+//        m.addAttribute("partiesList", partiesList);
+//        return "createCharacter";
+//    }
+
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean) {
+    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean, Model m) {
 
         System.out.println();
 
@@ -52,6 +65,8 @@ public class UserController {
         } else {
 
             userService.registerUser(userBean);
+            List<PartyBean> partiesList = partyService.getParties();
+            m.addAttribute("partiesList", partiesList);
             return "createCharacter";
 
         }
