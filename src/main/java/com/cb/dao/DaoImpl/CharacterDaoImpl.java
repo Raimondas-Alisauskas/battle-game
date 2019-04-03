@@ -1,7 +1,6 @@
 package com.cb.dao.DaoImpl;
 
 import com.cb.beans.CharacterBean;
-import com.cb.beans.PartyBean;
 import com.cb.dao.IDao.CharacterDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

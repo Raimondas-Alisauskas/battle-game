@@ -42,18 +42,11 @@ public class UserController {
         return "createCharacter";
     }
 
-    @RequestMapping(value="/insertnewuser")
+    @RequestMapping(value = "/insertnewuser")
     public String insertNewUser() {
         userService.insertNewUser();
         return "redirect:/userstable";
     }
-
-//    @RequestMapping("/registeruser")
-//    public String getParties(Model m) {
-//        List<CharacterBean> partiesList = characterService.getParties();
-//        m.addAttribute("partiesList", partiesList);
-//        return "createCharacter";
-//    }
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
     public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean, Model p, Model c) {
