@@ -24,12 +24,9 @@
                 <div class="btn-group">
                     <div class="group">
                         <select class="form-control" id="selectParty">
-                            <c:forEach var="c" items="${partiesList}">
-                                <option>${c.name}</option>
+                            <c:forEach var="p" items="${partiesList}">
+                                <option>${p.name}</option>
                             </c:forEach>
-                            <%--<option>Lietuvos žaliųjų partija</option>--%>
-                            <%--<option>Lietuvos socialdemokratų partija</option>--%>
-                            <%--<option>Darbo partija</option>--%>
                         </select>
                     </div>
                 </div>
@@ -39,9 +36,9 @@
                 <div class="btn-group">
                     <div class="group">
                         <select class="form-control" id="selectMember">
-                            <option>Member1</option>
-                            <option>Member2</option>
-                            <option>Member3</option>
+                            <c:forEach var="c" items="${charactersList}">
+                                <option>${c.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

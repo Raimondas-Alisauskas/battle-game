@@ -3,6 +3,7 @@ package com.cb.controllers;
 import com.cb.beans.CharacterBean;
 import com.cb.beans.PartyBean;
 import com.cb.beans.UserBean;
+import com.cb.service.IService.CharacterService;
 import com.cb.service.IService.UserService;
 import com.cb.service.IService.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserController {
 
     @Autowired
     PartyService partyService;
+
+    @Autowired
+    CharacterService characterService;
 
     @RequestMapping("/userstable")
     public String getUsersTable(Model m) {
@@ -52,7 +56,7 @@ public class UserController {
 //    }
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean, Model m) {
+    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean, Model p, Model c) {
 
         System.out.println();
 
@@ -66,7 +70,9 @@ public class UserController {
 
             userService.registerUser(userBean);
             List<PartyBean> partiesList = partyService.getParties();
-            m.addAttribute("partiesList", partiesList);
+            List<CharacterBean> charactersList = characterService.getCharacters();
+            p.addAttribute("partiesList", partiesList);
+            c.addAttribute("charactersList", charactersList);
             return "createCharacter";
 
         }

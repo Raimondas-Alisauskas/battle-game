@@ -41,12 +41,18 @@
         <property name="template" ref="jt"/>
     </bean>
 
-    <bean id="characterDao" class="com.cb.dao.DaoImpl.PartyDaoImpl">
+    <bean id="partyDao" class="com.cb.dao.DaoImpl.PartyDaoImpl">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="characterDao" class="com.cb.dao.DaoImpl.CharacterDaoImpl">
         <property name="template" ref="jt"/>
     </bean>
 
     <bean id="userService" class="com.cb.service.ServiceImpl.UserServiceImpl"/>
 
-    <bean id="characterService" class="com.cb.service.ServiceImpl.PartyServiceImpl"/>
+    <bean id="partyService" class="com.cb.service.ServiceImpl.PartyServiceImpl"/>
+
+    <bean id="characterService" class="com.cb.service.ServiceImpl.CharacterServiceImpl"/>
 
 </beans>
