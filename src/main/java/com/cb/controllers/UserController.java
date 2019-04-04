@@ -1,7 +1,11 @@
 package com.cb.controllers;
 
+import com.cb.beans.CharacterBean;
+import com.cb.beans.PartyBean;
 import com.cb.beans.UserBean;
+import com.cb.service.IService.CharacterService;
 import com.cb.service.IService.UserService;
+import com.cb.service.IService.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +23,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PartyService partyService;
+
+    @Autowired
+    CharacterService characterService;
+
     @RequestMapping("/userstable")
     public String getUsersTable(Model m) {
         List<UserBean> usersList = userService.getUsers();
@@ -29,17 +39,19 @@ public class UserController {
     @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
     public String insertNewUser(@ModelAttribute("userBean") UserBean userBean) {
         userService.insertNewUser(userBean);
-        return "member";
+        return "createCharacter";
     }
 
-    @RequestMapping(value="/insertnewuser")
+    @RequestMapping(value = "/insertnewuser")
     public String insertNewUser() {
         userService.insertNewUser();
         return "redirect:/userstable";
     }
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean) {
+    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean, Model p, Model c) {
+
+        System.out.println();
 
         List<UserBean> allEmails = userService.getUserByEmail(userBean.getEmail());
 
@@ -50,7 +62,11 @@ public class UserController {
         } else {
 
             userService.registerUser(userBean);
-            return "member";
+            List<PartyBean> partiesList = partyService.getParties();
+            List<CharacterBean> charactersList = characterService.getCharacters();
+            p.addAttribute("partiesList", partiesList);
+            c.addAttribute("charactersList", charactersList);
+            return "createCharacter";
 
         }
 
