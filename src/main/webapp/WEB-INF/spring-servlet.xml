@@ -49,10 +49,12 @@
         <property name="template" ref="jt"/>
     </bean>
 
-    <bean id="userService" class="com.cb.service.ServiceImpl.UserServiceImpl"/>
+    <bean id="userService" class="com.cb.service.viewService.UserService"/>
 
-    <bean id="partyService" class="com.cb.service.ServiceImpl.PartyServiceImpl"/>
+    <bean id="partyService" class="com.cb.service.viewService.PartyServiceImpl"/>
 
-    <bean id="characterService" class="com.cb.service.ServiceImpl.CharacterServiceImpl"/>
+    <bean id="characterService" class="com.cb.service.viewService.CharacterServiceImpl"/>
+
+    <bean id="adminService" class="com.cb.service.viewService.AdminService"/>
 
 </beans>

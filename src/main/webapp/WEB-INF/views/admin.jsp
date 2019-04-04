@@ -17,7 +17,7 @@
         <th></th>
         <th></th>
     </tr>
-    <c:forEach var="u" items="${usersListDTO.data}">
+    <c:forEach var="u" items="${usersListBL.data}">
         <tr>
             <td>${u.id}</td>
             <td>${u.userName}</td>
@@ -35,8 +35,8 @@
 </table>
 <br/>
 <c:choose>
-    <c:when test ="${usersListDTO.success == 'false'}" >
-        ${usersListDTO.message}<br/>
+    <c:when test ="${usersListBL.success == 'false'}" >
+        ${usersListBL.message}<br/>
     </c:when>
 </c:choose>
 

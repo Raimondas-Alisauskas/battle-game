@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserDao {
 
-    DefaultDTO getUsers();
+    List<UserBean> getUsers();
 
     int insertUser(UserBean userBean);
 

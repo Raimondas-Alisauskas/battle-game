@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public DefaultDTO getUsers() {
+    public List<UserBean> getUsers() {
         List<UserBean> response = template.query("SELECT * FROM users", new RowMapper<UserBean>() {
             @Override
             public UserBean mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -39,16 +39,7 @@ public class UserDaoImpl implements UserDao {
                 return u;
             }
         });
-        DefaultDTO defaultDTO = new DefaultDTO();
-        if( response.size() != 0){
-            defaultDTO.setSuccess(true);
-            defaultDTO.setData(response);
-
-        } else{
-            defaultDTO.setSuccess(false);
-            defaultDTO.setMessage("No data");
-        }
-        return defaultDTO;
+        return response;
     }
 
     @Override

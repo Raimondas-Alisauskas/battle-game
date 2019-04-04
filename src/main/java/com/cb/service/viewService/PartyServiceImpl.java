@@ -1,4 +1,4 @@
-package com.cb.service.ServiceImpl;
+package com.cb.service.viewService;
 
 import com.cb.beans.PartyBean;
 import com.cb.dao.IDao.PartyDao;

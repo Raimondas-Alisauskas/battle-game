@@ -1,30 +1,39 @@
-package com.cb.service.ServiceImpl;
+package com.cb.service.viewService;
 
 import com.cb.beans.UserBean;
 import com.cb.dao.IDao.UserDao;
 import com.cb.dto.DefaultDTO;
-import com.cb.service.IService.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class UserServiceImpl implements UserService {
+public class UserService {
 
     @Autowired
     UserDao userDao;
 
-    @Override
+
     public DefaultDTO getUsers() {
-        DefaultDTO usersListDTO =userDao.getUsers();
-        return usersListDTO;
+        List<UserBean> usersList =userDao.getUsers();
+
+        DefaultDTO defaultDTO = new DefaultDTO();
+        if( usersList.size() != 0){
+            defaultDTO.setSuccess(true);
+            defaultDTO.setData(usersList);
+        } else{
+            defaultDTO.setSuccess(false);
+            defaultDTO.setMessage("No data");
+        }
+        return defaultDTO;
     }
 
-    @Override
+
     public int insertNewUser(UserBean userBean) {
         return userDao.insertUser(userBean);
     }
 
-    @Override
+
     public int insertNewUser(){
         UserBean userBean = new UserBean();
         userBean.setUserName("Name");
@@ -38,7 +47,7 @@ public class UserServiceImpl implements UserService {
         return userDao.insertUser(userBean);
     }
 
-    @Override
+
     public int registerUser(UserBean userBean) {
 
         userBean.setAdmin(0);
@@ -51,20 +60,20 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
+
     public List<UserBean> getUserByEmail(String email){ return userDao.getUserByEmail(email); }
 
-    @Override
+
     public int updateUser(UserBean userBean) {
         return userDao.updateUser(userBean);
     }
 
-    @Override
+
     public UserBean getUserById(int id) {
         return userDao.getUserById(id);
     }
 
-    @Override
+
     public void deleteUserById(int id) {
         userDao.deleteUserById(id);
     }
