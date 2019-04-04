@@ -2,6 +2,7 @@ package com.cb.service.ServiceImpl;
 
 import com.cb.beans.UserBean;
 import com.cb.dao.IDao.UserDao;
+import com.cb.dto.DefaultDTO;
 import com.cb.service.IService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,8 +14,9 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
     @Override
-    public List<UserBean> getUsers() {
-        return userDao.getUsers();
+    public DefaultDTO getUsers() {
+        DefaultDTO usersListDTO =userDao.getUsers();
+        return usersListDTO;
     }
 
     @Override

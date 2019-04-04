@@ -1,12 +1,13 @@
 package com.cb.service.IService;
 
 import com.cb.beans.UserBean;
+import com.cb.dto.DefaultDTO;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<UserBean> getUsers();
+    DefaultDTO getUsers();
 
     int insertNewUser(UserBean userBean);
 

@@ -1,12 +1,13 @@
 package com.cb.dao.IDao;
 
 import com.cb.beans.UserBean;
+import com.cb.dto.DefaultDTO;
 
 import java.util.List;
 
 public interface UserDao {
 
-    List<UserBean> getUsers();
+    DefaultDTO getUsers();
 
     int insertUser(UserBean userBean);
 

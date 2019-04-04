@@ -3,6 +3,7 @@ package com.cb.controllers;
 import com.cb.beans.CharacterBean;
 import com.cb.beans.PartyBean;
 import com.cb.beans.UserBean;
+import com.cb.dto.DefaultDTO;
 import com.cb.service.IService.CharacterService;
 import com.cb.service.IService.UserService;
 import com.cb.service.IService.PartyService;
@@ -31,8 +32,8 @@ public class UserController {
 
     @RequestMapping("/userstable")
     public String getUsersTable(Model m) {
-        List<UserBean> usersList = userService.getUsers();
-        m.addAttribute("usersList", usersList);
+        DefaultDTO usersListDTO = userService.getUsers();
+        m.addAttribute("usersListDTO", usersListDTO);
         return "usersTable";
     }
 
