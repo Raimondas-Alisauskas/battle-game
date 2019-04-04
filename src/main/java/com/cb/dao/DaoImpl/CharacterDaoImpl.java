@@ -25,7 +25,6 @@ public class CharacterDaoImpl implements CharacterDao {
             public CharacterBean mapRow(ResultSet rs, int rowNum) throws SQLException {
                 CharacterBean c = new CharacterBean();
                 c.setName(rs.getString(2));
-                System.out.println(c.getName());
                 return c;
 
             }
