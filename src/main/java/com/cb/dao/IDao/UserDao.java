@@ -1,6 +1,7 @@
 package com.cb.dao.IDao;
 
 import com.cb.beans.UserBean;
+import com.cb.dto.DefaultDTO;
 
 import java.util.List;
 

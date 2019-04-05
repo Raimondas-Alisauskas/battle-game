@@ -2,18 +2,22 @@ package com.cb.dao.DaoImpl;
 
 import com.cb.beans.UserBean;
 import com.cb.dao.IDao.UserDao;
+import com.cb.dto.DefaultDTO;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 
     JdbcTemplate template;
+
 
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
@@ -21,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<UserBean> getUsers() {
-        return template.query("SELECT * FROM users", new RowMapper<UserBean>() {
+        List<UserBean> response = template.query("SELECT * FROM users", new RowMapper<UserBean>() {
             @Override
             public UserBean mapRow(ResultSet rs, int rowNum) throws SQLException {
                 UserBean u = new UserBean();
@@ -37,6 +41,7 @@ public class UserDaoImpl implements UserDao {
                 return u;
             }
         });
+        return response;
     }
 
     @Override

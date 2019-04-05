@@ -1,6 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <h1>Users table</h1>
 <table border="2" width="70%" cellpadding="2">
     <tr>
@@ -16,7 +17,7 @@
         <th></th>
         <th></th>
     </tr>
-    <c:forEach var="u" items="${usersList}">
+    <c:forEach var="u" items="${usersListBL.data}">
         <tr>
             <td>${u.id}</td>
             <td>${u.userName}</td>
@@ -33,4 +34,10 @@
     </c:forEach>
 </table>
 <br/>
+<c:choose>
+    <c:when test ="${usersListBL.success == 'false'}" >
+        ${usersListBL.message}<br/>
+    </c:when>
+</c:choose>
+
 <a href="insertnewuser">Add New User</a>

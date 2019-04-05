@@ -3,9 +3,12 @@ package com.cb.controllers;
 import com.cb.beans.CharacterBean;
 import com.cb.beans.PartyBean;
 import com.cb.beans.UserBean;
+import com.cb.dto.DefaultDTO;
+import com.cb.service.viewService.AdminService;
 import com.cb.service.IService.CharacterService;
-import com.cb.service.IService.UserService;
+
 import com.cb.service.IService.PartyService;
+import com.cb.service.viewService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +21,13 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class UserController {
+public class AdminController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    AdminService adminService;
 
     @Autowired
     PartyService partyService;
@@ -31,9 +37,9 @@ public class UserController {
 
     @RequestMapping("/userstable")
     public String getUsersTable(Model m) {
-        List<UserBean> usersList = userService.getUsers();
-        m.addAttribute("usersList", usersList);
-        return "usersTable";
+        DefaultDTO defaultDTO = adminService.getUsers();
+        m.addAttribute("usersListBL", defaultDTO);
+        return "admin";
     }
 
     @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
