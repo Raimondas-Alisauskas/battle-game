@@ -1,18 +1,20 @@
 package com.cb.controllers;
 
 import com.cb.beans.UserBean;
+import com.cb.beans.CharacterBean;
+import com.cb.beans.PartyBean;
 import com.cb.service.IService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import com.cb.service.IService.CharacterService;
+import com.cb.service.IService.PartyService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,12 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    PartyService partyService;
+
+    @Autowired
+    CharacterService characterService;
 
     @RequestMapping("/userstable")
     public String getUsersTable(Model m) {
@@ -33,32 +41,38 @@ public class UserController {
     @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
     public String insertNewUser(@ModelAttribute("userBean") UserBean userBean) {
         userService.insertNewUser(userBean);
-        return "member";
+        return "createCharacter";
     }
 
-    @RequestMapping(value="/insertnewuser")
+    @RequestMapping(value = "/insertnewuser")
     public String insertNewUser() {
         userService.insertNewUser();
         return "redirect:/userstable";
     }
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean) {
+    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean, Model p, Model c) {
 
         List<UserBean> allEmails = userService.getUserByEmail(userBean.getEmail());
 
         if (allEmails.size() > 0) {
 
             model.put("error", "User already exist");
-            return "index";
+            return "createCharacter";
         } else {
-
             userService.registerUser(userBean);
-            return "member";
+            List<PartyBean> partiesList = partyService.getParties();
+            List<CharacterBean> charactersList = characterService.getCharacters();
+            p.addAttribute("partiesList", partiesList);
+            c.addAttribute("charactersList", charactersList);
+
+            return "createCharacter";
+
 
         }
 
     }
+
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
     public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userBean") UserBean userBean) {
 
@@ -71,7 +85,7 @@ public class UserController {
             userSession.setAttribute("userName", userBean.getUserName());
             model.put("message", "You are logged in!");
 
-            return "member";
+            return "createCharacter";
         } else {
             model.put("error", "User already does not exist");
             return "index";
