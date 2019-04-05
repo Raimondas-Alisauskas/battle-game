@@ -18,7 +18,7 @@
     <div class="login-form">
         <form method="post" class="sign-in-htm" action="loginuser">
             <div class="group">
-                <label for="emailLogin" class="label">Email Adress</label>
+                <label for="emailLogin" class="label">Email Adres</label>
                 <input id="emailLogin" type="email" name="email" class="input" required>
             </div>
             <div class="group">
