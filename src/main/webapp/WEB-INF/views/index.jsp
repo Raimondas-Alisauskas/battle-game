@@ -41,7 +41,7 @@
             </div>
             <div class="group">
                 <label for="email" class="label">Email Address</label>
-                <input id="email" name="email" type="text" class="input" required>
+                <input id="email" name="email" type="email" class="input" required>
             </div>
             <div class="group">
                 <input type="submit" class="button" value="Sign Up">

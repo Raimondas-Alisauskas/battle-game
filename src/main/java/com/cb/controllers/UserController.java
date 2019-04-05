@@ -74,7 +74,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
-    public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userBean") UserBean userBean) {
+    public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userBean") UserBean userBean, Model p, Model c) {
 
         List<UserBean> allEmails = userService.getUserByEmail(userBean.getEmail());
         List<UserBean> allPasswords = userService.getUserByPassword(userBean.getPassword());
@@ -84,6 +84,10 @@ public class UserController {
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userBean.getUserName());
             model.put("message", "You are logged in!");
+            List<PartyBean> partiesList = partyService.getParties();
+            List<CharacterBean> charactersList = characterService.getCharacters();
+            p.addAttribute("partiesList", partiesList);
+            c.addAttribute("charactersList", charactersList);
 
             return "createCharacter";
         } else {
