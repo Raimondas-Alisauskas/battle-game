@@ -12,6 +12,8 @@ public interface UserDBService {
 
     List<UserDAL> getUserByEmail(String email);
 
+    List<UserDAL> getUserByPassword(String password);
+
     UserDAL getUserById(int id);
 
     int updateUser(UserDAL userDAL);

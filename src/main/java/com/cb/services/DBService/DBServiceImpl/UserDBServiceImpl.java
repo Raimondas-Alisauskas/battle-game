@@ -57,6 +57,20 @@ public class UserDBServiceImpl implements UserDBService {
             public UserDAL mapRow(ResultSet rs, int rowNum) throws SQLException {
                 UserDAL u = new UserDAL();
                 u.setEmail(rs.getString(4));
+                u.setUserName(rs.getString(2));
+                return u;
+            }
+        });
+
+    }
+    @Override
+    public List<UserDAL> getUserByPassword(String password) {
+
+        return template.query("SELECT * FROM users where password = '" + password + "'", new RowMapper<UserDAL>() {
+            @Override
+            public UserDAL mapRow(ResultSet rs, int rowNum) throws SQLException {
+                UserDAL u = new UserDAL();
+                u.setPassword(rs.getString(3));
                 return u;
             }
         });

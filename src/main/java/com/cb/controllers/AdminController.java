@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -72,6 +74,31 @@ public class AdminController {
 
         }
 
+    }
+    @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
+    public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userBean") UserDAL userDAL, Model p, Model c) {
+        List<UserDAL> allEmails = userService.getUserByEmail(userDAL.getEmail());
+        List<UserDAL> allPasswords = userService.getUserByPassword(userDAL.getPassword());
+        String userName = "";
+        for (UserDAL items: allEmails
+        ) {
+            userName = items.getUserName();
+        }
+
+        if (allEmails.size() > 0 && allPasswords.size() > 0) {
+            HttpSession userSession = req.getSession();
+            userSession.setAttribute("userName", userName);
+            List<PartyDAL> partiesList = partyService.getParties();
+            List<CharacterDAL> charactersList = characterService.getCharacters();
+            p.addAttribute("partiesList", partiesList);
+            c.addAttribute("charactersList", charactersList);
+            return "createCharacter";
+
+        } else {
+            model.put("error", "User already does not exist");
+            return "index";
+
+        }
     }
 
     /* Displays object data into form for the given id.

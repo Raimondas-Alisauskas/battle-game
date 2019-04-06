@@ -68,6 +68,10 @@ public class UserServiceImpl implements UserService {
         return userDBService.getUserByEmail(email);
     }
 
+    public List<UserDAL> getUserByPassword(String password) {
+        return userDBService.getUserByPassword(password);
+    }
+
     public int updateUser(UserDAL userDAL) {
         return userDBService.updateUser(userDAL);
     }

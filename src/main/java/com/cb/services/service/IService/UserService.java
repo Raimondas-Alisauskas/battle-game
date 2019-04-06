@@ -19,6 +19,8 @@ public interface UserService {
 
     List<UserDAL> getUserByEmail(String email);
 
+    List<UserDAL> getUserByPassword(String password);
+
     int updateUser(UserDAL userDAL);
 
     UserDAL getUserById(int id);
