@@ -1,4 +1,4 @@
-package com.cb.services.service.viewService;
+package com.cb.services.service.ServiceImpl;
 
 import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;

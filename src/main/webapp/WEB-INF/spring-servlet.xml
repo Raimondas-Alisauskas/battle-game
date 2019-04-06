@@ -50,10 +50,4 @@
         <property name="template" ref="jt"/>
     </bean>
 
-    <bean id="userService" class="com.cb.services.service.viewService.UserServiceImpl"/>
-
-    <bean id="partyService" class="com.cb.services.service.viewService.PartyServiceImpl"/>
-
-    <bean id="characterService" class="com.cb.services.service.viewService.CharacterServiceImpl"/>
-
 </beans>
