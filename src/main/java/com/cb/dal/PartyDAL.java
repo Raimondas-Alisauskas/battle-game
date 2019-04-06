@@ -1,6 +1,6 @@
-package com.cb.beans;
+package com.cb.dal;
 
-public class PartyBean {
+public class PartyDAL {
 
     private String name;
 
