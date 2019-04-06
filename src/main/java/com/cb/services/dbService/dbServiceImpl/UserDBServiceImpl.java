@@ -1,17 +1,15 @@
-package com.cb.services.DBService.DBServiceImpl;
+package com.cb.services.dbService.dbServiceImpl;
 
 import com.cb.dal.UserDAL;
-import com.cb.services.DBService.IDBService.UserDBService;
+import com.cb.services.dbService.iDbService.UserDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository
 public class UserDBServiceImpl implements UserDBService {
 
     JdbcTemplate template;

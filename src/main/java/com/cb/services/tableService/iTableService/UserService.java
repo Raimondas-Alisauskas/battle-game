@@ -1,4 +1,4 @@
-package com.cb.services.service.IService;
+package com.cb.services.tableService.iTableService;
 
 import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;

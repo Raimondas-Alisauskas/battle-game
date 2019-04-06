@@ -1,11 +1,11 @@
-package com.cb.services.service.ServiceImpl;
+package com.cb.services.tableService.tableServiceImpl;
 
 import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
-import com.cb.services.DBService.IDBService.UserDBService;
+import com.cb.services.dbService.iDbService.UserDBService;
 import com.cb.dto.DefaultDTO;
 
-import com.cb.services.service.IService.UserService;
+import com.cb.services.tableService.iTableService.UserService;
 import com.cb.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

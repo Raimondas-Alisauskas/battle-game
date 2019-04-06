@@ -1,8 +1,8 @@
-package com.cb.services.service.ServiceImpl;
+package com.cb.services.tableService.tableServiceImpl;
 
 import com.cb.dal.PartyDAL;
-import com.cb.services.DBService.IDBService.PartyDBService;
-import com.cb.services.service.IService.PartyService;
+import com.cb.services.dbService.iDbService.PartyDBService;
+import com.cb.services.tableService.iTableService.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
