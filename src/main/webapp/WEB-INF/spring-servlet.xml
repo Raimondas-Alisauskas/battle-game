@@ -28,33 +28,32 @@
 
     <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/main?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/main?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
         <property name="username" value="root"/>
-        <property name="password" value="Ral"/>
+        <property name="password" value="admin"/>
     </bean>
 
     <bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="ds"/>
     </bean>
 
-    <bean id="userDao" class="com.cb.dao.DaoImpl.UserDaoImpl">
+    <bean id="userDBService" class="com.cb.services.DBService.DBServiceImpl.UserDBServiceImpl">
         <property name="template" ref="jt"/>
     </bean>
 
-    <bean id="partyDao" class="com.cb.dao.DaoImpl.PartyDaoImpl">
+    <bean id="partyDBService" class="com.cb.services.DBService.DBServiceImpl.PartyDBServiceImpl">
         <property name="template" ref="jt"/>
     </bean>
 
-    <bean id="characterDao" class="com.cb.dao.DaoImpl.CharacterDaoImpl">
+    <bean id="characterDBService" class="com.cb.services.DBService.DBServiceImpl.CharacterDBServiceImpl">
         <property name="template" ref="jt"/>
     </bean>
 
-    <bean id="userService" class="com.cb.service.viewService.UserService"/>
+    <bean id="userService" class="com.cb.services.service.viewService.UserServiceImpl"/>
 
-    <bean id="partyService" class="com.cb.service.viewService.PartyServiceImpl"/>
+    <bean id="partyService" class="com.cb.services.service.viewService.PartyServiceImpl"/>
 
-    <bean id="characterService" class="com.cb.service.viewService.CharacterServiceImpl"/>
-
-    <bean id="adminService" class="com.cb.service.viewService.AdminService"/>
+    <bean id="characterService" class="com.cb.services.service.viewService.CharacterServiceImpl"/>
 
 </beans>

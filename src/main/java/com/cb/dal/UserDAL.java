@@ -1,6 +1,6 @@
-package com.cb.beans;
+package com.cb.dal;
 
-public class UserBean {
+public class UserDAL {
 	private int id;
 	private String userName;
 	private String password;

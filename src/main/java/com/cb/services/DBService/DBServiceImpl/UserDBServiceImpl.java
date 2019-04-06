@@ -1,8 +1,7 @@
-package com.cb.dao.DaoImpl;
+package com.cb.services.DBService.DBServiceImpl;
 
-import com.cb.beans.UserBean;
-import com.cb.dao.IDao.UserDao;
-import com.cb.dto.DefaultDTO;
+import com.cb.dal.UserDAL;
+import com.cb.services.DBService.IDBService.UserDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -10,11 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDBServiceImpl implements UserDBService {
 
     JdbcTemplate template;
 
@@ -24,11 +22,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<UserBean> getUsers() {
-        List<UserBean> response = template.query("SELECT * FROM users", new RowMapper<UserBean>() {
+    public List<UserDAL> getUsers() {
+        List<UserDAL> response = template.query("SELECT * FROM users", new RowMapper<UserDAL>() {
             @Override
-            public UserBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-                UserBean u = new UserBean();
+            public UserDAL mapRow(ResultSet rs, int rowNum) throws SQLException {
+                UserDAL u = new UserDAL();
                 u.setId(rs.getInt(1));
                 u.setUserName(rs.getString(2));
                 u.setPassword(rs.getString(3));
@@ -45,7 +43,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int insertUser(UserBean u) {
+    public int insertUser(UserDAL u) {
         String sql = "INSERT INTO users(userName, password, email, isAdmin, rating, money, characterId, partyId) " +
                 "VALUES ('" + u.getUserName() + "','" + u.getPassword() + "','" + u.getEmail() + "'," + u.getAdmin() + "," + u.getRating() + "," + u.getMoney() + ","
                 + u.getCharacterId() + "," + u.getPartyId() + ")";
@@ -53,12 +51,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<UserBean> getUserByEmail(String email) {
+    public List<UserDAL> getUserByEmail(String email) {
 
-        return template.query("SELECT * FROM users where email = '" + email + "'", new RowMapper<UserBean>() {
+        return template.query("SELECT * FROM users where email = '" + email + "'", new RowMapper<UserDAL>() {
             @Override
-            public UserBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-                UserBean u = new UserBean();
+            public UserDAL mapRow(ResultSet rs, int rowNum) throws SQLException {
+                UserDAL u = new UserDAL();
                 u.setEmail(rs.getString(4));
                 return u;
             }
@@ -67,13 +65,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public UserBean getUserById(int id) {
+    public UserDAL getUserById(int id) {
         String sql = "select * from users where id=?";
-        return template.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(UserBean.class));
+        return template.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(UserDAL.class));
     }
 
     @Override
-    public int updateUser(UserBean u) {
+    public int updateUser(UserDAL u) {
         String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getAdmin() + "," +
                 "rating = " + u.getRating() + ", money = " + u.getMoney() + ", characterId = " + u.getCharacterId() + ", partyId = " + u.getPartyId() + " " +
                 "WHERE id = " + u.getId() + "";

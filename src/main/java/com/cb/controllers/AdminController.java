@@ -1,14 +1,13 @@
 package com.cb.controllers;
 
-import com.cb.beans.CharacterBean;
-import com.cb.beans.PartyBean;
-import com.cb.beans.UserBean;
+import com.cb.dal.CharacterDAL;
+import com.cb.dal.PartyDAL;
+import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
-import com.cb.service.viewService.AdminService;
-import com.cb.service.IService.CharacterService;
+import com.cb.services.service.IService.UserService;
+import com.cb.services.service.IService.CharacterService;
 
-import com.cb.service.IService.PartyService;
-import com.cb.service.viewService.UserService;
+import com.cb.services.service.IService.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +26,6 @@ public class AdminController {
     UserService userService;
 
     @Autowired
-    AdminService adminService;
-
-    @Autowired
     PartyService partyService;
 
     @Autowired
@@ -37,14 +33,14 @@ public class AdminController {
 
     @RequestMapping("/userstable")
     public String getUsersTable(Model m) {
-        DefaultDTO defaultDTO = adminService.getUsers();
+        DefaultDTO defaultDTO = userService.getUsers();
         m.addAttribute("usersListBL", defaultDTO);
         return "admin";
     }
 
     @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
-    public String insertNewUser(@ModelAttribute("userBean") UserBean userBean) {
-        userService.insertNewUser(userBean);
+    public String insertNewUser(@ModelAttribute("userBean") UserDAL userDAL) {
+        userService.insertNewUser(userDAL);
         return "createCharacter";
     }
 
@@ -55,11 +51,11 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBean userBean, Model p, Model c) {
+    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserDAL userDAL, Model p, Model c) {
 
         System.out.println();
 
-        List<UserBean> allEmails = userService.getUserByEmail(userBean.getEmail());
+        List<UserDAL> allEmails = userService.getUserByEmail(userDAL.getEmail());
 
         if (allEmails.size() > 0) {
 
@@ -67,9 +63,9 @@ public class AdminController {
             return "index";
         } else {
 
-            userService.registerUser(userBean);
-            List<PartyBean> partiesList = partyService.getParties();
-            List<CharacterBean> charactersList = characterService.getCharacters();
+            userService.registerUser(userDAL);
+            List<PartyDAL> partiesList = partyService.getParties();
+            List<CharacterDAL> charactersList = characterService.getCharacters();
             p.addAttribute("partiesList", partiesList);
             c.addAttribute("charactersList", charactersList);
             return "createCharacter";
@@ -89,8 +85,8 @@ public class AdminController {
     /*Inserts object into database. The @ModelAttribute puts request data
      *  into model object. */
     @RequestMapping(value = "/edituser/update", method = RequestMethod.POST)
-    public String updateUser(@ModelAttribute("userBean") UserBean userBean) {
-        userService.updateUser(userBean);
+    public String updateUser(@ModelAttribute("userBean") UserDAL userDAL) {
+        userService.updateUser(userDAL);
         return "redirect:/userstable";
     }
 

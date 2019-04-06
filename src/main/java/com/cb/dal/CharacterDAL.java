@@ -1,8 +1,8 @@
-package com.cb.beans;
+package com.cb.dal;
 
 import java.sql.Blob;
 
-public class CharacterBean {
+public class CharacterDAL {
 
     private int id;
     private String name;

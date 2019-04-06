@@ -12,7 +12,7 @@
 
 			<P>The time on the server is ${serverTime}.</p>
 
-			<form action="userBean" method="post">
+			<form action="userDAL" method="post">
 				<input type="text" name="userName"><br> <input
 					type="submit" value="Login">
 			</form>
