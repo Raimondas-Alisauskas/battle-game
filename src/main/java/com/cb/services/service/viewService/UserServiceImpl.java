@@ -64,21 +64,17 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
     public List<UserDAL> getUserByEmail(String email) {
         return userDBService.getUserByEmail(email);
     }
-
 
     public int updateUser(UserDAL userDAL) {
         return userDBService.updateUser(userDAL);
     }
 
-
     public UserDAL getUserById(int id) {
         return userDBService.getUserById(id);
     }
-
 
     public void deleteUserById(int id) {
         userDBService.deleteUserById(id);

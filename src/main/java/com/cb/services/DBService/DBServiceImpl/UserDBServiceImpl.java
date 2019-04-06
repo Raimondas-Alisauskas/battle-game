@@ -16,7 +16,6 @@ public class UserDBServiceImpl implements UserDBService {
 
     JdbcTemplate template;
 
-
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }
