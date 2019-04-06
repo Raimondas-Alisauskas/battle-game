@@ -55,11 +55,17 @@ public class UserDBServiceImpl implements UserDBService {
         return template.query("SELECT * FROM users where email = '" + email + "'", new RowMapper<UserDAL>() {
             @Override
             public UserDAL mapRow(ResultSet rs, int rowNum) throws SQLException {
-                UserDAL u = new UserDAL();
-                u.setEmail(rs.getString(4));
-                u.setUserName(rs.getString(2));
-                return u;
+                try{
+                    UserDAL u = new UserDAL();
+                    u.setEmail(rs.getString(4));
+                    u.setUserName(rs.getString(2));
+                    return u;
+                } catch (SQLException e){
+                    e.printStackTrace();
+                    return null;
+                }
             }
+
         });
 
     }
