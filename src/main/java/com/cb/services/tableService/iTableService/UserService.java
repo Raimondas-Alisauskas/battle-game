@@ -22,7 +22,7 @@ public interface UserService {
 
     DefaultDTO updateUser(UserBL userBL);
 
-    UserDAL getUserById(int id);
+    DefaultDTO getUserById(int id);
 
     DefaultDTO deleteUserById(int id);
 

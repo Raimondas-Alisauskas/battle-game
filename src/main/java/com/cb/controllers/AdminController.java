@@ -79,7 +79,8 @@ public class AdminController {
      * The @PathVariable puts URL data into variable.*/
     @RequestMapping(value = "/edituser/{id}")
     public String getUserById(@PathVariable int id, Model m) {
-        m.addAttribute("command", userService.getUserById(id));
+        DefaultDTO defaultDTO = userService.getUserById(id);
+        m.addAttribute("command", defaultDTO.getData());
         return "userForm";
     }
 
@@ -87,7 +88,7 @@ public class AdminController {
      *  into model object. */
     @RequestMapping(value = "/edituser/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute("userBean") UserBL userBL) {
-        userService.updateUser(userBL);
+        DefaultDTO defaultDTO = userService.updateUser(userBL);
         return "redirect:/userstable";
     }
 

@@ -100,8 +100,18 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    public UserDAL getUserById(int id) {
-        return userDBService.getUserById(id);
+    public DefaultDTO getUserById(int id) {
+        try{
+            UserDAL userDAL = userDBService.getUserById(id);
+            UserBL userBL = ObjectMapperUtils.map(userDAL,UserBL.class);
+            defaultDTO.setSuccess(true);
+            defaultDTO.setData(userBL);
+        } catch (Exception e){
+            defaultDTO.setSuccess(false);
+            defaultDTO.setMessage("General error: " + e.getMessage());
+        }
+        return defaultDTO;
+
     }
 
     public DefaultDTO deleteUserById(int id) {
