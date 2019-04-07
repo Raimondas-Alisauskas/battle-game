@@ -27,7 +27,7 @@
 
 
     <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url"
                   value="jdbc:mysql://localhost:3306/main?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
         <property name="username" value="root"/>
@@ -38,16 +38,18 @@
         <property name="dataSource" ref="ds"/>
     </bean>
 
-    <bean id="userDBService" class="com.cb.services.DBService.DBServiceImpl.UserDBServiceImpl">
+    <bean id="userDBService" class="com.cb.services.dbService.dbServiceImpl.UserDBServiceImpl">
         <property name="template" ref="jt"/>
     </bean>
 
-    <bean id="partyDBService" class="com.cb.services.DBService.DBServiceImpl.PartyDBServiceImpl">
+    <bean id="partyDBService" class="com.cb.services.dbService.dbServiceImpl.PartyDBServiceImpl">
         <property name="template" ref="jt"/>
     </bean>
 
-    <bean id="characterDBService" class="com.cb.services.DBService.DBServiceImpl.CharacterDBServiceImpl">
+    <bean id="characterDBService" class="com.cb.services.dbService.dbServiceImpl.CharacterDBServiceImpl">
         <property name="template" ref="jt"/>
     </bean>
+
+    <bean id="defaultDTO" class="com.cb.dto.DefaultDTO"/>
 
 </beans>

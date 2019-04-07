@@ -10,6 +10,7 @@ import com.cb.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -17,21 +18,22 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDBService userDBService;
+    @Autowired
+    DefaultDTO defaultDTO;
 
     public DefaultDTO getUsers() {
-        List<UserDAL> usersListDAL = userDBService.getUsers();
-
-        List<UserBL> usersListBL = ObjectMapperUtils.mapAll(usersListDAL, UserBL.class);
-
-        DefaultDTO defaultDTO = new DefaultDTO();
-        if (usersListDAL.size() != 0) {
+        try {
+            List<UserDAL> usersListDAL = userDBService.getUsers();
+            List<UserBL> usersListBL = ObjectMapperUtils.mapAll(usersListDAL, UserBL.class);
             defaultDTO.setSuccess(true);
             defaultDTO.setData(usersListBL);
-        } else {
+        } catch (SQLException e) {
             defaultDTO.setSuccess(false);
-            defaultDTO.setMessage("No data");
+            defaultDTO.setMessage("Error during an interaction with a data source: " + e.getMessage());
+        } catch (Exception e){
+            defaultDTO.setSuccess(false);
+            defaultDTO.setMessage("General error: " + e.getMessage());
         }
-
         return defaultDTO;
     }
 
