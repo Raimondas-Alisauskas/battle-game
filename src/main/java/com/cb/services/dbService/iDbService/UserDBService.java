@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserDBService {
 
-    List<UserDAL> getUsers() throws SQLException;
+    List<UserDAL> getUsers();
 
     int insertUser(UserDAL userDAL);
 

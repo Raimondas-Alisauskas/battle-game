@@ -27,9 +27,6 @@ public class UserServiceImpl implements UserService {
             List<UserBL> usersListBL = ObjectMapperUtils.mapAll(usersListDAL, UserBL.class);
             defaultDTO.setSuccess(true);
             defaultDTO.setData(usersListBL);
-        } catch (SQLException e) {
-            defaultDTO.setSuccess(false);
-            defaultDTO.setMessage("Error during an interaction with a data source: " + e.getMessage());
         } catch (Exception e){
             defaultDTO.setSuccess(false);
             defaultDTO.setMessage("General error: " + e.getMessage());

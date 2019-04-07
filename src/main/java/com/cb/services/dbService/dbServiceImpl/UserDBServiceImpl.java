@@ -20,23 +20,7 @@ public class UserDBServiceImpl implements UserDBService {
 
     @Override
     public List<UserDAL> getUsers() {
-        List<UserDAL> response = template.query("SELECT * FROM users", new RowMapper<UserDAL>() {
-            @Override
-            public UserDAL mapRow(ResultSet rs, int rowNum) throws SQLException {
-                UserDAL u = new UserDAL();
-                u.setId(rs.getInt(1));
-                u.setUserName(rs.getString(2));
-                u.setPassword(rs.getString(3));
-                u.setEmail(rs.getString(4));
-                u.setAdmin(rs.getByte(5));
-                u.setRating(rs.getInt(6));
-                u.setMoney(rs.getInt(7));
-                u.setCharacterId(rs.getInt(8));
-                u.setPartyId(rs.getInt(9));
-                return u;
-            }
-        });
-        return response;
+        return template.query("SELECT * FROM users", new BeanPropertyRowMapper(UserDAL.class));
     }
 
     @Override
