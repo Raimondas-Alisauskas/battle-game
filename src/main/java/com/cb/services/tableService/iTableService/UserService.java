@@ -11,9 +11,9 @@ public interface UserService {
 
     DefaultDTO getUsers();
 
-    int insertNewUser(UserDAL userDAL);
+    DefaultDTO insertNewUser(UserDAL userDAL);
 
-    int insertNewUser();
+    DefaultDTO insertNewUser();
 
     int registerUser(UserDAL userDAL);
 

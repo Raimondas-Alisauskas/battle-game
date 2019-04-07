@@ -34,11 +34,24 @@ public class UserServiceImpl implements UserService {
         return defaultDTO;
     }
 
-    public int insertNewUser(UserDAL userDAL) {
-        return userDBService.insertUser(userDAL);
+    public DefaultDTO insertNewUser(UserDAL userDAL) {
+        try{
+            int result = userDBService.insertUser(userDAL);
+            if(result == 1) {
+                defaultDTO.setSuccess(true);
+                defaultDTO.setData(result);
+            } else {
+                defaultDTO.setSuccess(false);
+                defaultDTO.setMessage("General error: can't insert user" );
+            }
+        } catch (Exception e){
+            defaultDTO.setSuccess(false);
+            defaultDTO.setMessage("General error: " + e.getMessage());
+        }
+        return defaultDTO;
     }
 
-    public int insertNewUser() {
+    public DefaultDTO insertNewUser() {
         UserDAL userDAL = new UserDAL();
         userDAL.setUserName("Name");
         userDAL.setPassword("Password");
@@ -48,7 +61,7 @@ public class UserServiceImpl implements UserService {
         userDAL.setMoney(100);
         userDAL.setCharacterId(1);
         userDAL.setPartyId(1);
-        return userDBService.insertUser(userDAL);
+        return insertNewUser(userDAL);
     }
 
     public int registerUser(UserDAL userDAL) {
