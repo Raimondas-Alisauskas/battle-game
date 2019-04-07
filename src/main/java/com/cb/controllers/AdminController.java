@@ -93,7 +93,7 @@ public class AdminController {
 
     @RequestMapping(value = "/deleteuser/{id}")
     public String getUserById(@PathVariable int id) {
-        userService.deleteUserById(id);
+        DefaultDTO defaultDTO = userService.deleteUserById(id);
         return "redirect:/userstable";
     }
 

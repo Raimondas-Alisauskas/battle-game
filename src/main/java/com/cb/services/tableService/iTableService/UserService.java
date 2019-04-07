@@ -24,6 +24,6 @@ public interface UserService {
 
     UserDAL getUserById(int id);
 
-    void deleteUserById(int id);
+    DefaultDTO deleteUserById(int id);
 
 }

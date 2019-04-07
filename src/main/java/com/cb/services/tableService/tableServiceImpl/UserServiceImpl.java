@@ -85,10 +85,10 @@ public class UserServiceImpl implements UserService {
             int result = userDBService.updateUser(userBL);
             if(result == 1) {
                 defaultDTO.setSuccess(true);
-                defaultDTO.setData(result);
+                defaultDTO.setMessage("User updated");
             } else {
                 defaultDTO.setSuccess(false);
-                defaultDTO.setMessage("General error: can't insert user" );
+                defaultDTO.setMessage("General error: can't update user" );
             }
         } catch (Exception e){
             defaultDTO.setSuccess(false);
@@ -104,8 +104,21 @@ public class UserServiceImpl implements UserService {
         return userDBService.getUserById(id);
     }
 
-    public void deleteUserById(int id) {
-        userDBService.deleteUserById(id);
+    public DefaultDTO deleteUserById(int id) {
+        try{
+            int result = userDBService.deleteUserById(id);;
+            if(result == 1) {
+                defaultDTO.setSuccess(true);
+                defaultDTO.setMessage("User deleted");
+            } else {
+                defaultDTO.setSuccess(false);
+                defaultDTO.setMessage("General error: can't delete user" );
+            }
+        } catch (Exception e){
+            defaultDTO.setSuccess(false);
+            defaultDTO.setMessage("General error: " + e.getMessage());
+        }
+        return defaultDTO;
     }
 
 }
