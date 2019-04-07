@@ -1,5 +1,6 @@
 package com.cb.services.dbService.dbServiceImpl;
 
+import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
 import com.cb.services.dbService.iDbService.UserDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -24,7 +25,7 @@ public class UserDBServiceImpl implements UserDBService {
     }
 
     @Override
-    public int insertUser(UserDAL u) {
+    public int insertUser(UserBL u) {
         String sql = "INSERT INTO users(userName, password, email, isAdmin, rating, money, characterId, partyId) " +
                 "VALUES ('" + u.getUserName() + "','" + u.getPassword() + "','" + u.getEmail() + "'," + u.getAdmin() + "," + u.getRating() + "," + u.getMoney() + ","
                 + u.getCharacterId() + "," + u.getPartyId() + ")";
@@ -52,7 +53,7 @@ public class UserDBServiceImpl implements UserDBService {
     }
 
     @Override
-    public int updateUser(UserDAL u) {
+    public int updateUser(UserBL u) {
         String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getAdmin() + "," +
                 "rating = " + u.getRating() + ", money = " + u.getMoney() + ", characterId = " + u.getCharacterId() + ", partyId = " + u.getPartyId() + " " +
                 "WHERE id = " + u.getId() + "";

@@ -34,9 +34,9 @@ public class UserServiceImpl implements UserService {
         return defaultDTO;
     }
 
-    public DefaultDTO insertNewUser(UserDAL userDAL) {
+    public DefaultDTO insertNewUser(UserBL userBL) {
         try{
-            int result = userDBService.insertUser(userDAL);
+            int result = userDBService.insertUser(userBL);
             if(result == 1) {
                 defaultDTO.setSuccess(true);
                 defaultDTO.setData(result);
@@ -52,27 +52,27 @@ public class UserServiceImpl implements UserService {
     }
 
     public DefaultDTO insertNewUser() {
-        UserDAL userDAL = new UserDAL();
-        userDAL.setUserName("Name");
-        userDAL.setPassword("Password");
-        userDAL.setEmail("email");
-        userDAL.setAdmin(0);
-        userDAL.setRating(50);
-        userDAL.setMoney(100);
-        userDAL.setCharacterId(1);
-        userDAL.setPartyId(1);
-        return insertNewUser(userDAL);
+        UserBL userBL = new UserBL();
+        userBL.setUserName("Name");
+        userBL.setPassword("Password");
+        userBL.setEmail("email");
+        userBL.setAdmin(0);
+        userBL.setRating(50);
+        userBL.setMoney(100);
+        userBL.setCharacterId(1);
+        userBL.setPartyId(1);
+        return insertNewUser(userBL);
     }
 
-    public int registerUser(UserDAL userDAL) {
+    public int registerUser(UserBL userBL) {
 
-        userDAL.setAdmin(0);
-        userDAL.setRating(100);
-        userDAL.setMoney(1000);
-        userDAL.setCharacterId(1);
-        userDAL.setPartyId(1);
+        userBL.setAdmin(0);
+        userBL.setRating(100);
+        userBL.setMoney(1000);
+        userBL.setCharacterId(1);
+        userBL.setPartyId(1);
 
-        return userDBService.insertUser(userDAL);
+        return userDBService.insertUser(userBL);
 
     }
 
@@ -80,8 +80,24 @@ public class UserServiceImpl implements UserService {
         return userDBService.getUserByEmail(email);
     }
 
-    public int updateUser(UserDAL userDAL) {
-        return userDBService.updateUser(userDAL);
+    public DefaultDTO updateUser(UserBL userBL) {
+        try{
+            int result = userDBService.updateUser(userBL);
+            if(result == 1) {
+                defaultDTO.setSuccess(true);
+                defaultDTO.setData(result);
+            } else {
+                defaultDTO.setSuccess(false);
+                defaultDTO.setMessage("General error: can't insert user" );
+            }
+        } catch (Exception e){
+            defaultDTO.setSuccess(false);
+            defaultDTO.setMessage("General error: " + e.getMessage());
+        }
+        return defaultDTO;
+
+
+
     }
 
     public UserDAL getUserById(int id) {

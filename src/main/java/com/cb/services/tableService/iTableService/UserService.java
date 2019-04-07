@@ -1,5 +1,6 @@
 package com.cb.services.tableService.iTableService;
 
+import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
 import org.springframework.stereotype.Service;
@@ -11,15 +12,15 @@ public interface UserService {
 
     DefaultDTO getUsers();
 
-    DefaultDTO insertNewUser(UserDAL userDAL);
+    DefaultDTO insertNewUser(UserBL userBL);
 
     DefaultDTO insertNewUser();
 
-    int registerUser(UserDAL userDAL);
+    int registerUser(UserBL userBL);
 
     List<UserDAL> getUserByEmail(String email);
 
-    int updateUser(UserDAL userDAL);
+    DefaultDTO updateUser(UserBL userBL);
 
     UserDAL getUserById(int id);
 
