@@ -27,7 +27,7 @@ public class UserDBServiceImpl implements UserDBService {
     @Override
     public int insertUser(UserBL u) {
         String sql = "INSERT INTO users(userName, password, email, isAdmin, rating, money, characterId, partyId) " +
-                "VALUES ('" + u.getUserName() + "','" + u.getPassword() + "','" + u.getEmail() + "'," + u.getAdmin() + "," + u.getRating() + "," + u.getMoney() + ","
+                "VALUES ('" + u.getUserName() + "','" + u.getPassword() + "','" + u.getEmail() + "'," + u.getIsAdmin() + "," + u.getRating() + "," + u.getMoney() + ","
                 + u.getCharacterId() + "," + u.getPartyId() + ")";
         return template.update(sql);
     }
@@ -54,7 +54,7 @@ public class UserDBServiceImpl implements UserDBService {
 
     @Override
     public int updateUser(UserBL u) {
-        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getAdmin() + "," +
+        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getIsAdmin() + "," +
                 "rating = " + u.getRating() + ", money = " + u.getMoney() + ", characterId = " + u.getCharacterId() + ", partyId = " + u.getPartyId() + " " +
                 "WHERE id = " + u.getId() + "";
         return template.update(sql);

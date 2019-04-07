@@ -24,7 +24,7 @@
                     <td>${u.userName}</td>
                     <td>${u.password}</td>
                     <td>${u.email}</td>
-                    <td>${u.admin}</td>
+                    <td>${u.isAdmin}</td>
                     <td>${u.rating}</td>
                     <td>${u.money}</td>
                     <td>${u.characterId}</td>

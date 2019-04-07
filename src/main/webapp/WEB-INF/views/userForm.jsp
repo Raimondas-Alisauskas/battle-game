@@ -18,7 +18,7 @@
             <td><form:input path="userName"/></td>
             <td><form:input path="password"/></td>
             <td><form:input path="email"/></td>
-            <td><form:input path="admin"/></td>
+            <td><form:input path="isAdmin"/></td>
             <td><form:input path="rating"/></td>
             <td><form:input path="money"/></td>
             <td><form:input path="characterId"/></td>

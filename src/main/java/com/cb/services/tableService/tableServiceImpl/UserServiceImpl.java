@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
         userBL.setUserName("Name");
         userBL.setPassword("Password");
         userBL.setEmail("email");
-        userBL.setAdmin(0);
+        userBL.setIsAdmin(false);
         userBL.setRating(50);
         userBL.setMoney(100);
         userBL.setCharacterId(1);
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
 
     public int registerUser(UserBL userBL) {
 
-        userBL.setAdmin(0);
+        userBL.setIsAdmin(false);
         userBL.setRating(100);
         userBL.setMoney(1000);
         userBL.setCharacterId(1);
