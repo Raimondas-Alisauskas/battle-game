@@ -16,7 +16,7 @@
 <body class="main">
 <a href="userstable">Modify Users</a>
 <h4>Logged in as ${sessionScope.userName}</h4>
-<a href="signOut">Sign Out</a>
+<a href="signout">Sign Out</a>
 <div class="login-html">
     <div class="header">CREATE YOUR MEMBER</div>
     <div class="create-member">
