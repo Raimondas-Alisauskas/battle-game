@@ -5,10 +5,10 @@ import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
 import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
-import com.cb.services.tableService.iTableService.UserService;
-import com.cb.services.tableService.iTableService.CharacterService;
+import com.cb.services.mapService.iMapService.UserService;
+import com.cb.services.mapService.iMapService.CharacterService;
 
-import com.cb.services.tableService.iTableService.PartyService;
+import com.cb.services.mapService.iMapService.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

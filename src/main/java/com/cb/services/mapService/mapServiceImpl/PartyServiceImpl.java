@@ -1,8 +1,8 @@
-package com.cb.services.tableService.tableServiceImpl;
+package com.cb.services.mapService.mapServiceImpl;
 
 import com.cb.dal.PartyDAL;
 import com.cb.services.dbService.iDbService.PartyDBService;
-import com.cb.services.tableService.iTableService.PartyService;
+import com.cb.services.mapService.iMapService.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

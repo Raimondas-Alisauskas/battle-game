@@ -1,4 +1,4 @@
-package com.cb.services.tableService.iTableService;
+package com.cb.services.mapService.iMapService;
 
 import com.cb.dal.PartyDAL;
 
