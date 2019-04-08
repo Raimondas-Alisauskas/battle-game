@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:choose>
-    <c:when test ="${usersListBL.success == 'true'}" >
+    <c:when test ="${usersListBL.success}" >
         <h1>Users table</h1>
         <table border="2" width="70%" cellpadding="2">
             <tr>

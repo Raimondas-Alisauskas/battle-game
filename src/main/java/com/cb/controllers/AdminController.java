@@ -27,9 +27,12 @@ public class AdminController {
     @Autowired
     CharacterService characterService;
 
+    @Autowired
+    DefaultDTO defaultDTO = new DefaultDTO();
+
     @RequestMapping("/userstable")
     public String getUsersTable(Model m) {
-        DefaultDTO defaultDTO = userService.getUsers();
+        defaultDTO = userService.getUsers();
         m.addAttribute("usersListBL", defaultDTO);
         return "admin";
     }
@@ -51,7 +54,8 @@ public class AdminController {
      * The @PathVariable puts URL data into variable.*/
     @RequestMapping(value = "/edituser/{id}")
     public String getUserById(@PathVariable int id, Model m) {
-        m.addAttribute("command", userService.getUserById(id));
+        UserBL userBL = (UserBL)userService.getUserById(id).getData();
+        m.addAttribute("command", userBL );
         return "userForm";
     }
 
