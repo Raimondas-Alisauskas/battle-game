@@ -1,12 +1,13 @@
 package com.cb.controllers;
 
+
 import com.cb.bl.UserBL;
 import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
 import com.cb.dal.UserDAL;
-import com.cb.services.service.IService.CharacterService;
-import com.cb.services.service.IService.PartyService;
-import com.cb.services.service.IService.UserService;
+import com.cb.services.mapService.iMapService.CharacterService;
+import com.cb.services.mapService.iMapService.PartyService;
+import com.cb.services.mapService.iMapService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,11 +31,12 @@ public class RegisterController {
     @Autowired
     CharacterService characterService;
 
-    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserDAL userDAL, Model p, Model c) {
 
-        List<UserDAL> allEmails = userService.getUserByEmail(userDAL.getEmail());
-        String userName = userDAL.getUserName();
+    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+    public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
+
+        List<UserDAL> allEmails = userService.getUserByEmail(userBL.getEmail());
+        String userName = userBL.getUserName();
 
         if (allEmails.size() > 0) {
 
@@ -42,7 +44,7 @@ public class RegisterController {
             return "index";
         } else {
 
-            userService.registerUser(userDAL);
+            userService.registerUser(userBL);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             List<PartyDAL> partiesList = partyService.getParties();

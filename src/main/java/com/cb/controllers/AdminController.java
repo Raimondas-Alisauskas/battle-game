@@ -1,13 +1,12 @@
 package com.cb.controllers;
 
-import com.cb.dal.CharacterDAL;
-import com.cb.dal.PartyDAL;
+
+import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
-import com.cb.services.service.IService.UserService;
-import com.cb.services.service.IService.CharacterService;
-
-import com.cb.services.service.IService.PartyService;
+import com.cb.services.mapService.iMapService.CharacterService;
+import com.cb.services.mapService.iMapService.PartyService;
+import com.cb.services.mapService.iMapService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,8 +35,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
-    public String insertNewUser(@ModelAttribute("userDAL") UserDAL userDAL) {
-        userService.insertNewUser(userDAL);
+    public String insertNewUser(@ModelAttribute("userDAL") UserBL userBL) {
+        userService.insertNewUser(userBL);
         return "createCharacter";
     }
 
@@ -59,8 +58,8 @@ public class AdminController {
     /*Inserts object into database. The @ModelAttribute puts request data
      *  into model object. */
     @RequestMapping(value = "/edituser/update", method = RequestMethod.POST)
-    public String updateUser(@ModelAttribute("userDAL") UserDAL userDAL) {
-        userService.updateUser(userDAL);
+    public String updateUser(@ModelAttribute("userDAL") UserBL userBL) {
+        userService.updateUser(userBL);
         return "redirect:/userstable";
     }
 

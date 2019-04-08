@@ -1,17 +1,16 @@
-package com.cb.services.DBService.DBServiceImpl;
+package com.cb.services.dbService.dbServiceImpl;
 
+import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
-import com.cb.services.DBService.IDBService.UserDBService;
+import com.cb.services.dbService.iDbService.UserDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository
 public class UserDBServiceImpl implements UserDBService {
 
     JdbcTemplate template;
@@ -22,29 +21,13 @@ public class UserDBServiceImpl implements UserDBService {
 
     @Override
     public List<UserDAL> getUsers() {
-        List<UserDAL> response = template.query("SELECT * FROM users", new RowMapper<UserDAL>() {
-            @Override
-            public UserDAL mapRow(ResultSet rs, int rowNum) throws SQLException {
-                UserDAL u = new UserDAL();
-                u.setId(rs.getInt(1));
-                u.setUserName(rs.getString(2));
-                u.setPassword(rs.getString(3));
-                u.setEmail(rs.getString(4));
-                u.setAdmin(rs.getByte(5));
-                u.setRating(rs.getInt(6));
-                u.setMoney(rs.getInt(7));
-                u.setCharacterId(rs.getInt(8));
-                u.setPartyId(rs.getInt(9));
-                return u;
-            }
-        });
-        return response;
+        return template.query("SELECT * FROM users", new BeanPropertyRowMapper(UserDAL.class));
     }
 
     @Override
-    public int insertUser(UserDAL u) {
+    public int insertUser(UserBL u) {
         String sql = "INSERT INTO users(userName, password, email, isAdmin, rating, money, characterId, partyId) " +
-                "VALUES ('" + u.getUserName() + "','" + u.getPassword() + "','" + u.getEmail() + "'," + u.getAdmin() + "," + u.getRating() + "," + u.getMoney() + ","
+                "VALUES ('" + u.getUserName() + "','" + u.getPassword() + "','" + u.getEmail() + "'," + u.getIsAdmin() + "," + u.getRating() + "," + u.getMoney() + ","
                 + u.getCharacterId() + "," + u.getPartyId() + ")";
         return template.update(sql);
     }
@@ -90,8 +73,8 @@ public class UserDBServiceImpl implements UserDBService {
     }
 
     @Override
-    public int updateUser(UserDAL u) {
-        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getAdmin() + "," +
+    public int updateUser(UserBL u) {
+        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getIsAdmin() + "," +
                 "rating = " + u.getRating() + ", money = " + u.getMoney() + ", characterId = " + u.getCharacterId() + ", partyId = " + u.getPartyId() + " " +
                 "WHERE id = " + u.getId() + "";
         return template.update(sql);

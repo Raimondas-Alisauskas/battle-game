@@ -1,5 +1,6 @@
-package com.cb.services.service.IService;
+package com.cb.services.mapService.iMapService;
 
+import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
 import org.springframework.stereotype.Service;
@@ -11,20 +12,20 @@ public interface UserService {
 
     DefaultDTO getUsers();
 
-    int insertNewUser(UserDAL userDAL);
+    DefaultDTO insertNewUser(UserBL userBL);
 
-    int insertNewUser();
+    DefaultDTO insertNewUser();
 
-    int registerUser(UserDAL userDAL);
+    int registerUser(UserBL userBL);
 
     List<UserDAL> getUserByEmail(String email);
 
     List<UserDAL> getUserByPassword(String password);
 
-    int updateUser(UserDAL userDAL);
+    DefaultDTO updateUser(UserBL userBL);
 
-    UserDAL getUserById(int id);
+    DefaultDTO getUserById(int id);
 
-    void deleteUserById(int id);
+    DefaultDTO deleteUserById(int id);
 
 }
