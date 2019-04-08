@@ -1,4 +1,4 @@
-package com.cb.services.service.IService;
+package com.cb.services.mapService.iMapService;
 
 import com.cb.dal.CharacterDAL;
 

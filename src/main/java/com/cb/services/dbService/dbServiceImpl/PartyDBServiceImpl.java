@@ -1,7 +1,7 @@
-package com.cb.services.DBService.DBServiceImpl;
+package com.cb.services.dbService.dbServiceImpl;
 
 import com.cb.dal.PartyDAL;
-import com.cb.services.DBService.IDBService.PartyDBService;
+import com.cb.services.dbService.iDbService.PartyDBService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 

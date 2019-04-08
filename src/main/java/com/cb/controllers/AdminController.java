@@ -1,13 +1,14 @@
 package com.cb.controllers;
 
+import com.cb.bl.UserBL;
 import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
 import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
-import com.cb.services.service.IService.UserService;
-import com.cb.services.service.IService.CharacterService;
+import com.cb.services.mapService.iMapService.UserService;
+import com.cb.services.mapService.iMapService.CharacterService;
 
-import com.cb.services.service.IService.PartyService;
+import com.cb.services.mapService.iMapService.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,8 +40,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
-    public String insertNewUser(@ModelAttribute("userBean") UserDAL userDAL) {
-        userService.insertNewUser(userDAL);
+    public String insertNewUser(@ModelAttribute("userBean") UserBL userBL) {
+        userService.insertNewUser(userBL);
         return "createCharacter";
     }
 
@@ -51,11 +52,11 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserDAL userDAL, Model p, Model c) {
+    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBL userBL, Model p, Model c) {
 
         System.out.println();
 
-        List<UserDAL> allEmails = userService.getUserByEmail(userDAL.getEmail());
+        List<UserDAL> allEmails = userService.getUserByEmail(userBL.getEmail());
 
         if (allEmails.size() > 0) {
 
@@ -63,7 +64,7 @@ public class AdminController {
             return "index";
         } else {
 
-            userService.registerUser(userDAL);
+            userService.registerUser(userBL);
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
             p.addAttribute("partiesList", partiesList);
@@ -78,21 +79,22 @@ public class AdminController {
      * The @PathVariable puts URL data into variable.*/
     @RequestMapping(value = "/edituser/{id}")
     public String getUserById(@PathVariable int id, Model m) {
-        m.addAttribute("command", userService.getUserById(id));
+        DefaultDTO defaultDTO = userService.getUserById(id);
+        m.addAttribute("command", defaultDTO.getData());
         return "userForm";
     }
 
     /*Inserts object into database. The @ModelAttribute puts request data
      *  into model object. */
     @RequestMapping(value = "/edituser/update", method = RequestMethod.POST)
-    public String updateUser(@ModelAttribute("userBean") UserDAL userDAL) {
-        userService.updateUser(userDAL);
+    public String updateUser(@ModelAttribute("userBean") UserBL userBL) {
+        DefaultDTO defaultDTO = userService.updateUser(userBL);
         return "redirect:/userstable";
     }
 
     @RequestMapping(value = "/deleteuser/{id}")
     public String getUserById(@PathVariable int id) {
-        userService.deleteUserById(id);
+        DefaultDTO defaultDTO = userService.deleteUserById(id);
         return "redirect:/userstable";
     }
 

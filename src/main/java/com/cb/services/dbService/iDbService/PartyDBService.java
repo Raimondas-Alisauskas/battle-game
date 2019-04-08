@@ -1,4 +1,4 @@
-package com.cb.services.DBService.IDBService;
+package com.cb.services.dbService.iDbService;
 
 import com.cb.dal.PartyDAL;
 

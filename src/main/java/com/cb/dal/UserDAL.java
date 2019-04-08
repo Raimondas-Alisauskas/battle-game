@@ -5,7 +5,7 @@ public class UserDAL {
 	private String userName;
 	private String password;
 	private String email;
-	private int isAdmin;
+	private boolean isAdmin;
 	private int rating;
 	private int money;
 	private int characterId;
@@ -35,11 +35,11 @@ public class UserDAL {
 		this.password = password;
 	}
 
-	public int getAdmin() {
+	public boolean getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(int isAdmin) {
+	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 
