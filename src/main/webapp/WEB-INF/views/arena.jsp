@@ -54,7 +54,8 @@
                         </h3>
                         <div class="mb-1 text-muted">Kairioji partija - "Mes už socialinę lygybę!"</div>
                         <p class="card-text mb-1">Reitingas: 500.000</p>
-                        <p class="card-text mb-auto">Liko pinigų: 1.000</p>
+                        <p class="card-text mb-1">Liko pinigų: 1.000</p>
+                        <p class="card-text mb-auto">Liko garbės: 100</p>
                         <!--<a href="#">link</a>-->
                     </div>
                     <img class="card-img-right flex-auto d-none d-md-block" src="<c:url value="/resources/images/lzp_bender.png"/>" alt="You">
@@ -69,7 +70,8 @@
                         </h3>
                         <div class="mb-1 text-muted">Centro partija - "Paskolos butelio dėžutėje partija"</div>
                         <p class="card-text mb-1">Reitingas: 1.000.000</p>
-                        <p class="card-text mb-auto">Liko pinigų: 2.000</p>
+                        <p class="card-text mb-1">Liko pinigų: 2.000</p>
+                        <p class="card-text mb-auto">Liko garbės: 100</p>
                         <!--<a href="#">link</a>-->
                     </div>
                     <img class="card-img-right flex-auto d-none d-md-block" src="<c:url value="/resources/images/lzp_donald.png"/>" alt="Competitor">
@@ -98,14 +100,14 @@
                                         <td class="form-group">Neturtingi rinkėjai</td>
                                         <td class="form-group">
                                             <select class="form-control" id="Priemone1">
-                                                <option>Deficitas: mažinamos pensijos</option>
-                                                <option>Skandalas: giminės ministerijoje</option>
-                                                <option>Skandalas: suklastotas aukštojo mokslo diplomas</option>
-                                                <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija</option>
+                                                <option>Deficitas: mažinamos pensijos 1000Eur</option>
+                                                <option>Skandalas: giminės ministerijoje 2000Eur</option>
+                                                <option>Skandalas: suklastotas aukštojo mokslo diplomas 3000Eur</option>
+                                                <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija 4000Eur</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control" id="Pinigai1" placeholder="Investicija">
+                                            <input type="number" class="form-control" id="Pinigai1" placeholder="Investicija" disabled>
                                         </td>
                                         <td class="text-center">
                                             <input class="form-check-input position-static ml-0" type="checkbox" id="checkbox1p" value="option1" aria-label="...">
@@ -118,14 +120,14 @@
                                         <td class="form-group">Rinkėjai-teisuoliai</td>
                                         <td class="form-group">
                                             <select class="form-control" id="Priemone2">
-                                                <option>Deficitas: mažinamos pensijos</option>
-                                                <option>Skandalas: giminės ministerijoje</option>
-                                                <option>Skandalas: suklastotas aukštojo mokslo diplomas</option>
-                                                <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija</option>
+                                                <option>Deficitas: mažinamos pensijos 1000Eur</option>
+                                                <option>Skandalas: giminės ministerijoje 2000Eur</option>
+                                                <option>Skandalas: suklastotas aukštojo mokslo diplomas 3000Eur</option>
+                                                <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija 4000Eur</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control" id="Pinigai2" placeholder="Investicija">
+                                            <input type="number" class="form-control" id="Pinigai2" placeholder="Investicija" disabled>
                                         </td>
                                         <td class="text-center">
                                             <input class="form-check-input position-static ml-0" type="checkbox" id="checkbox2p" value="option1" aria-label="...">
@@ -138,14 +140,14 @@
                                         <td class="form-group">Turtingi rinkėjai</td>
                                         <td class="form-group">
                                             <select class="form-control" id="Priemone3">
-                                                <option>Deficitas: mažinamos pensijos</option>
-                                                <option>Skandalas: giminės ministerijoje</option>
-                                                <option>Skandalas: suklastotas aukštojo mokslo diplomas</option>
-                                                <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija</option>
+                                                <option>Deficitas: mažinamos pensijos 1000Eur</option>
+                                                <option>Skandalas: giminės ministerijoje 2000Eur</option>
+                                                <option>Skandalas: suklastotas aukštojo mokslo diplomas 3000Eur</option>
+                                                <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija 4000Eur</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control" id="Pinigai3" placeholder="Investicija">
+                                            <input type="number" class="form-control" id="Pinigai3" placeholder="Investicija" disabled>
                                         </td>
                                         <td class="text-center">
                                             <input class="form-check-input position-static ml-0" type="checkbox" id="checkbox3p" value="option1" aria-label="...">
@@ -158,14 +160,14 @@
                                         <td class="form-group">Neapsisprendę rinkėjai</td>
                                         <td class="form-group">
                                             <select class="form-control" id="Priemone4">
-                                                <option>Deficitas: mažinamos pensijos</option>
-                                                <option>Skandalas: giminės ministerijoje</option>
-                                                <option>Skandalas: suklastotas aukštojo mokslo diplomas</option>
-                                                <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija</option>
+                                                <option>Deficitas: mažinamos pensijos 1000Eur</option>
+                                                <option>Skandalas: giminės ministerijoje 2000Eur</option>
+                                                <option>Skandalas: suklastotas aukštojo mokslo diplomas 3000Eur</option>
+                                                <option>Įstatymas: viešieji darbai už klaidingas turto deklaracija 4000Eur</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control" id="Pinigai4" placeholder="Investicija">
+                                            <input type="number" class="form-control" id="Pinigai4" placeholder="Investicija" disabled>
                                         </td>
                                         <td class="text-center">
                                             <input class="form-check-input position-static ml-0" type="checkbox" id="checkbox4p" value="option1" aria-label="...">
