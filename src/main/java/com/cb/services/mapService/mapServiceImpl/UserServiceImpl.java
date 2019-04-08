@@ -79,6 +79,10 @@ public class UserServiceImpl implements UserService {
         return userDBService.getUserByEmail(email);
     }
 
+    public List<UserDAL> getUserByPassword(String passsword) {
+        return userDBService.getUserByPassword(passsword);
+    }
+
     public DefaultDTO updateUser(UserBL userBL) {
         try{
             int result = userDBService.updateUser(userBL);
