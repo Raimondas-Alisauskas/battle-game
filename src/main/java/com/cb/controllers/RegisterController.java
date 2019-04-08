@@ -1,9 +1,9 @@
 package com.cb.controllers;
 
+import com.cb.bl.UserBL;
 import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
 import com.cb.dal.UserDAL;
-import com.cb.dto.DefaultDTO;
 import com.cb.services.service.IService.CharacterService;
 import com.cb.services.service.IService.PartyService;
 import com.cb.services.service.IService.UserService;
@@ -14,17 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-public class LoginController {
-
+public class RegisterController {
     @Autowired
     UserService userService;
 
@@ -34,17 +30,19 @@ public class LoginController {
     @Autowired
     CharacterService characterService;
 
-    @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
-    public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserDAL userDAL, Model p, Model c) {
-        List<UserDAL> allEmails = userService.getUserByEmail(userDAL.getEmail());
-        List<UserDAL> allPasswords = userService.getUserByPassword(userDAL.getPassword());
-        String userName = "";
-        for (UserDAL items: allEmails
-        ) {
-            userName = items.getUserName();
-        }
+    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+    public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserDAL userDAL, Model p, Model c) {
 
-        if (allEmails.size() > 0 && allPasswords.size() > 0) {
+        List<UserDAL> allEmails = userService.getUserByEmail(userDAL.getEmail());
+        String userName = userDAL.getUserName();
+
+        if (allEmails.size() > 0) {
+
+            model.put("error", "User already exist");
+            return "index";
+        } else {
+
+            userService.registerUser(userDAL);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             List<PartyDAL> partiesList = partyService.getParties();
@@ -53,16 +51,8 @@ public class LoginController {
             c.addAttribute("charactersList", charactersList);
             return "createCharacter";
 
-        } else {
-            model.put("error", "User does not exist");
-            return "index";
-
         }
+
     }
-    @RequestMapping(value = "/signOut")
-    public String signOut(HttpServletRequest req){
-        HttpSession userSession = req.getSession();
-        userSession.invalidate();
-        return "index";
-    }
+
 }

@@ -8,14 +8,7 @@
 </head>
 	<body>
 		<div class="background">
-			<h1>Hello world!</h1>
-
-			<P>The time on the server is ${serverTime}.</p>
-
-			<form action="userDAL" method="post">
-				<input type="text" name="userName"><br> <input
-					type="submit" value="Login">
-			</form>
+			home
 		</div>
 	</body>
 </html>
