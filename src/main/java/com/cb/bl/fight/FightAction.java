@@ -1,24 +1,24 @@
 package com.cb.bl.fight;
 
 public class FightAction {
-    private int id;
+    private int fighterId;
     private Attack attack1;
 //    private Attack attackBL2;
 //    private Attack attackBL3;
 //    private Attack attackBL4;
     private boolean isWinned;
 
-    public FightAction(int id, Attack attack1) {
-        this.id = id;
+    public FightAction(int fighterId, Attack attack1) {
+        this.fighterId = fighterId;
         this.attack1 = attack1;
     }
 
-    public int getId() {
-        return id;
+    public int getFighterId() {
+        return fighterId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setFighterId(int fighterId) {
+        this.fighterId = fighterId;
     }
 
     public Attack getAttack1() {
