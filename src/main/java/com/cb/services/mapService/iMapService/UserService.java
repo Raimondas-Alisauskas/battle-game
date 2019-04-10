@@ -18,9 +18,7 @@ public interface UserService {
 
     int registerUser(UserBL userBL);
 
-    List<UserDAL> getUserByEmail(String email);
-
-    List<UserDAL> getUserByPassword(String password);
+    int getUserByEmail(UserBL userBL);
 
     DefaultDTO updateUser(UserBL userBL);
 
@@ -28,4 +26,5 @@ public interface UserService {
 
     DefaultDTO deleteUserById(int id);
 
+    int getUserByEmailAndPassword(UserBL userBL);
 }
