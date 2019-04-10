@@ -13,6 +13,8 @@ public interface UserDBService {
 
     int getUserByEmail(UserBL userBL);
 
+    String getUserNameByEmail(UserBL userBL);
+
     int getUserByEmailAndPassword(UserBL userBL);
 
     UserDAL getUserById(int id);

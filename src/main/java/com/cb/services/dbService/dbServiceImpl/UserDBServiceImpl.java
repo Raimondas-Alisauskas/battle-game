@@ -48,6 +48,11 @@ public class UserDBServiceImpl implements UserDBService {
         return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "'",Integer.class);
     }
 
+    @Override
+    public String getUserNameByEmail(UserBL userBL){
+        return template.queryForObject("select userName from users where email = '" + userBL.getEmail() + "'",String.class);
+    }
+
 
     @Override
     public int updateUser(UserBL u) {

@@ -24,6 +24,8 @@ public interface UserService {
 
     DefaultDTO getUserById(int id);
 
+    String getUserNameByEmail(UserBL userBL);
+
     DefaultDTO deleteUserById(int id);
 
     int getUserByEmailAndPassword(UserBL userBL);

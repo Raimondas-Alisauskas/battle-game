@@ -112,6 +112,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public String getUserNameByEmail(UserBL userBL) {
+        return userDBService.getUserNameByEmail(userBL);
+    }
+
     public DefaultDTO deleteUserById(int id) {
         try{
             int result = userDBService.deleteUserById(id);;

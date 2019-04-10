@@ -42,7 +42,7 @@ public class LoginController {
     public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
         int userExist = userService.getUserByEmailAndPassword(userBL);
 
-        String userName = userBL.getUserName();
+        String userName = userService.getUserNameByEmail(userBL);
 
         if (userExist == 1) {
             HttpSession userSession = req.getSession();
