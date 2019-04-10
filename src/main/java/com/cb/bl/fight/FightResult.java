@@ -1,43 +1,44 @@
 package com.cb.bl.fight;
 
 public class FightResult {
-    private int attack1WinnerId;
-//    private int attack2WinnerId;
-//    private int attack3WinnerId;
-//    private int attack4WinnerId;
-    private int fightWinnerId;
-    private int winnerScore;
-    private int loserScore;
+    private int attack1WinnerNo;
+//    private int attack2WinnerNo;
+//    private int attack3WinnerNo;
+//    private int attack4WinnerNo;
+    private int fighter1Score;
+    private int fighter2Score;
 
-    public int getAttack1WinnerId() {
-        return attack1WinnerId;
+
+
+    public int getAttack1WinnerNo() {
+        return attack1WinnerNo;
     }
 
-    public void setAttack1WinnerId(int attack1WinnerId) {
-        this.attack1WinnerId = attack1WinnerId;
+    public void setAttack1WinnerNo(int attack1WinnerNo) {
+        this.attack1WinnerNo = attack1WinnerNo;
     }
 
-    public int getFightWinnerId() {
-        return fightWinnerId;
+//    public int getFightWinnerId() {
+//        return fightWinnerId;
+//    }
+//
+//    public void setFightWinnerId(int fightWinnerId) {
+//        this.fightWinnerId = fightWinnerId;
+//    }
+
+    public int getFighter1Score() {
+        return fighter1Score;
     }
 
-    public void setFightWinnerId(int fightWinnerId) {
-        this.fightWinnerId = fightWinnerId;
+    public void setFighter1Score(int fighter1Score) {
+        this.fighter1Score = fighter1Score;
     }
 
-    public int getWinnerScore() {
-        return winnerScore;
+    public int getFighter2Score() {
+        return fighter2Score;
     }
 
-    public void setWinnerScore(int winnerScore) {
-        this.winnerScore = winnerScore;
-    }
-
-    public int getLoserScore() {
-        return loserScore;
-    }
-
-    public void setLoserScore(int loserScore) {
-        this.loserScore = loserScore;
+    public void setFighter2Score(int fighter2Score) {
+        this.fighter2Score = fighter2Score;
     }
 }

@@ -8,6 +8,13 @@ public class Fight {
     private FightAction fighter2Action;
     private FightResult fightResult;
 
+    public Fight(int fighter1Id, int fighter2Id, FightAction fighter1Action, FightAction fighter2Action) {
+        this.fighter1Id = fighter1Id;
+        this.fighter2Id = fighter2Id;
+        this.fighter1Action = fighter1Action;
+        this.fighter2Action = fighter2Action;
+    }
+
     public int getFightId() {
         return fightId;
     }

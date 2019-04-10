@@ -2,24 +2,19 @@ package com.cb.utils.fightUtils;
 
 import com.cb.bl.FighterBL;
 import com.cb.bl.fight.Attack;
+import com.cb.bl.fight.Fight;
 import com.cb.bl.fight.FightAction;
 import com.cb.bl.fight.Weapon;
 import com.cb.constants.AttackState;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
-
 public class FightResolverTest {
 
 
     private FighterBL fighter1;
     private FighterBL fighter2;
-    private FightAction fightAction1;
-    private FightAction fightAction2;
+
     private Attack attack1a;
     private Attack attack2a;
     private Attack attack1d;
@@ -40,20 +35,16 @@ public class FightResolverTest {
         attack2n = new Attack(1, weapon2, AttackState.NEUTRAL);
 
 
-        List<Weapon> weaponList1 = new ArrayList<>();
-        weaponList1.add(weapon1);
-        weaponList1.add(weapon2);
-
-        List<Weapon> weaponList2 = new ArrayList<>();
-        weaponList2.add(weapon1);
-        weaponList2.add(weapon2);
-
-        fighter1 = new FighterBL(1, 100, 100, 100, weaponList1);
-        fighter2 = new FighterBL(2, 100, 100, 100, weaponList2);
-
-        fightAction1 = new FightAction(1, attack1d);
-        fightAction2 = new FightAction(2, attack2d);
-
+//        List<Weapon> weaponList1 = new ArrayList<>();
+//        weaponList1.add(weapon1);
+//        weaponList1.add(weapon2);
+//
+//        List<Weapon> weaponList2 = new ArrayList<>();
+//        weaponList2.add(weapon1);
+//        weaponList2.add(weapon2);
+//
+//        fighter1 = new FighterBL(1, 100, 100, 100, weaponList1);
+//        fighter2 = new FighterBL(2, 100, 100, 100, weaponList2);
     }
 
     @Test
@@ -68,4 +59,19 @@ public class FightResolverTest {
        Assert.assertEquals(1, fightResolver.getAttackWinner(attack1a, attack2n));
        Assert.assertEquals(1, fightResolver.getAttackWinner(attack1d, attack2n));
     }
+
+    @Test
+    public void getFightResultTest(){
+        testFightersInitialisation();
+        FightResolver fightResolver = new FightResolver();
+
+        FightAction fightAction11 = new FightAction(1, attack1d);
+        FightAction fightAction21 = new FightAction(2, attack2d);
+
+        Fight fight1 = new Fight(1, 2, fightAction11, fightAction21);
+
+        Assert.assertEquals(2, fightResolver.getFightResult(fight1).getAttack1WinnerNo());
+        Assert.assertEquals(1, fightResolver.getFightResult(fight1).getFighter2Score());
+    }
+
 }
