@@ -28,24 +28,20 @@ public class RegisterController {
     UserService userService;
 
     @Autowired
-    UserDBService userDBService;
-
-    @Autowired
     PartyService partyService;
 
     @Autowired
     CharacterService characterService;
 
-
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
     public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
-
         int userExist = userService.getUserByEmail(userBL);
         String userName = userBL.getUserName();
+
         if (userExist == 1) {
             model.put("error", "User already exist");
             return "index";
-        } else if(userExist == 0){
+        } else if (userExist == -1) {
             userService.registerUser(userBL);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);

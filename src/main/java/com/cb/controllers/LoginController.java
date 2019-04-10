@@ -33,18 +33,12 @@ public class LoginController {
     @Autowired
     CharacterService characterService;
 
-    @Autowired
-    UserDBService userDBService;
-
-
-
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
     public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
         int userExist = userService.getUserByEmailAndPassword(userBL);
 
-        String userName = userService.getUserNameByEmail(userBL);
-
         if (userExist == 1) {
+            String userName = userService.getUserNameByEmail(userBL);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             List<PartyDAL> partiesList = partyService.getParties();
@@ -52,18 +46,17 @@ public class LoginController {
             p.addAttribute("partiesList", partiesList);
             c.addAttribute("charactersList", charactersList);
             return "createCharacter";
-
-        } else if(userExist == 0){
+        } else if (userExist == -1) {
             model.put("error", "User does not exist");
             return "index";
-
-        } else{
+        } else {
             model.put("error", "General error");
             return "index";
         }
     }
+
     @RequestMapping(value = "/signout")
-    public String signOut(HttpServletRequest req){
+    public String signOut(HttpServletRequest req) {
         HttpSession userSession = req.getSession();
         userSession.invalidate();
         return "index";

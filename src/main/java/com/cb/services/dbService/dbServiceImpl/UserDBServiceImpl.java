@@ -40,12 +40,23 @@ public class UserDBServiceImpl implements UserDBService {
     }
     @Override
     public int getUserByEmailAndPassword(UserBL userBL) {
-        return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "' AND password = '" + userBL.getPassword() + "'",Integer.class);
+        if(template.queryForObject("select count(*) from users where email = '" +
+           userBL.getEmail() + "' AND password = '" + userBL.getPassword() + "'",Integer.class).equals(1)){
+           return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "' AND password = '" + userBL.getPassword() + "'",Integer.class);
+        }
+        else {
+            return -1;
+        }
     }
 
     @Override
     public int getUserByEmail(UserBL userBL) {
-        return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "'",Integer.class);
+        if(template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "'",Integer.class).equals(1)){
+            return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "'",Integer.class);
+        }
+        else{
+            return -1;
+        }
     }
 
     @Override
