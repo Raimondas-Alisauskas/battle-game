@@ -6,6 +6,7 @@ import com.cb.services.mapService.iMapService.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Blob;
 import java.util.List;
 
 @Service
@@ -18,6 +19,13 @@ public class CharacterServiceImpl implements CharacterService {
     public List<CharacterDAL> getCharacters() {
 
         return characterDBService.getCharacters();
-
     }
+
+//    public Blob getImage() {
+//
+//        return characterDBService.getImage();
+//
+//    }
+
+
 }

@@ -6,7 +6,7 @@ public class CharacterDAL {
 
     private int id;
     private String name;
-    private Blob image;
+    private String image;
 
     public int getId() {
         return id;
@@ -24,11 +24,11 @@ public class CharacterDAL {
         this.name = name;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

@@ -17,6 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.jws.WebParam;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
+import java.io.*;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -52,9 +59,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBL userBL, Model p, Model c) {
-
-        System.out.println();
+    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBL userBL, Model p, Model c, Model ph) {
 
         List<UserDAL> allEmails = userService.getUserByEmail(userBL.getEmail());
 
@@ -67,8 +72,13 @@ public class AdminController {
             userService.registerUser(userBL);
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
+
+            String image = charactersList.get(0).getImage();
+
             p.addAttribute("partiesList", partiesList);
             c.addAttribute("charactersList", charactersList);
+            ph.addAttribute("photo", image);
+
             return "createCharacter";
 
         }
