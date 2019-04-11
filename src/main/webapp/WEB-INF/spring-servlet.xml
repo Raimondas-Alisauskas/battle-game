@@ -51,14 +51,5 @@
     </bean>
 
     <bean id="defaultDTO" class="com.cb.dto.DefaultDTO"/>
-
-    <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>image/jpeg</value>
-                <value>image/png</value>
-            </list>
-        </property>
-    </bean>
-
+    
 </beans>
