@@ -8,6 +8,8 @@ import com.cb.constants.AttackState;
 
 public class FightResolver {
 
+    public static final int WINNER_REWARD_SCORE = 10;
+
     public int getAttackWinner(Attack attack1, Attack attack2){
         int attackWinnerNo = -1;
         if(attack1.getTargetId() == attack2.getTargetId()){
@@ -45,8 +47,8 @@ public class FightResolver {
         fightResult.setAttack1WinnerNo(attack1Winner);
 
         if(attack1Winner ==1){
-            fightResult.setFighter1Score(fighter1Score +1);
-        } else if(attack1Winner ==2){fightResult.setFighter2Score(fighter2Score +1);}
+            fightResult.setFighter1Score(fighter1Score + WINNER_REWARD_SCORE);
+        } else if(attack1Winner ==2){fightResult.setFighter2Score(fighter2Score + WINNER_REWARD_SCORE);}
 
         return fightResult;
     }

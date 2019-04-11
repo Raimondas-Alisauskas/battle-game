@@ -71,7 +71,7 @@ public class FightResolverTest {
         Fight fight1 = new Fight(1, 2, fightAction11, fightAction21);
 
         Assert.assertEquals(2, fightResolver.getFightResult(fight1).getAttack1WinnerNo());
-        Assert.assertEquals(1, fightResolver.getFightResult(fight1).getFighter2Score());
+        Assert.assertEquals(FightResolver.WINNER_REWARD_SCORE, fightResolver.getFightResult(fight1).getFighter2Score());
     }
 
 }
