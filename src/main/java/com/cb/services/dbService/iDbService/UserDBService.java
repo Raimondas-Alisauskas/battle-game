@@ -3,7 +3,6 @@ package com.cb.services.dbService.iDbService;
 import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDBService {
@@ -12,9 +11,11 @@ public interface UserDBService {
 
     int insertUser(UserBL userBL);
 
-    List<UserDAL> getUserByEmail(String email);
+    int getUserByEmail(UserBL userBL);
 
-    List<UserDAL> getUserByPassword(String password);
+    String getUserNameByEmail(UserBL userBL);
+
+    int getUserByEmailAndPassword(UserBL userBL);
 
     UserDAL getUserById(int id);
 

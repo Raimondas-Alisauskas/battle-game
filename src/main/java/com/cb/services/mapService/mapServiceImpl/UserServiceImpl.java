@@ -75,13 +75,10 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    public List<UserDAL> getUserByEmail(String email) {
-        return userDBService.getUserByEmail(email);
+    public int getUserByEmail(UserBL userBL) {
+        return userDBService.getUserByEmail(userBL);
     }
 
-    public List<UserDAL> getUserByPassword(String passsword) {
-        return userDBService.getUserByPassword(passsword);
-    }
 
     public DefaultDTO updateUser(UserBL userBL) {
         try{
@@ -98,10 +95,8 @@ public class UserServiceImpl implements UserService {
             defaultDTO.setMessage("General error: " + e.getMessage());
         }
         return defaultDTO;
-
-
-
     }
+
 
     public DefaultDTO getUserById(int id) {
         try{
@@ -115,6 +110,11 @@ public class UserServiceImpl implements UserService {
         }
         return defaultDTO;
 
+    }
+
+    @Override
+    public String getUserNameByEmail(UserBL userBL) {
+        return userDBService.getUserNameByEmail(userBL);
     }
 
     public DefaultDTO deleteUserById(int id) {
@@ -132,6 +132,11 @@ public class UserServiceImpl implements UserService {
             defaultDTO.setMessage("General error: " + e.getMessage());
         }
         return defaultDTO;
+    }
+
+    @Override
+    public int getUserByEmailAndPassword(UserBL userBL) {
+        return userDBService.getUserByEmailAndPassword(userBL);
     }
 
 }

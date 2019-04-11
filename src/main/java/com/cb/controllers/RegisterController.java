@@ -4,7 +4,6 @@ package com.cb.controllers;
 import com.cb.bl.UserBL;
 import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
-import com.cb.dal.UserDAL;
 import com.cb.services.mapService.iMapService.CharacterService;
 import com.cb.services.mapService.iMapService.PartyService;
 import com.cb.services.mapService.iMapService.UserService;
@@ -31,19 +30,15 @@ public class RegisterController {
     @Autowired
     CharacterService characterService;
 
-
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
     public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
-
-        List<UserDAL> allEmails = userService.getUserByEmail(userBL.getEmail());
+        int userExist = userService.getUserByEmail(userBL);
         String userName = userBL.getUserName();
 
-        if (allEmails.size() > 0) {
-
+        if (userExist == 1) {
             model.put("error", "User already exist");
             return "index";
-        } else {
-
+        } else if (userExist == -1) {
             userService.registerUser(userBL);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
@@ -52,7 +47,9 @@ public class RegisterController {
             p.addAttribute("partiesList", partiesList);
             c.addAttribute("charactersList", charactersList);
             return "createCharacter";
-
+        } else {
+            model.put("error", "General error");
+            return "index";
         }
 
     }
