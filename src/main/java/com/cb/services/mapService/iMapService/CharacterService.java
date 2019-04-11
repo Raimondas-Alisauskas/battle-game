@@ -9,6 +9,5 @@ public interface CharacterService {
 
     List<CharacterDAL> getCharacters();
 
-//    Blob getImage();
 
 }

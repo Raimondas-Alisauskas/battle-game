@@ -21,11 +21,4 @@ public class CharacterServiceImpl implements CharacterService {
         return characterDBService.getCharacters();
     }
 
-//    public Blob getImage() {
-//
-//        return characterDBService.getImage();
-//
-//    }
-
-
 }

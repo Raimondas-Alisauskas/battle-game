@@ -35,14 +35,4 @@ public class CharacterDBServiceImpl implements CharacterDBService {
 
     }
 
-//    public Blob getImage() {
-//
-//        String query = "select image from main.character where id=1";
-//
-//        Blob photo = template.queryForObject(query, Blob.class);
-//
-//        return photo;
-//
-//    }
-
 }

@@ -51,30 +51,6 @@ public class AdminController {
         return "redirect:/userstable";
     }
 
-//    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-//    public String registerUser(Map<String, String> model, @ModelAttribute("userBean") UserBL userBL, Model p, Model c) {
-//
-//        System.out.println();
-//
-//        List<UserDAL> allEmails = userService.getUserByEmail(userBL.getEmail());
-//
-//        if (allEmails.size() > 0) {
-//
-//            model.put("error", "User already exist");
-//            return "index";
-//        } else {
-//
-//            userService.registerUser(userBL);
-//            List<PartyDAL> partiesList = partyService.getParties();
-//            List<CharacterDAL> charactersList = characterService.getCharacters();
-//            p.addAttribute("partiesList", partiesList);
-//            c.addAttribute("charactersList", charactersList);
-//            return "createCharacter";
-//
-//        }
-//
-//    }
-
     /* Displays object data into form for the given id.
      * The @PathVariable puts URL data into variable.*/
     @RequestMapping(value = "/edituser/{id}")

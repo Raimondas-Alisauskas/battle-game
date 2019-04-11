@@ -9,6 +9,4 @@ public interface CharacterDBService {
 
     List<CharacterDAL> getCharacters();
 
-//    byte[] getImage();
-
 }

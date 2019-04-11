@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,11 +15,13 @@
 </head>
 <body class="main">
 <a href="userstable">Modify Users</a>
+<h4>Logged in as ${sessionScope.userName}</h4>
+<a href="signout">Sign Out</a>
 <div class="login-html">
     <div class="container">
         <div class="col">
-            <img id="memberImage" src="<c:url value="/resources/images/${photo}"/>">
-            <%--<img id="memberImage"/>--%>
+            <%--<img id="memberImage" src="<c:url value="/resources/images/${photo}"/>">--%>
+            <img id="memberImage">
         </div>
         <div class="col">
             <div class="header">CREATE YOUR MEMBER</div>
@@ -28,8 +31,7 @@
                         <div class="btn-group">
                             <div class="group">
                                 <select class="form-control" onchange="getMemberList(this.id,'selectMember')"
-                                        id="selectParty"
-                                        name="selectParty">
+                                        id="selectParty" name="selectParty">
                                     <option id="selectedConcreteParty">-- Select party --</option>
                                     <c:forEach var="p" items="${partiesList}">
                                         <option id="selectedConcreteParty">${p.name}</option>
@@ -121,7 +123,7 @@
 
     function getImage() {
 
-        document.getElementById("memberImage").src = <c:url value="/resources/images/Aladin.png"/>;
+        document.getElementById("memberImage").src = "<c:url value="/resources/images/Aladin.png"/>";
 
     }
 
