@@ -17,8 +17,8 @@
 <div class="login-html">
     <div class="container">
         <div class="col">
-            <%--<img id="memberImage" src="<c:url value="/resources/images/${photo}"/>">--%>
-            <img id="memberImage"/>
+            <img id="memberImage" src="<c:url value="/resources/images/${photo}"/>">
+            <%--<img id="memberImage"/>--%>
         </div>
         <div class="col">
             <div class="header">CREATE YOUR MEMBER</div>

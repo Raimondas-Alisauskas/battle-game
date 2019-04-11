@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/styles/index.css" />"/>
 </head>
 <body class="main">
+
 <a href="userstable">Modify Users</a> <br>
 <a href="arena">Arena</a>
 <div class="login-html">
@@ -16,14 +17,14 @@
 
 
     <div class="login-form">
-        <form method="post" class="sign-in-htm">
+        <form action="loginuser" method="post" class="sign-in-htm">
             <div class="group">
-                <label for="usernameLogin" class="label">Username</label>
-                <input id="usernameLogin" type="text" class="input" required>
+                <label for="emailLogin" class="label">Email Adress</label>
+                <input id="emailLogin" type="email" name="email" class="input" required>
             </div>
             <div class="group">
                 <label for="passwordLogin" class="label">Password</label>
-                <input id="passwordLogin" type="password" class="input" data-type="password" required>
+                <input id="passwordLogin" type="password" class="input" name="password" data-type="password" required>
             </div>
             <div class="group">
                 <input type="submit" class="button" value="Log In">

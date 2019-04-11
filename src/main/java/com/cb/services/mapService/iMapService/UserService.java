@@ -20,6 +20,8 @@ public interface UserService {
 
     List<UserDAL> getUserByEmail(String email);
 
+    List<UserDAL> getUserByPassword(String password);
+
     DefaultDTO updateUser(UserBL userBL);
 
     DefaultDTO getUserById(int id);
