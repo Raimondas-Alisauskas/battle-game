@@ -20,8 +20,7 @@
 <div class="login-html">
     <div class="container">
         <div class="col">
-            <%--<img id="memberImage" src="<c:url value="/resources/images/${photo}"/>">--%>
-            <img id="memberImage">
+            <img id="memberImage"> <%--This is image place--%>
         </div>
         <div class="col">
             <div class="header">CREATE YOUR MEMBER</div>
@@ -114,6 +113,7 @@
             var pair = optionArray[option].split("|");
             var newOption = document.createElement("option");
             newOption.value = pair[0];
+            newOption.id = "selectedConcreteMember";
             newOption.innerHTML = pair[1];
             s2.options.add(newOption);
 
@@ -123,7 +123,26 @@
 
     function getImage() {
 
-        document.getElementById("memberImage").src = "<c:url value="/resources/images/Aladin.png"/>";
+        var images = [];
+
+        <c:forEach var="p" items="${charactersList}">
+        images.push("${p.image}");
+        </c:forEach>
+
+        var selectedMember = document.getElementById("selectMember").value;
+
+        for (var i = 0; i < images.length; i++) {
+
+            if (images[i].includes(selectedMember)) {
+
+                var imageName = images[i];
+                break;
+
+            }
+
+        }
+
+        document.getElementById("memberImage").src = "<c:url value="/resources/images/"/>" + imageName;
 
     }
 
