@@ -16,11 +16,11 @@ public class CharacterDAL {
         this.id = id;
     }
 
-    public String getName() {
+    public String getCharname() {
         return charname;
     }
 
-    public void setName(String name) {
+    public void setCharname(String name) {
         this.charname = name;
     }
 
@@ -35,4 +35,5 @@ public class CharacterDAL {
     public int getPartyId() { return partyId; }
 
     public void setPartyId(int partyId) { this.partyId = partyId; }
+
 }

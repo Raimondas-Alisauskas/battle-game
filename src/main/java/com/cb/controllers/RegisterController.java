@@ -55,4 +55,10 @@ public class RegisterController {
 
     }
 
+    @RequestMapping(value = "/home")
+    public String createNewCharacter() {
+
+        return "home";
+
+    }
 }
