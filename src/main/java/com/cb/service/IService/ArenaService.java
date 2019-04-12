@@ -12,18 +12,27 @@ import java.util.List;
 @Service
 public class ArenaService {
 
+    //not used
+    public Fight createFight(int id, Fight fight) {
 
+        if(fight.getFighter1() == null){
+            FighterBL fighterBL = createMockFighter(id);
+            fight.setFighter1(fighterBL);
+        } else if (fight.getFighter2() == null){
+            FighterBL fighterBL = createMockFighter(id);
+            fight.setFighter2(fighterBL);
+        } else {
+            System.out.println("Error: both fighters already exist");
+        }
+        return fight;
+    }
 
-
-    public DefaultDTO createFight(int id1, int id2) {
-
-        FighterBL fighterBL1 = createMockFighter(id1);
-        FighterBL fighterBL2 = createMockFighter(id2);
-
-        DefaultDTO defaultDTO = new DefaultDTO();
-        defaultDTO.setData(fighterBL1);
-
-        return defaultDTO;
+    public Fight createFight(int id1, int id2, Fight fight) {
+            FighterBL fighterBL1 = createMockFighter(id1);
+            fight.setFighter1(fighterBL1);
+            FighterBL fighterBL2 = createMockFighter(id2);
+            fight.setFighter2(fighterBL2);
+        return fight;
     }
 
     public FighterBL createMockFighter(int id) {

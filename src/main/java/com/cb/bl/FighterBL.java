@@ -17,6 +17,10 @@ public class FighterBL {
 //    private Blob picture;
 
 
+    public FighterBL(int id) {
+        this.id = id;
+    }
+
     public FighterBL(int id, int rate, int moneyLeft, int honorLeft, List<Weapon> weaponList) {
         this.id = id;
         this.rate = rate;

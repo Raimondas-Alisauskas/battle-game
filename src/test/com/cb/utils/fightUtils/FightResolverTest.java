@@ -1,5 +1,6 @@
 package com.cb.utils.fightUtils;
 
+import com.cb.bl.FighterBL;
 import com.cb.bl.fight.Attack;
 import com.cb.bl.fight.Fight;
 import com.cb.bl.fight.FightAction;
@@ -31,6 +32,8 @@ public class FightResolverTest {
         attack2d = new Attack(1, weapon2, AttackState.DEFENCE);
         attack1n = new Attack(1, weapon1, AttackState.NEUTRAL);
         attack2n = new Attack(1, weapon2, AttackState.NEUTRAL);
+
+
     }
 
     @Test
@@ -49,8 +52,10 @@ public class FightResolverTest {
 
         FightAction fightAction11 = new FightAction(1, attack1d);
         FightAction fightAction21 = new FightAction(2, attack2d);
+        FighterBL fighterBL1 = new FighterBL(1);
+        FighterBL fighterBL2 = new FighterBL(2);
 
-        Fight fight1 = new Fight(1, 2, fightAction11, fightAction21);
+        Fight fight1 = new Fight(fighterBL1, fighterBL2, fightAction11, fightAction21);
 
         Assert.assertEquals(2, fightResolver.getFightResult(fight1).getAttack1WinnerNo());
         Assert.assertEquals(FightResolver.WINNER_REWARD_SCORE, fightResolver.getFightResult(fight1).getFighter2Score());

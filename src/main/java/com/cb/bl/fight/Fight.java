@@ -1,16 +1,21 @@
 package com.cb.bl.fight;
 
+import com.cb.bl.FighterBL;
+
 public class Fight {
     private int fightId;
-    private int fighter1Id;
-    private int fighter2Id;
+    private FighterBL fighter1;
+    private FighterBL fighter2;
     private FightAction fighter1Action;
     private FightAction fighter2Action;
     private FightResult fightResult;
 
-    public Fight(int fighter1Id, int fighter2Id, FightAction fighter1Action, FightAction fighter2Action) {
-        this.fighter1Id = fighter1Id;
-        this.fighter2Id = fighter2Id;
+    public Fight() {
+    }
+
+    public Fight(FighterBL fighter1, FighterBL fighter2, FightAction fighter1Action, FightAction fighter2Action) {
+        this.fighter1 = fighter1;
+        this.fighter2 = fighter2;
         this.fighter1Action = fighter1Action;
         this.fighter2Action = fighter2Action;
     }
@@ -23,20 +28,20 @@ public class Fight {
         this.fightId = fightId;
     }
 
-    public int getFighter1Id() {
-        return fighter1Id;
+    public FighterBL getFighter1() {
+        return fighter1;
     }
 
-    public void setFighter1Id(int fighter1Id) {
-        this.fighter1Id = fighter1Id;
+    public void setFighter1(FighterBL fighter1) {
+        this.fighter1 = fighter1;
     }
 
-    public int getFighter2Id() {
-        return fighter2Id;
+    public FighterBL getFighter2() {
+        return fighter2;
     }
 
-    public void setFighter2Id(int fighter2Id) {
-        this.fighter2Id = fighter2Id;
+    public void setFighter2(FighterBL fighter2) {
+        this.fighter2 = fighter2;
     }
 
     public FightAction getFighter1Action() {

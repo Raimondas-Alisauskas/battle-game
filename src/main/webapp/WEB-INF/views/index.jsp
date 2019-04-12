@@ -11,14 +11,14 @@
 
 <a href="userstable">Modify Users</a> <br>
 <a href="arena">Arena</a>
-<form action="arena/">
+<form action="getfight/">
     <input type="hidden" name="id1" value="1">
     <input type="hidden" name="id2" value="2">
-    <button >getFight1</button>
+    <button >getFightParam</button>
 </form>
-<form action="arena/1-2">
-    <button >getFight2</button>
-</form>
+<%--<form action="arena/1-2">--%>
+<%--    <button >getFightPath</button>--%>
+<%--</form>--%>
 <div class="login-html">
     <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
     <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>

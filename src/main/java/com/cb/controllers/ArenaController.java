@@ -4,40 +4,80 @@ import com.cb.bl.fight.Fight;
 import com.cb.dto.DefaultDTO;
 import com.cb.service.IService.ArenaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
-public class ArenaController {
+public class ArenaController extends HttpServlet {
 
     @Autowired
     ArenaService arenaService;
+
+    DefaultDTO defaultDTO;
+
+
+
 
     @RequestMapping(value = "/arenadraft")
     public String arenaDraft() {
         return "arena";
     }
 
-    @RequestMapping(value = "/arena")
-    public String arena(@RequestParam(value="id1") int id1,
+    @RequestMapping(value = "/getfight")
+    public String getFight(@RequestParam(value="id1") int id1,
                         @RequestParam(value="id2", required=false) int id2,
-                        Model m){
-        DefaultDTO defaultDTO = arenaService.createFight(id1, id2);
-        m.addAttribute("fighterBL", defaultDTO.getData());
+                        Model m, HttpServletRequest req ){
+
+        ServletContext servletContext = req.getServletContext();
+        Fight fight = arenaService.createFight(id1, id2, new Fight());
+        servletContext.setAttribute("fight",fight);
+        m.addAttribute("fight", fight);
+
         return "arenaTst";
     }
 
-    @RequestMapping("/arena/{id1}-{id2}")
-    public String handleRequest3 (@PathVariable("id1") int id1,
-                                  @PathVariable("id2") int id2,
-                                  Model m) {
-        DefaultDTO defaultDTO = arenaService.createFight(id1, id2);
-        m.addAttribute("fighterBL", defaultDTO.getData());
+    @RequestMapping(value = "/fight")
+    public String fight(@RequestParam(value="id1") int id1,
+                           @RequestParam(value="id2", required=false) int id2,
+                           Model m, HttpServletRequest req ){
+
+        ServletContext servletContext = req.getServletContext();
+        Fight fight = (Fight) servletContext.getAttribute("fight");
+        if(fight == null){
+            fight = arenaService.createFight(id1, id2, new Fight());
+        }else {
+            fight = arenaService.createFight(id2, fight);
+        }
+        //        context.setAttribute("fight",fight);
+        m.addAttribute("fight", fight);
         return "arenaTst";
     }
+
+
+
+
+
+
+
+
+
+//    @RequestMapping("/arena/{id1}-{id2}")
+//    public String handleRequest3 (@PathVariable("id1") int id1,
+//                                  @PathVariable("id2") int id2,
+//                                  Model m) {
+//        fight = arenaService.createFight(id1, fight);
+//        m.addAttribute("fighterBL", fight.getFighter2());
+//        return "arenaTst";
+//    }
 
 }
