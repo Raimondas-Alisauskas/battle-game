@@ -25,7 +25,7 @@
         <div class="col">
             <div class="header">CREATE YOUR MEMBER</div>
             <div class="create-member">
-                <form method="post" class="create-member-form">
+                <form method="post" action="home" class="create-member-form">
                     <div class="select-member">
                         <div class="btn-group">
                             <div class="group">
