@@ -11,10 +11,6 @@
                 <th>Password</th>
                 <th>Email</th>
                 <th>Admin</th>
-                <th>Rating</th>
-                <th>Money</th>
-                <th>CharacterId</th>
-                <th>PartyId</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -25,10 +21,6 @@
                     <td>${u.password}</td>
                     <td>${u.email}</td>
                     <td>${u.isAdmin}</td>
-                    <td>${u.rating}</td>
-                    <td>${u.money}</td>
-                    <td>${u.characterId}</td>
-                    <td>${u.partyId}</td>
                     <td><a href="edituser/${u.id}">Edit</a></td>
                     <td><a href="deleteuser/${u.id}">Delete</a></td>
                 </tr>
