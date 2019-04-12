@@ -1,40 +1,39 @@
 package com.cb.bl.fight;
 
+import java.util.List;
+
 public class FightAction {
-    private int fighterId;
-    private Attack attack1;
-//    private Attack attackBL2;
-//    private Attack attackBL3;
-//    private Attack attackBL4;
-    private boolean isWinned;
+    private int fightActionNo;
+    private List<Attack> attackList;
+    private int noOfWinnings;
 
-    public FightAction(int fighterId, Attack attack1) {
-        this.fighterId = fighterId;
-        this.attack1 = attack1;
+
+    public FightAction(int fightActionNo, List<Attack> attackList) {
+        this.fightActionNo = fightActionNo;
+        this.attackList = attackList;
     }
 
-    public int getFighterId() {
-        return fighterId;
+    public int getFightActionNo() {
+        return fightActionNo;
     }
 
-    public void setFighterId(int fighterId) {
-        this.fighterId = fighterId;
+    public void setFightActionNo(int fightActionNo) {
+        this.fightActionNo = fightActionNo;
     }
 
-    public Attack getAttack1() {
-        return attack1;
+    public List<Attack> getAttackList() {
+        return attackList;
     }
 
-    public void setAttack1(Attack attack1) {
-        this.attack1 = attack1;
+    public void setAttackList(List<Attack> attackList) {
+        this.attackList = attackList;
     }
 
-
-    public boolean isWinned() {
-        return isWinned;
+    public int getNoOfWinnings() {
+        return noOfWinnings;
     }
 
-    public void setWinned(boolean winned) {
-        isWinned = winned;
+    public void setNoOfWinnings(int noOfWinnings) {
+        this.noOfWinnings = noOfWinnings;
     }
 }

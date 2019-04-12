@@ -1,5 +1,5 @@
 package com.cb.constants;
 
-public enum AttackState {
+public enum AttackType {
     ATTACK, DEFENCE, NEUTRAL
 }

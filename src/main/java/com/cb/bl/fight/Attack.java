@@ -1,18 +1,18 @@
 package com.cb.bl.fight;
 
-import com.cb.constants.AttackState;
+import com.cb.constants.AttackType;
 
 public class Attack {
     private int targetId;
     private Weapon weapon;
-    private AttackState attackState;
+    private AttackType attackType;
     private boolean isWinned;
 
 
-    public Attack(int targetId, Weapon weapon, AttackState attackState) {
+    public Attack(int targetId, Weapon weapon, AttackType attackType) {
         this.targetId = targetId;
         this.weapon = weapon;
-        this.attackState = attackState;
+        this.attackType = attackType;
     }
 
     public int getTargetId() {
@@ -23,12 +23,12 @@ public class Attack {
         this.targetId = targetId;
     }
 
-    public AttackState getAttackState() {
-        return attackState;
+    public AttackType getAttackType() {
+        return attackType;
     }
 
-    public void setAttackState(AttackState attackState) {
-        this.attackState = attackState;
+    public void setAttackType(AttackType attackType) {
+        this.attackType = attackType;
     }
 
     public boolean isWinned() {

@@ -12,6 +12,8 @@ import java.util.List;
 @Service
 public class ArenaService {
 
+    public static final int WINNER_REWARD_SCORE = 10;
+
     //not used
     public Fight createFight(int id, Fight fight) {
 
