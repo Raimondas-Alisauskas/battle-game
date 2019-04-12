@@ -1,12 +1,12 @@
 package com.cb.dal;
 
-import java.sql.Blob;
 
 public class CharacterDAL {
 
     private int id;
-    private String name;
-    private String image;
+    private String charname;
+    private String imageReference;
+    private int partyId;
 
     public int getId() {
         return id;
@@ -17,18 +17,22 @@ public class CharacterDAL {
     }
 
     public String getName() {
-        return name;
+        return charname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.charname = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageReference() {
+        return imageReference;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageReference(String imageReference) {
+        this.imageReference = imageReference;
     }
+
+    public int getPartyId() { return partyId; }
+
+    public void setPartyId(int partyId) { this.partyId = partyId; }
 }

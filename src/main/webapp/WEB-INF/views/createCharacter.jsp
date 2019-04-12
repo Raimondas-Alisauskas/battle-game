@@ -20,7 +20,7 @@
 <div class="login-html">
     <div class="container">
         <div class="col">
-            <img id="memberImage"> <%--This is image place--%>
+            <img id="memberImage"> <%--This is imageReference place--%>
         </div>
         <div class="col">
             <div class="header">CREATE YOUR MEMBER</div>
@@ -76,8 +76,8 @@
             optionArray.push("|-- Select member --");
 
             <c:forEach begin="0" end="9" var="c" items="${charactersList}">
-            optionArray.push("${c.name}|${c.name}");
-            imageArray.push("${c.image}");
+            optionArray.push("${c.charname}|${c.charname}");
+            imageArray.push("${c.imageReference}");
             </c:forEach>
 
         }
@@ -89,8 +89,8 @@
             optionArray.push("|-- Select member --");
 
             <c:forEach begin="10" end="19" var="c" items="${charactersList}">
-            optionArray.push("${c.name}|${c.name}");
-            imageArray.push("${c.image}");
+            optionArray.push("${c.charname}|${c.charname}");
+            imageArray.push("${c.imageReference}");
             </c:forEach>
 
         }
@@ -102,8 +102,8 @@
             optionArray.push("|-- Select member --");
 
             <c:forEach begin="20" end="29" var="c" items="${charactersList}">
-            optionArray.push("${c.name}|${c.name}");
-            imageArray.push("${c.image}");
+            optionArray.push("${c.charname}|${c.charname}");
+            imageArray.push("${c.imageReference}");
             </c:forEach>
 
         }
@@ -126,7 +126,7 @@
         var images = [];
 
         <c:forEach var="p" items="${charactersList}">
-        images.push("${p.image}");
+        images.push("${p.imageReference}");
         </c:forEach>
 
         var selectedMember = document.getElementById("selectMember").value;

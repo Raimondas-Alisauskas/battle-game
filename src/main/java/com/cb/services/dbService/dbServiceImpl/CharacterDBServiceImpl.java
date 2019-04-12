@@ -1,7 +1,9 @@
 package com.cb.services.dbService.dbServiceImpl;
 
 import com.cb.dal.CharacterDAL;
+import com.cb.dal.UserDAL;
 import com.cb.services.dbService.iDbService.CharacterDBService;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -22,16 +24,7 @@ public class CharacterDBServiceImpl implements CharacterDBService {
     @Override
     public List<CharacterDAL> getCharacters() {
 
-        return template.query("SELECT * FROM main.character", new RowMapper<CharacterDAL>() {
-            @Override
-            public CharacterDAL mapRow(ResultSet rs, int rowNum) throws SQLException {
-                CharacterDAL c = new CharacterDAL();
-                c.setName(rs.getString(2));
-                c.setImage(rs.getString(3));
-                return c;
-
-            }
-        });
+        return template.query("SELECT * FROM main.character", new BeanPropertyRowMapper(CharacterDAL.class));
 
     }
 
