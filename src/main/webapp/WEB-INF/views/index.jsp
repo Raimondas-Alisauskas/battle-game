@@ -14,7 +14,12 @@
 <form action="getfight/">
     <input type="hidden" name="id1" value="1">
     <input type="hidden" name="id2" value="2">
-    <button >getFightParam</button>
+    <button >getFight1</button>
+</form>
+<form action="getfight/">
+    <input type="hidden" name="id1" value="2">
+    <input type="hidden" name="id2" value="1">
+    <button >getFight2</button>
 </form>
 <%--<form action="arena/1-2">--%>
 <%--    <button >getFightPath</button>--%>

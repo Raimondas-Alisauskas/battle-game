@@ -58,8 +58,10 @@ public class ArenaService {
         if(fightS.getFighter1().getId() != id){
             fightBL.setFighter1(fightS.getFighter2());
             fightBL.setFighter2(fightS.getFighter1());
+            fightBL.setFighter1ActionList(fightS.getFighter2ActionList());
+            fightBL.setFighter2ActionList(fightS.getFighter1ActionList());
+            return fightBL;
         }
-
-        return fightBL;
+        return fightS;
     }
 }

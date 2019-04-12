@@ -40,6 +40,7 @@ public class ArenaController extends HttpServlet {
 
         req.getSession().setAttribute("id", id1);//Temporary code.
 
+        int id = (int) req.getSession().getAttribute("id");
         Fight fightBL;
         ServletContext servletContext = req.getServletContext();
         Fight fightS = (Fight) servletContext.getAttribute("fightS");
@@ -47,7 +48,7 @@ public class ArenaController extends HttpServlet {
             fightBL = arenaService.createFight(id1, id2, new Fight());
             servletContext.setAttribute("fightS", fightBL);
         }else{
-            fightBL = arenaService.adjustFightContent(id1, fightS);
+            fightBL = arenaService.adjustFightContent(id, fightS);
         }
         m.addAttribute("fight", fightBL);
 
@@ -55,16 +56,16 @@ public class ArenaController extends HttpServlet {
     }
 
     @RequestMapping(value = "/fight")
-    public String fight(@RequestParam(value="id") int id1,
-                           @RequestParam(value="id2", required=false) int id2,
+    public String fight(@RequestParam(value="power1") int power1,
+                           @RequestParam(value="option1") int option1,
                            Model m, HttpServletRequest req ){
 
         ServletContext servletContext = req.getServletContext();
         Fight fight = (Fight) servletContext.getAttribute("fight");
         if(fight == null){
-            fight = arenaService.createFight(id1, id2, new Fight());
-        }else {
-            fight = arenaService.createFight(id2, fight);
+//            fight = arenaService.createFight(id1, id2, new Fight());
+//        }else {
+//            fight = arenaService.createFight(id2, fight);
         }
         //        context.setAttribute("fight",fight);
         m.addAttribute("fight", fight);

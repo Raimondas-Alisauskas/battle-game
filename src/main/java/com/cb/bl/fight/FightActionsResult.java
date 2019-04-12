@@ -1,7 +1,5 @@
 package com.cb.bl.fight;
 
-import java.util.List;
-
 public class FightActionsResult {
     private FightAction fighter1Action;
     private FightAction fighter2Action;
