@@ -38,16 +38,24 @@ public class ArenaController extends HttpServlet {
                         @RequestParam(value="id2", required=false) int id2,
                         Model m, HttpServletRequest req ){
 
+        req.getSession().setAttribute("id", id1);//Temporary code.
+
+        Fight fightBL;
         ServletContext servletContext = req.getServletContext();
-        Fight fight = arenaService.createFight(id1, id2, new Fight());
-        servletContext.setAttribute("fight",fight);
-        m.addAttribute("fight", fight);
+        Fight fightS = (Fight) servletContext.getAttribute("fightS");
+        if(fightS == null) {
+            fightBL = arenaService.createFight(id1, id2, new Fight());
+            servletContext.setAttribute("fightS", fightBL);
+        }else{
+            fightBL = arenaService.adjustFightContent(id1, fightS);
+        }
+        m.addAttribute("fight", fightBL);
 
         return "arenaTst";
     }
 
     @RequestMapping(value = "/fight")
-    public String fight(@RequestParam(value="id1") int id1,
+    public String fight(@RequestParam(value="id") int id1,
                            @RequestParam(value="id2", required=false) int id2,
                            Model m, HttpServletRequest req ){
 

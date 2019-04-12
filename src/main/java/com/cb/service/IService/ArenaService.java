@@ -35,7 +35,7 @@ public class ArenaService {
         return fight;
     }
 
-    public FighterBL createMockFighter(int id) {
+    private FighterBL createMockFighter(int id) {
 
         Weapon weapon1 = new Weapon("Deficitas: mažinamos pensijos", 1000);
         Weapon weapon2 = new Weapon("Skandalas: giminės ministerijoje", 2000);
@@ -49,5 +49,15 @@ public class ArenaService {
         weaponList.add(weapon4);
 
         return new FighterBL(id, 100, 100, 100, weaponList);
+    }
+
+    public Fight adjustFightContent(int id, Fight fightS) {
+        Fight fightBL = new Fight();
+        if(fightS.getFighter1().getId() != id){
+            fightBL.setFighter1(fightS.getFighter2());
+            fightBL.setFighter2(fightS.getFighter1());
+        }
+
+        return fightBL;
     }
 }
