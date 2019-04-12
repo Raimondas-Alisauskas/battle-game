@@ -57,7 +57,7 @@
                         <p class="card-text mb-auto">Liko pinigų: 1.000</p>
                         <!--<a href="#">link</a>-->
                     </div>
-                    <img class="card-img-right flex-auto d-none d-md-block" src="<c:url value="/resources/images/lzp_bender.png"/>" alt="You">
+                    <img class="card-img-right flex-auto d-none d-md-block" src="<c:url value="/resources/images/Bender.png"/>" alt="You">
                 </div>
             </div>
             <div class="col-md-6">
@@ -72,7 +72,7 @@
                         <p class="card-text mb-auto">Liko pinigų: 2.000</p>
                         <!--<a href="#">link</a>-->
                     </div>
-                    <img class="card-img-right flex-auto d-none d-md-block" src="<c:url value="/resources/images/lzp_donald.png"/>" alt="Competitor">
+                    <img class="card-img-right flex-auto d-none d-md-block" src="<c:url value="/resources/images/Donald.png"/>" alt="Competitor">
                 </div>
             </div>
         </div>

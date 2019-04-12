@@ -18,35 +18,41 @@
 <h4>Logged in as ${sessionScope.userName}</h4>
 <a href="signout">Sign Out</a>
 <div class="login-html">
-    <div class="header">CREATE YOUR MEMBER</div>
-    <div class="create-member">
-        <form method="post" class="create-member-form">
-
-            <div class="select-member">
-                <div class="btn-group">
-                    <div class="group">
-                        <select class="form-control" onchange="getMemberList(this.id,'selectMember')" id="selectParty"
-                                name="selectParty"><!-- Need to add on change method -->
-                            <option id="selectedConcreteParty"></option>
-                            <c:forEach var="p" items="${partiesList}">
-                                <option id="selectedConcreteParty">${p.name}</option>
-                            </c:forEach>
-                        </select>
+    <div class="container">
+        <div class="col">
+            <img id="memberImage"> <%--This is imageReference place--%>
+        </div>
+        <div class="col">
+            <div class="header">CREATE YOUR MEMBER</div>
+            <div class="create-member">
+                <form method="post" class="create-member-form">
+                    <div class="select-member">
+                        <div class="btn-group">
+                            <div class="group">
+                                <select class="form-control" onchange="getMemberList(this.id,'selectMember')"
+                                        id="selectParty" name="selectParty">
+                                    <option id="selectedConcreteParty">-- Select party --</option>
+                                    <c:forEach var="p" items="${partiesList}">
+                                        <option id="selectedConcreteParty">${p.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="select-member">
-                <div class="btn-group">
-                    <div class="group">
-                        <select class="form-control" id="selectMember" name="selectMember"></select>
+                    <div class="select-member">
+                        <div class="btn-group">
+                            <div class="group">
+                                <select class="form-control" id="selectMember" name="selectMember"
+                                        onchange="getImage()"></select>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="group" id="submit-button">
+                        <input type="submit" class="button" value="Create member">
+                    </div>
+                </form>
             </div>
-
-            <div class="group">
-                <input type="submit" class="button" value="Create member">
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
@@ -66,10 +72,12 @@
         if (s1.value == parties[0]) {
 
             var optionArray = [];
+            var imageArray = [];
             optionArray.push("|-- Select member --");
 
             <c:forEach begin="0" end="9" var="c" items="${charactersList}">
-            optionArray.push("${c.name}|${c.name}");
+            optionArray.push("${c.charname}|${c.charname}");
+            imageArray.push("${c.imageReference}");
             </c:forEach>
 
         }
@@ -77,10 +85,12 @@
         if (s1.value == parties[1]) {
 
             var optionArray = [];
+            var imageArray = [];
             optionArray.push("|-- Select member --");
 
             <c:forEach begin="10" end="19" var="c" items="${charactersList}">
-            optionArray.push("${c.name}|${c.name}");
+            optionArray.push("${c.charname}|${c.charname}");
+            imageArray.push("${c.imageReference}");
             </c:forEach>
 
         }
@@ -88,10 +98,12 @@
         if (s1.value == parties[2]) {
 
             var optionArray = [];
+            var imageArray = [];
             optionArray.push("|-- Select member --");
 
             <c:forEach begin="20" end="29" var="c" items="${charactersList}">
-            optionArray.push("${c.name}|${c.name}");
+            optionArray.push("${c.charname}|${c.charname}");
+            imageArray.push("${c.imageReference}");
             </c:forEach>
 
         }
@@ -101,10 +113,36 @@
             var pair = optionArray[option].split("|");
             var newOption = document.createElement("option");
             newOption.value = pair[0];
+            newOption.id = "selectedConcreteMember";
             newOption.innerHTML = pair[1];
             s2.options.add(newOption);
 
         }
+
+    }
+
+    function getImage() {
+
+        var images = [];
+
+        <c:forEach var="p" items="${charactersList}">
+        images.push("${p.imageReference}");
+        </c:forEach>
+
+        var selectedMember = document.getElementById("selectMember").value;
+
+        for (var i = 0; i < images.length; i++) {
+
+            if (images[i].includes(selectedMember)) {
+
+                var imageName = images[i];
+                break;
+
+            }
+
+        }
+
+        document.getElementById("memberImage").src = "<c:url value="/resources/images/"/>" + imageName;
 
     }
 

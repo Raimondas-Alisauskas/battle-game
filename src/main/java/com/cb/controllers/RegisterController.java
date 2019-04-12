@@ -46,6 +46,7 @@ public class RegisterController {
             List<CharacterDAL> charactersList = characterService.getCharacters();
             p.addAttribute("partiesList", partiesList);
             c.addAttribute("charactersList", charactersList);
+            
             return "createCharacter";
         } else {
             model.put("error", "General error");

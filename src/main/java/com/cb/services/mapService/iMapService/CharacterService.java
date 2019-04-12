@@ -8,4 +8,5 @@ public interface CharacterService {
 
     List<CharacterDAL> getCharacters();
 
+
 }

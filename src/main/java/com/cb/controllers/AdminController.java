@@ -2,6 +2,8 @@ package com.cb.controllers;
 
 
 import com.cb.bl.UserBL;
+import com.cb.dal.CharacterDAL;
+import com.cb.dal.PartyDAL;
 import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
 import com.cb.services.mapService.iMapService.CharacterService;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AdminController {
@@ -45,7 +50,6 @@ public class AdminController {
         userService.insertNewUser();
         return "redirect:/userstable";
     }
-
 
     /* Displays object data into form for the given id.
      * The @PathVariable puts URL data into variable.*/
