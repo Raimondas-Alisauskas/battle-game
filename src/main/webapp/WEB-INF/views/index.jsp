@@ -19,7 +19,7 @@
     <div class="login-form">
         <form action="loginuser" method="post" class="sign-in-htm">
             <div class="group">
-                <label for="emailLogin" class="label">Email Adress</label>
+                <label for="emailLogin" class="label">Email Address</label>
                 <input id="emailLogin" type="email" name="email" class="input" required>
             </div>
             <div class="group">
@@ -42,7 +42,7 @@
             </div>
             <div class="group">
                 <label for="email" class="label">Email Address</label>
-                <input id="email" name="email" type="text" class="input" required>
+                <input id="email" name="email" type="email" class="input" required>
             </div>
             <div class="group">
                 <input type="submit" class="button" value="Sign Up">

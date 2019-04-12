@@ -3,7 +3,6 @@ package com.cb.controllers;
 import com.cb.bl.UserBL;
 import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
-import com.cb.dal.UserDAL;
 import com.cb.services.mapService.iMapService.CharacterService;
 import com.cb.services.mapService.iMapService.PartyService;
 import com.cb.services.mapService.iMapService.UserService;
@@ -34,15 +33,10 @@ public class LoginController {
 
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
     public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
-        List<UserDAL> allEmails = userService.getUserByEmail(userBL.getEmail());
-        List<UserDAL> allPasswords = userService.getUserByPassword(userBL.getPassword());
-        String userName = "";
-        for (UserDAL items: allEmails
-        ) {
-            userName = items.getUserName();
-        }
+        int userExist = userService.getUserByEmailAndPassword(userBL);
 
-        if (allEmails.size() > 0 && allPasswords.size() > 0) {
+        if (userExist == 1) {
+            String userName = userService.getUserNameByEmail(userBL);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             List<PartyDAL> partiesList = partyService.getParties();
@@ -50,15 +44,17 @@ public class LoginController {
             p.addAttribute("partiesList", partiesList);
             c.addAttribute("charactersList", charactersList);
             return "createCharacter";
-
-        } else {
+        } else if (userExist == -1) {
             model.put("error", "User does not exist");
             return "index";
-
+        } else {
+            model.put("error", "General error");
+            return "index";
         }
     }
+
     @RequestMapping(value = "/signout")
-    public String signOut(HttpServletRequest req){
+    public String signOut(HttpServletRequest req) {
         HttpSession userSession = req.getSession();
         userSession.invalidate();
         return "index";
