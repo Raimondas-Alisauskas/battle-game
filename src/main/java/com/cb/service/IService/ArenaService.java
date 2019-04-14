@@ -4,6 +4,7 @@ import com.cb.bl.FighterBL;
 import com.cb.bl.fight.Fight;
 import com.cb.bl.fight.Weapon;
 import com.cb.dto.DefaultDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,28 +14,16 @@ import java.util.List;
 public class ArenaService {
 
     public static final int WINNER_REWARD_SCORE = 10;
+    @Autowired
+    DefaultDTO fightDTO;
 
-    //not used
-    public Fight createFight(int id, Fight fight) {
-
-        if(fight.getFighter1() == null){
-            FighterBL fighterBL = createMockFighter(id);
-            fight.setFighter1(fighterBL);
-        } else if (fight.getFighter2() == null){
-            FighterBL fighterBL = createMockFighter(id);
-            fight.setFighter2(fighterBL);
-        } else {
-            System.out.println("Error: both fighters already exist");
-        }
-        return fight;
-    }
-
-    public Fight createFight(int id1, int id2, Fight fight) {
-            FighterBL fighterBL1 = createMockFighter(id1);
-            fight.setFighter1(fighterBL1);
-            FighterBL fighterBL2 = createMockFighter(id2);
-            fight.setFighter2(fighterBL2);
-        return fight;
+    public DefaultDTO createFight(int id1, int id2) {
+        Fight fight = new Fight();
+        FighterBL fighterBL1 = createMockFighter(id1);
+        fight.setFighter1(fighterBL1);
+        FighterBL fighterBL2 = createMockFighter(id2);
+        fight.setFighter2(fighterBL2);
+        return new DefaultDTO(true,"Pasiruošk kovoti!",fight);
     }
 
     private FighterBL createMockFighter(int id) {
@@ -53,15 +42,25 @@ public class ArenaService {
         return new FighterBL(id, 100, 100, 100, weaponList);
     }
 
-    public Fight adjustFightContent(int id, Fight fightS) {
-        Fight fightBL = new Fight();
-        if(fightS.getFighter1().getId() != id){
-            fightBL.setFighter1(fightS.getFighter2());
-            fightBL.setFighter2(fightS.getFighter1());
-            fightBL.setFighter1ActionList(fightS.getFighter2ActionList());
-            fightBL.setFighter2ActionList(fightS.getFighter1ActionList());
-            return fightBL;
-        }
-        return fightS;
+    public DefaultDTO adjustFightContent(int id, Fight fightSL) {
+        if(fightSL.getFighter1().getId() != id){
+            Fight fightBL = new Fight();
+            fightBL.setFighter1(fightSL.getFighter2());
+            fightBL.setFighter2(fightSL.getFighter1());
+            fightBL.setFighter1ActionList(fightSL.getFighter2ActionList());
+            fightBL.setFighter2ActionList(fightSL.getFighter1ActionList());
+            fightDTO.setData(fightBL);
+        } else {fightDTO.setData(fightSL);}
+        fightDTO.setMessage("Pirmyn į kovą!");
+        return fightDTO;
+    }
+
+    public DefaultDTO askToWait(Fight fightS){
+        return new DefaultDTO(true,"Priešininkas grybauja. Reikia palaukti",fightS);
+    }
+
+    public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fightS) {
+
+        return fightDTO;
     }
 }

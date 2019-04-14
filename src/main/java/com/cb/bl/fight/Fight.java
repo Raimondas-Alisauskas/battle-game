@@ -16,5 +16,6 @@ public class Fight {
     private FighterBL fighter2;
     private List<FightAction> fighter1ActionList;
     private List<FightAction> fighter2ActionList;
+    private int actionsCompleted;
 
 }

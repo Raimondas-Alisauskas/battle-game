@@ -10,13 +10,13 @@
 <body class="main">
 
 <a href="userstable">Modify Users</a> <br>
-<a href="arena">Arena</a>
-<form action="getfight/">
+<a href="arena/">Arena</a>
+<form action="arena/">
     <input type="hidden" name="id1" value="1">
     <input type="hidden" name="id2" value="2">
     <button >getFight1</button>
 </form>
-<form action="getfight/">
+<form action="arena/">
     <input type="hidden" name="id1" value="2">
     <input type="hidden" name="id2" value="1">
     <button >getFight2</button>
