@@ -43,7 +43,6 @@ public class ArenaController extends HttpServlet {
         req.getSession().setAttribute("fighterId", id1);//Temporary code.
 
         int id = (int) req.getSession().getAttribute("fighterId");
-        Fight fightBL;
         ServletContext servletContext = req.getServletContext();
         Fight fightSL = (Fight) servletContext.getAttribute("fightSL");
         if(fightSL == null) {
@@ -64,16 +63,16 @@ public class ArenaController extends HttpServlet {
                            Model m, HttpServletRequest req ){
 
         ServletContext servletContext = req.getServletContext();
-        Fight fightS = (Fight) servletContext.getAttribute("fightS");
+        Fight fightSL = (Fight) servletContext.getAttribute("fightSL");
         int fighterId = (int) req.getSession().getAttribute("fighterId");
-        if(fightS.getFighter1ActionList().size() == fightS.getActionsCompleted()
-            || fightS.getFighter2ActionList().size() == fightS.getActionsCompleted()){
-            defaultDTO = arenaService.fillActionListOrGetResult(fighterId, fightS);
+        if(fightSL.getFighter1ActionList().size() == fightSL.getActionsCompleted()
+            || fightSL.getFighter2ActionList().size() == fightSL.getActionsCompleted()){
+            defaultDTO = arenaService.fillActionListOrGetResult(fighterId, fightSL);
         } else {
-            defaultDTO = arenaService.askToWait(fightS);
+            defaultDTO = arenaService.askToWait(fightSL);
         }
-        fightS = (Fight) defaultDTO.getData();
-        servletContext.setAttribute("fightS", fightS);
+        fightSL = (Fight) defaultDTO.getData();
+        servletContext.setAttribute("fightSL", fightSL);
         m.addAttribute("defaultDTO", defaultDTO);
         return "arenaTst";
     }

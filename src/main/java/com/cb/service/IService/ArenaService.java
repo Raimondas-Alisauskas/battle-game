@@ -55,11 +55,11 @@ public class ArenaService {
         return fightDTO;
     }
 
-    public DefaultDTO askToWait(Fight fightS){
-        return new DefaultDTO(true,"Priešininkas grybauja. Reikia palaukti",fightS);
+    public DefaultDTO askToWait(Fight fightSL){
+        return new DefaultDTO(true,"Priešininkas grybauja. Reikia palaukti",fightSL);
     }
 
-    public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fightS) {
+    public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fightSL) {
 
         return fightDTO;
     }
