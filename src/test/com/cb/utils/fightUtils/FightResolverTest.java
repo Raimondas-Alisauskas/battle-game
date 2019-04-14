@@ -26,12 +26,12 @@ public class FightResolverTest {
         Weapon weapon1 = new Weapon("1", 1000);
         Weapon weapon2 = new Weapon("2", 2000);
 
-        attack1a = new Attack(1, weapon1, AttackType.ATTACK);
-        attack2a = new Attack(1, weapon2, AttackType.ATTACK);
-        attack1d = new Attack(1, weapon1, AttackType.DEFENCE);
-        attack2d = new Attack(1, weapon2, AttackType.DEFENCE);
-        attack1n = new Attack(1, weapon1, AttackType.NEUTRAL);
-        attack2n = new Attack(1, weapon2, AttackType.NEUTRAL);
+        attack1a = new Attack(1, weapon1, AttackType.ATTACK, null);
+        attack2a = new Attack(1, weapon2, AttackType.ATTACK,null);
+        attack1d = new Attack(1, weapon1, AttackType.DEFENCE, null);
+        attack2d = new Attack(1, weapon2, AttackType.DEFENCE, null);
+        attack1n = new Attack(1, weapon1, AttackType.NEUTRAL, null);
+        attack2n = new Attack(1, weapon2, AttackType.NEUTRAL, null);
     }
 
     @Test
@@ -56,8 +56,8 @@ public class FightResolverTest {
         attackList2.add(attack2a);
         attackList2.add(attack2a);
 
-        FightAction fightAction1 = new FightAction(1, attackList1);
-        FightAction fightAction2 = new FightAction(1, attackList2);
+        FightAction fightAction1 = new FightAction(1, attackList1, 0);
+        FightAction fightAction2 = new FightAction(1, attackList2, 0);
 
         Assert.assertEquals(0, fightResolver.getFightActionResult(fightAction1,fightAction2).getFighter1Action().getNoOfWinnings());
         Assert.assertEquals(1, fightResolver.getFightActionResult(fightAction1,fightAction2).getFighter2Action().getNoOfWinnings());
