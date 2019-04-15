@@ -38,7 +38,10 @@
 </nav>
 
 <div class="my-profile">
-    Labas
+    <div>Username: </div>
+    <div>Character: </div>
+    <div>Money: </div>
+    <div>Rating: </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
