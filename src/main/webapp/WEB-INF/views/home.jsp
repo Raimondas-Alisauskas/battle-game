@@ -30,7 +30,7 @@
                 <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
             </div>
             <div class="navbar-text" style="color: white">
-                Welcome, Justinas
+                Welcome, ${sessionScope.userName}
             </div>
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Log out</button>
         </form>
@@ -39,7 +39,9 @@
 
 <div class="my-profile">
     <div>Username: </div>
+    <div>Party: </div>
     <div>Character: </div>
+    <div>Image: </div>
     <div>Money: </div>
     <div>Rating: </div>
 </div>
