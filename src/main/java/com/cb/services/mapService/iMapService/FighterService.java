@@ -1,4 +1,10 @@
 package com.cb.services.mapService.iMapService;
 
-public interface FighterService {
+import com.cb.bl.FighterBL;
+import com.cb.dto.DefaultDTO;
+
+public interface FighterService{
+
+    DefaultDTO insertFighter(FighterBL fighterBL);
+
 }

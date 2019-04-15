@@ -7,6 +7,8 @@ public class FighterBL {
     private int characterId;
     private int money;
     private int rating;
+    private String member;
+    private String party;
 
     public int getId() {
         return id;
@@ -46,5 +48,21 @@ public class FighterBL {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getMember() {
+        return member;
+    }
+
+    public void setMember(String member) {
+        this.member = member;
+    }
+
+    public String getParty() {
+        return party;
+    }
+
+    public void setParty(String party) {
+        this.party = party;
     }
 }

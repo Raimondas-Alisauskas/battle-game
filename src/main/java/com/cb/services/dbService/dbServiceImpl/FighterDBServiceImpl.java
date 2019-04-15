@@ -8,9 +8,13 @@ public class FighterDBServiceImpl implements FighterDBService {
 
     JdbcTemplate template;
 
+    public void setTemplate(JdbcTemplate template) {
+        this.template = template;
+    }
+
     public int insertFighter(FighterBL fighterBL) {
         String sql = "INSERT INTO fighters(userId, characterId, money, rating) " +
-                "VALUES ('" + fighterBL.getUserId() + "','" + fighterBL.getCharacterId() + "','" + 1000 + "'," + 1000 + ")";
+                "VALUES ('" + fighterBL.getUserId() + "','" + fighterBL.getCharacterId() + "','" + fighterBL.getMoney() + "'," + fighterBL.getRating() + ")";
         return template.update(sql);
     }
 

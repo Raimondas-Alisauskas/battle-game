@@ -50,6 +50,10 @@
         <property name="template" ref="jt"/>
     </bean>
 
+    <bean id="fighterDBService" class="com.cb.services.dbService.dbServiceImpl.FighterDBServiceImpl">
+        <property name="template" ref="jt"/>
+    </bean>
+
     <bean id="defaultDTO" class="com.cb.dto.DefaultDTO"/>
 
 </beans>

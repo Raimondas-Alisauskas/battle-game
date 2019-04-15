@@ -56,7 +56,7 @@
                         <div class="btn-group">
                             <div class="group">
                                 <select class="form-control" onchange="getMemberList(this.id,'selectMember')"
-                                        id="selectParty" name="selectParty">
+                                        id="selectParty" name="party">
                                     <option id="selectedConcreteParty">-- Select party --</option>
                                     <c:forEach var="p" items="${partiesList}">
                                         <option id="selectedConcreteParty">${p.name}</option>
@@ -68,7 +68,7 @@
                     <div class="select-member">
                         <div class="btn-group">
                             <div class="group">
-                                <select class="form-control" id="selectMember" name="selectMember"
+                                <select class="form-control" id="selectMember" name="member"
                                         onchange="getImage()"></select>
                             </div>
                         </div>

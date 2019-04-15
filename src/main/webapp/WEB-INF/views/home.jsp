@@ -38,12 +38,12 @@
 </nav>
 
 <div class="my-profile">
-    <div>Username: </div>
-    <div>Party: </div>
-    <div>Character: </div>
+    <div>Username: ${sessionScope.userName}</div>
+    <div>Party: ${fighter.party}</div>
+    <div>Character: ${fighter.member}</div>
     <div>Image: </div>
-    <div>Money: </div>
-    <div>Rating: </div>
+    <div>Money: ${fighter.money}</div>
+    <div>Rating: ${fighter.rating}</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

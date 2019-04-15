@@ -6,7 +6,9 @@ import com.cb.dto.DefaultDTO;
 import com.cb.services.dbService.iDbService.FighterDBService;
 import com.cb.services.mapService.iMapService.FighterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FighterServiceImpl implements FighterService {
 
     @Autowired
