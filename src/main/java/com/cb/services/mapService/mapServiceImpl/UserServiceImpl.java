@@ -56,20 +56,12 @@ public class UserServiceImpl implements UserService {
         userBL.setPassword("Password");
         userBL.setEmail("email");
         userBL.setIsAdmin(false);
-        userBL.setRating(50);
-        userBL.setMoney(100);
-        userBL.setCharacterId(1);
-        userBL.setPartyId(1);
         return insertNewUser(userBL);
     }
 
     public int registerUser(UserBL userBL) {
 
         userBL.setIsAdmin(false);
-        userBL.setRating(100);
-        userBL.setMoney(1000);
-        userBL.setCharacterId(1);
-        userBL.setPartyId(1);
 
         return userDBService.insertUser(userBL);
 
