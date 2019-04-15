@@ -9,6 +9,7 @@ public class FighterBL {
     private int rating;
     private String member;
     private String party;
+    private String image;
 
     public int getId() {
         return id;
@@ -64,5 +65,13 @@ public class FighterBL {
 
     public void setParty(String party) {
         this.party = party;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

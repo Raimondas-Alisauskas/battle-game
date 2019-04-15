@@ -38,12 +38,20 @@
 </nav>
 
 <div class="my-profile">
-    <div>Username: ${sessionScope.userName}</div>
-    <div>Party: ${fighter.party}</div>
-    <div>Character: ${fighter.member}</div>
-    <div>Image: </div>
-    <div>Money: ${fighter.money}</div>
-    <div>Rating: ${fighter.rating}</div>
+
+    <div class="container">
+        <div class="col">
+            <img id="memberImage" src="${fighter.image}">
+            <input id="hidden" name="image" type="hidden">
+        </div>
+        <div class="col">
+            <div>Username: ${sessionScope.userName}</div>
+            <div>Party: ${fighter.party}</div>
+            <div>Character: ${fighter.member}</div>
+            <div>Money: ${fighter.money}</div>
+            <div>Rating: ${fighter.rating}</div>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

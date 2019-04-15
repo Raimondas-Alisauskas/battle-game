@@ -43,15 +43,17 @@
     </div>
 </nav>
 
-<div class="login-html">
-    <div class="container">
-        <div class="col">
-            <img id="memberImage">
-        </div>
-        <div class="col">
-            <div class="header">CREATE YOUR MEMBER</div>
-            <div class="create-member">
-                <form method="post" action="home" class="create-member-form">
+<form method="post" action="home" class="create-member-form">
+    <div class="login-html">
+        <div class="container">
+            <div class="col">
+                <img id="memberImage">
+                <input id="hidden" name="image" type="hidden">
+            </div>
+            <div class="col">
+                <div class="header">CREATE YOUR MEMBER</div>
+                <div class="create-member">
+
                     <div class="select-member">
                         <div class="btn-group">
                             <div class="group">
@@ -76,11 +78,12 @@
                     <div class="group" id="submit-button">
                         <input type="submit" class="button" value="Create member">
                     </div>
-                </form>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 <script>
 
@@ -169,6 +172,8 @@
         }
 
         document.getElementById("memberImage").src = "<c:url value="/resources/images/"/>" + imageName;
+        document.getElementById("memberImage").value = "<c:url value="/resources/images/"/>" + imageName;
+        document.getElementById("hidden").value = "<c:url value="/resources/images/"/>" + imageName;
 
     }
 
