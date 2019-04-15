@@ -35,10 +35,7 @@
             <div class="navbar-text" style="color: white">
                 Welcome, ${sessionScope.userName}
             </div>
-            <form method="post" action="signout">
-                <input type="submit" value="Log out" class="btn btn-primary my-2 my-sm-0">
-            </form>
-
+            <a class="btn btn-primary my-2 my-sm-0" href="signout">Log out</a>
         </form>
     </div>
 </nav>

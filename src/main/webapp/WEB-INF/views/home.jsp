@@ -32,7 +32,7 @@
             <div class="navbar-text" style="color: white">
                 Welcome, ${sessionScope.userName}
             </div>
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Log out</button>
+            <a class="btn btn-primary my-2 my-sm-0" href="signout">Log out</a>
         </form>
     </div>
 </nav>
