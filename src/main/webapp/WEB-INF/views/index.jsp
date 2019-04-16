@@ -12,6 +12,7 @@
 <a href="userstable">Modify Users</a> <br>
 <a href="arena">Arena</a> <br>
 <a href="home">HomePage</a>
+<a href="shop">Shop</a>
 
 <form action="arena/">
     <input type="hidden" name="id1" value="1">
