@@ -25,10 +25,10 @@
                     <td>${u.password}</td>
                     <td>${u.email}</td>
                     <td>${u.isAdmin}</td>
-                    <td>${u.rating}</td>
-                    <td>${u.money}</td>
-                    <td>${u.characterId}</td>
-                    <td>${u.partyId}</td>
+                    <%--<td>${u.rating}</td>--%>
+                    <%--<td>${u.money}</td>--%>
+                    <%--<td>${u.characterId}</td>--%>
+                    <%--<td>${u.partyId}</td>--%>
                     <td><a href="edituser/${u.id}">Edit</a></td>
                     <td><a href="deleteuser/${u.id}">Delete</a></td>
                 </tr>

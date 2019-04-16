@@ -6,10 +6,7 @@ public class UserBL {
     private String password;
     private String email;
     private boolean isAdmin;
-    private int rating;
-    private int money;
-    private int characterId;
-    private int partyId;
+
 
     public int getId() {
         return id;
@@ -47,35 +44,5 @@ public class UserBL {
 
     public void setEmail(String email) { this.email = email; }
 
-    public int getRating() {
-        return rating;
-    }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
-    public int getCharacterId() {
-        return characterId;
-    }
-
-    public void setCharacterId(int characterId) {
-        this.characterId = characterId;
-    }
-
-    public int getPartyId() {
-        return partyId;
-    }
-
-    public void setPartyId(int partyId) {
-        this.partyId = partyId;
-    }
 }

@@ -3,32 +3,54 @@ package com.cb.services.dbService.dbServiceImpl;
 import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
 import com.cb.services.dbService.iDbService.UserDBService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDBServiceImpl implements UserDBService {
 
     JdbcTemplate template;
 
+
+    @Autowired
+    DataSource dataSource;
+
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }
 
+    public List<String> getField(){
+        List<String> weapons = new ArrayList<>();
+        try(Connection conn = dataSource.getConnection()){
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM weapons");
+            while(rs.next()){
+                weapons.add(rs.getString("name"));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return weapons;
+    }
+
+
     @Override
     public List<UserDAL> getUsers() {
-        return template.query("SELECT * FROM users", new BeanPropertyRowMapper(UserDAL.class));
+        return template.query("SELECT * FROM users", new BeanPropertyRowMapper<>(UserDAL.class));
     }
 
     @Override
     public int insertUser(UserBL u) {
-        String sql = "INSERT INTO users(userName, password, email, isAdmin, rating, money, characterId, partyId) " +
-                "VALUES ('" + u.getUserName() + "','" + u.getPassword() + "','" + u.getEmail() + "'," + u.getIsAdmin() + "," + u.getRating() + "," + u.getMoney() + ","
-                + u.getCharacterId() + "," + u.getPartyId() + ")";
+        String sql = "INSERT INTO users(userName, password, email, isAdmin) " +
+                "VALUES ('" + u.getUserName() + "','" + u.getPassword() + "','" + u.getEmail() + "'," + u.getIsAdmin() + ")";
         return template.update(sql);
     }
 
@@ -67,9 +89,7 @@ public class UserDBServiceImpl implements UserDBService {
 
     @Override
     public int updateUser(UserBL u) {
-        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getIsAdmin() + "," +
-                "rating = " + u.getRating() + ", money = " + u.getMoney() + ", characterId = " + u.getCharacterId() + ", partyId = " + u.getPartyId() + " " +
-                "WHERE id = " + u.getId() + "";
+        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getIsAdmin() + "," + "WHERE id = " + u.getId() + "";
         return template.update(sql);
     }
 
