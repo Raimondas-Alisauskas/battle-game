@@ -1,7 +1,6 @@
 package com.cb.services.mapService.iMapService;
 
 import com.cb.bl.UserBL;
-import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +24,8 @@ public interface UserService {
     DefaultDTO getUserById(int id);
 
     String getUserNameByEmail(UserBL userBL);
+
+    int getUserIdByEmail(UserBL userBL);
 
     DefaultDTO deleteUserById(int id);
 

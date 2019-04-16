@@ -37,8 +37,10 @@ public class LoginController {
 
         if (userExist == 1) {
             String userName = userService.getUserNameByEmail(userBL);
+            int userId = userService.getUserIdByEmail(userBL);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
+            userSession.setAttribute("id", userId);
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
             p.addAttribute("partiesList", partiesList);

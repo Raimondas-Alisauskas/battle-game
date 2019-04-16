@@ -109,9 +109,15 @@ public class UserServiceImpl implements UserService {
         return userDBService.getUserNameByEmail(userBL);
     }
 
+    public int getUserIdByEmail(UserBL userBL) {
+
+        return userDBService.getUserIdByEmail(userBL);
+
+    }
+
     public DefaultDTO deleteUserById(int id) {
         try{
-            int result = userDBService.deleteUserById(id);;
+            int result = userDBService.deleteUserById(id);
             if(result == 1) {
                 defaultDTO.setSuccess(true);
                 defaultDTO.setMessage("User deleted");

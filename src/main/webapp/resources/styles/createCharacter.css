@@ -259,3 +259,59 @@ a {
   top:0;
   right:0;
 }
+
+.navbar {
+
+    min-height: 5rem;
+
+}
+
+.nav-link {
+
+    color: white;
+}
+
+.nav-item {
+
+    padding-left: 4rem;
+
+}
+
+
+.navbar-brand {
+
+    color: white;
+    padding-left: 4rem;
+
+
+}
+
+.inset {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding-right: 6rem;
+}
+
+.inset img {
+    border-radius: inherit;
+    width: inherit;
+    height: inherit;
+}
+
+.navbar-text {
+
+    padding-right: 4rem;
+}
+
+.my-profile {
+    position: absolute;
+    height: 40rem;
+    width: 50rem;
+    top: 50%;
+    left: 50%;
+    padding: 68px 60px 80px 60px;
+    background: rgba(40, 57, 101, .9);
+    transform: translate(-50%, -45%);
+    border-radius: 25px;
+}
