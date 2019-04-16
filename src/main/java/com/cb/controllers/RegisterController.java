@@ -5,6 +5,7 @@ import com.cb.bl.FighterBL;
 import com.cb.bl.UserBL;
 import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
+import com.cb.dto.DefaultDTO;
 import com.cb.services.mapService.iMapService.CharacterService;
 import com.cb.services.mapService.iMapService.FighterService;
 import com.cb.services.mapService.iMapService.PartyService;
@@ -64,19 +65,23 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.POST)
-    public String createNewCharacter(HttpServletRequest req, @ModelAttribute FighterBL fighterBL, Model f) {
+    public String createNewCharacter(HttpServletRequest req, @ModelAttribute FighterBL fighterBL, Model m) {
 
         HttpSession httpSession = req.getSession();
-        int userId = (int) httpSession.getAttribute("id"); // getting user ID from session
+        int userId = (int) httpSession.getAttribute("id");
+
         int characterId = characterService.getCharacterId(fighterBL);
         int partyId = partyService.getPartyId(fighterBL);
 
-        fighterBL.setUserId(userId); // nekreipti demesio
-        fighterBL.setCharacterId(characterId); // nekreipti demesio
-        fighterBL.setPartyId(partyId); // nekreipti demesio
+        fighterBL.setUserId(userId);
+        fighterBL.setCharacterId(characterId);
+        fighterBL.setPartyId(partyId);
 
         fighterService.insertFighter(fighterBL);
-        f.addAttribute("fighter", fighterBL);
+
+        DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
+        fighterBL = (FighterBL) defaultDTO.getData();
+        m.addAttribute("fighterUser", fighterBL);
 
         return "home";
 

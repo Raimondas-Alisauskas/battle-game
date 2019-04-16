@@ -49,12 +49,9 @@ public class LoginController {
             userSession.setAttribute("id", userId); // add ID for session
 
             if (fighterService.getFighterCountByUserId(userId) == 1) {
-
                 DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
                 FighterBL fighterBL = (FighterBL) defaultDTO.getData();
                 m.addAttribute("fighterUser", fighterBL);
-
-                System.out.println(fighterBL);
 
                 return "home";
 
