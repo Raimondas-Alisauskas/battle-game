@@ -63,9 +63,12 @@ public class UserDBServiceImpl implements UserDBService {
     }
 
     public int getUserIdByEmail(UserBL userBL) {
-
-        return template.queryForObject("select id from users where email = '" + userBL.getEmail() + "'", Integer.class);
-
+        if(template.queryForObject("select count(id) from users where email = '" + userBL.getEmail() + "'", Integer.class).equals(1)){
+            return template.queryForObject("select count(id) from users where email = '" + userBL.getEmail() + "'", Integer.class);
+        }
+        else{
+           return -1;
+        }
     }
 
 

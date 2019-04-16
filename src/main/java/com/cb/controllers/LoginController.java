@@ -37,16 +37,21 @@ public class LoginController {
         String userName = userService.getUserNameByEmail(userBL);
         int userId = userService.getUserIdByEmail(userBL);
 
-        if (userExist == 1) {
-
+        if (userExist == 1 && userId == 1) {
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             userSession.setAttribute("id", userId);
-            List<PartyDAL> partiesList = partyService.getParties();
-            List<CharacterDAL> charactersList = characterService.getCharacters();
-            p.addAttribute("partiesList", partiesList);
-            c.addAttribute("charactersList", charactersList);
-            return "createCharacter";
+            return "home";
+
+        } else if (userExist == 1 && userId == 0) {
+                HttpSession userSession = req.getSession();
+                userSession.setAttribute("userName", userName);
+                userSession.setAttribute("id", userId);
+                List<PartyDAL> partiesList = partyService.getParties();
+                List<CharacterDAL> charactersList = characterService.getCharacters();
+                p.addAttribute("partiesList", partiesList);
+                c.addAttribute("charactersList", charactersList);
+                return "createCharacter";
         } else if (userExist == -1) {
             model.put("error", "User does not exist");
             return "index";
