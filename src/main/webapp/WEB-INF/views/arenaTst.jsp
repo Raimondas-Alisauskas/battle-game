@@ -29,17 +29,17 @@
         <tr>
             <td>Neturtingi rinkėjai</td>
             <td>
-                <select id="priemone1" name = "power1" onchange="getValue()">
+                <select id="priemone1" name = "weapon1" onchange="getValue()">
                     <option name = "power1" value = 0>--Pasirinkite priemonę--</option>
                     <c:forEach var="w" items="${defaultDTO.data.fighter1.weaponList}">
-                    <option name = "power1" value = "${w.power}">${w.name}: ${w.power}</option>
+                    <option name = "power1" value = "${w.name}:${w.power}">${w.name}: ${w.power}</option>
                     </c:forEach>
                 </select>
             </td>
             <td id = powerValue1>0</td>
-            <td><input type="radio"  name = "option1" value="at"></td>
-            <td><input type="radio"  name = "option1" value="def"></td>
-            <td><input type="radio"  name = "option1" value="null" checked="checked"></td>
+            <td><input type="radio"  name = "attType1" value="at"></td>
+            <td><input type="radio"  name = "attType1" value="def"></td>
+            <td><input type="radio"  name = "attType1" value="null" checked="checked"></td>
         </tr>
         </form>
 

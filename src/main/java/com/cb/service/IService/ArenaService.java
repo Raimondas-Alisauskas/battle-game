@@ -1,6 +1,7 @@
 package com.cb.service.IService;
 
 import com.cb.bl.FighterBL;
+import com.cb.bl.fight.Attack;
 import com.cb.bl.fight.Fight;
 import com.cb.bl.fight.Weapon;
 import com.cb.dto.DefaultDTO;
@@ -59,7 +60,7 @@ public class ArenaService {
         return new DefaultDTO(true,"Priešininkas grybauja. Reikia palaukti",fightSL);
     }
 
-    public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fight) {
+    public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fight, List<Attack> attackList) {
 
 
         return fightDTO;

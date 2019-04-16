@@ -52,4 +52,6 @@
 
     <bean id="defaultDTO" class="com.cb.dto.DefaultDTO"/>
 
+    <bean id="controllerUtility" class="com.cb.utils.fightUtils.ControllerUtility"/>
+
 </beans>
