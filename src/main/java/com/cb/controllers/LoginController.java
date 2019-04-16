@@ -34,10 +34,11 @@ public class LoginController {
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
     public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
         int userExist = userService.getUserByEmailAndPassword(userBL);
+        String userName = userService.getUserNameByEmail(userBL);
+        int userId = userService.getUserIdByEmail(userBL);
 
         if (userExist == 1) {
-            String userName = userService.getUserNameByEmail(userBL);
-            int userId = userService.getUserIdByEmail(userBL);
+
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             userSession.setAttribute("id", userId);
