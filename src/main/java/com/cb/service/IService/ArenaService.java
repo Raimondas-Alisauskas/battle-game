@@ -59,7 +59,8 @@ public class ArenaService {
         return new DefaultDTO(true,"Priešininkas grybauja. Reikia palaukti",fightSL);
     }
 
-    public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fightSL) {
+    public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fight) {
+
 
         return fightDTO;
     }
