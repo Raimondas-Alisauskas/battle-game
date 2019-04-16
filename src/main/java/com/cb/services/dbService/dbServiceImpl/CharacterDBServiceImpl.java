@@ -35,4 +35,16 @@ public class CharacterDBServiceImpl implements CharacterDBService {
 
     }
 
+    public String getCharacterName(int charId) {
+
+        return template.queryForObject("SELECT Charname from main.character where Id = '" + charId + "'", String.class);
+
+    }
+
+    public String getImageReference(int charId) {
+
+        return template.queryForObject("SELECT imageReference from main.character where Id = '" + charId + "'", String.class);
+
+    }
+
 }

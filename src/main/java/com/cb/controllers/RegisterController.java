@@ -67,10 +67,14 @@ public class RegisterController {
     public String createNewCharacter(HttpServletRequest req, @ModelAttribute FighterBL fighterBL, Model f) {
 
         HttpSession httpSession = req.getSession();
-        int userId = (int) httpSession.getAttribute("id");
+        int userId = (int) httpSession.getAttribute("id"); // getting user ID from session
         int characterId = characterService.getCharacterId(fighterBL);
-        fighterBL.setUserId(userId);
-        fighterBL.setCharacterId(characterId);
+        int partyId = partyService.getPartyId(fighterBL);
+
+        fighterBL.setUserId(userId); // nekreipti demesio
+        fighterBL.setCharacterId(characterId); // nekreipti demesio
+        fighterBL.setPartyId(partyId); // nekreipti demesio
+
         fighterService.insertFighter(fighterBL);
         f.addAttribute("fighter", fighterBL);
 

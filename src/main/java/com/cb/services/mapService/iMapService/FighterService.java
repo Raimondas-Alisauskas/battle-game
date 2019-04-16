@@ -7,4 +7,8 @@ public interface FighterService{
 
     DefaultDTO insertFighter(FighterBL fighterBL);
 
+    int getFighterCountByUserId(int userId);
+
+    DefaultDTO getFighterByUserId(int userId);
+
 }
