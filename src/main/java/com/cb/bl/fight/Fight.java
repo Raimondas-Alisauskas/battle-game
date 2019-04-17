@@ -1,6 +1,6 @@
 package com.cb.bl.fight;
 
-import com.cb.bl.FighterBL;
+import com.cb.bl.FighterArenaBL;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Fight {
     private int fightId;
-    private FighterBL fighter1;
-    private FighterBL fighter2;
+    private FighterArenaBL fighter1;
+    private FighterArenaBL fighter2;
     private List<FightAction> fighter1ActionList;
     private List<FightAction> fighter2ActionList;
     private int actionsCompleted;

@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FighterBL {
+public class FighterArenaBL {
     private int id;
     private int rate;
     private int moneyLeft;

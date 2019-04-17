@@ -1,11 +1,7 @@
 package com.cb.utils.fightUtils;
 
-import com.cb.bl.FighterBL;
-import com.cb.bl.fight.Fight;
 import com.cb.bl.fight.Weapon;
 import com.cb.constants.AttackType;
-
-import java.util.List;
 
 public class ControllerUtility {
 

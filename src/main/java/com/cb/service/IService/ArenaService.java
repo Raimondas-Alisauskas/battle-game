@@ -1,6 +1,6 @@
 package com.cb.service.IService;
 
-import com.cb.bl.FighterBL;
+import com.cb.bl.FighterArenaBL;
 import com.cb.bl.fight.Attack;
 import com.cb.bl.fight.Fight;
 import com.cb.bl.fight.Weapon;
@@ -20,14 +20,14 @@ public class ArenaService {
 
     public DefaultDTO createFight(int id1, int id2) {
         Fight fight = new Fight();
-        FighterBL fighterBL1 = createMockFighter(id1);
-        fight.setFighter1(fighterBL1);
-        FighterBL fighterBL2 = createMockFighter(id2);
-        fight.setFighter2(fighterBL2);
+        FighterArenaBL fighterArenaBL1 = createMockFighter(id1);
+        fight.setFighter1(fighterArenaBL1);
+        FighterArenaBL fighterArenaBL2 = createMockFighter(id2);
+        fight.setFighter2(fighterArenaBL2);
         return new DefaultDTO(true,"Pasiruošk kovoti!",fight);
     }
 
-    private FighterBL createMockFighter(int id) {
+    private FighterArenaBL createMockFighter(int id) {
 
         Weapon weapon1 = new Weapon("Deficitas: mažinamos pensijos", 1000);
         Weapon weapon2 = new Weapon("Skandalas: giminės ministerijoje", 2000);
@@ -40,7 +40,7 @@ public class ArenaService {
         weaponList.add(weapon3);
         weaponList.add(weapon4);
 
-        return new FighterBL(id, 100, 100, 100, weaponList);
+        return new FighterArenaBL(id, 100, 100, 100, weaponList);
     }
 
     public DefaultDTO adjustFightContent(int id, Fight fightSL) {

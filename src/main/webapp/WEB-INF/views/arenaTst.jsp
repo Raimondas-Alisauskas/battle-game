@@ -32,7 +32,7 @@
                 <select id="priemone1" name = "weapon1" onchange="getValue()">
                     <option name = "power1" value = 0>--Pasirinkite priemonę--</option>
                     <c:forEach var="w" items="${defaultDTO.data.fighter1.weaponList}">
-                    <option name = "power1" value = "${w.name}:${w.power}">${w.name}: ${w.power}</option>
+                    <option value = "${w.name}:${w.power}">${w.name}: ${w.power}</option>
                     </c:forEach>
                 </select>
             </td>
@@ -62,8 +62,9 @@
 
 <script>
     function getValue() {
-        val = document.getElementById("priemone1").value;
-        document.getElementById("powerValue1").innerHTML = val;
+        var val = document.getElementById("priemone1").value;
+        var arr = val.split(':');
+        document.getElementById("powerValue1").innerHTML = arr[arr.length-1];
     }
 </script>
 
