@@ -49,6 +49,10 @@
         <property name="template" ref="jt"/>
     </bean>
 
+    <bean id="shopDBService" class="com.cb.services.dbService.dbServiceImpl.ShopDBServiceImpl">
+        <property name="template" ref="jt"/>
+    </bean>
+
     <bean id="defaultDTO" class="com.cb.dto.DefaultDTO"/>
     
 </beans>

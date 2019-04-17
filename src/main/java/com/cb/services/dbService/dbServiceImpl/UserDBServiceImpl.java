@@ -3,16 +3,8 @@ package com.cb.services.dbService.dbServiceImpl;
 import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
 import com.cb.services.dbService.iDbService.UserDBService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDBServiceImpl implements UserDBService {
@@ -20,26 +12,26 @@ public class UserDBServiceImpl implements UserDBService {
     JdbcTemplate template;
 
 
-    @Autowired
-    DataSource dataSource;
+//    @Autowired
+//    DataSource dataSource;
 
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }
 
-    public List<String> getField(){
-        List<String> weapons = new ArrayList<>();
-        try(Connection conn = dataSource.getConnection()){
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM weapons");
-            while(rs.next()){
-                weapons.add(rs.getString("name"));
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return weapons;
-    }
+//    public List<String> getField(){
+//        List<String> weapons = new ArrayList<>();
+//        try(Connection conn = dataSource.getConnection()){
+//            Statement st = conn.createStatement();
+//            ResultSet rs = st.executeQuery("SELECT * FROM weapons");
+//            while(rs.next()){
+//                weapons.add(rs.getString("name"));
+//            }
+//        } catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return weapons;
+//    }
 
 
     @Override
