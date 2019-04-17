@@ -7,7 +7,7 @@
     <title>Seimas Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="<c:url value="/resources/styles/home.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/styles/fighterList.css" />"/>
 </head>
 <body class="main">
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #313F66;">
