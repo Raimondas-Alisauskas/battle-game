@@ -1,0 +1,43 @@
+.navbar {
+
+    min-height: 5rem;
+
+}
+
+.nav-link {
+
+    color: white;
+}
+
+.nav-item {
+
+    padding-left: 4rem;
+
+}
+
+
+.navbar-brand {
+
+    color: white;
+    padding-left: 4rem;
+
+
+}
+
+.inset {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding-right: 6rem;
+}
+
+.inset img {
+    border-radius: inherit;
+    width: inherit;
+    height: inherit;
+}
+
+.navbar-text {
+
+    padding-right: 4rem;
+}
