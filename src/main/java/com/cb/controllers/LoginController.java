@@ -12,6 +12,7 @@ import com.cb.services.mapService.iMapService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,9 +67,17 @@ public class LoginController {
             model.put("error", "User does not exist");
             return "index";
         } else {
-            model.put("error", "General error");
-            return "index";
+            return "errorPage";
         }
+    }
+
+    @GetMapping(value = "/loginuser")
+    public String showHome(Model m, UserBL userBL){
+        int userId = userService.getUserIdByEmail(userBL);
+        DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
+        FighterBL fighterBL = (FighterBL) defaultDTO.getData();
+        m.addAttribute("fighterUser", fighterBL);
+        return "home";
     }
 
     @RequestMapping(value = "/signout")

@@ -47,6 +47,9 @@
     <h2 id="error-message" style="color: red;"> We are very sorry, please go back and try again </h2><%
             break;
         default:
+%> <h2 id="error-message" style="color: red;"> Unknown error</h2>
+
+    <h2 id="error-message" style="color: red;"> We are very sorry, please go back and try again </h2><%
             break;
     }
 %>

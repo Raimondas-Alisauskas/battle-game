@@ -12,9 +12,5 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/selectopponent")
-    public String selectOpponent(){
-        return "selectOpponent";
-    }
 
 }

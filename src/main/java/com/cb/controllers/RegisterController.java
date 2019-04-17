@@ -40,14 +40,14 @@ public class RegisterController {
     public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model m) {
         int userExist = userService.getUserByEmail(userBL);
         String userName = userBL.getUserName();
-        int userId = userService.getUserIdByEmail(userBL);
+
 
         if (userExist == 1) {
             model.put("error", "User already exist");
             return "index";
         } else if (userExist == -1) {
             userService.registerUser(userBL);
-
+            int userId = userService.getUserIdByEmail(userBL);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             userSession.setAttribute("id", userId);
@@ -58,8 +58,7 @@ public class RegisterController {
 
             return "createCharacter";
         } else {
-            model.put("error", "General error");
-            return "index";
+            return "errorPage";
         }
 
     }
