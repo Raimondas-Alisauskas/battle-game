@@ -7,7 +7,6 @@ public class UserBL {
     private String email;
     private boolean isAdmin;
 
-
     public int getId() {
         return id;
     }
@@ -43,6 +42,4 @@ public class UserBL {
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }
-
-
 }

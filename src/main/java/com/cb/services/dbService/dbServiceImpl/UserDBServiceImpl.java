@@ -5,38 +5,23 @@ import com.cb.dal.UserDAL;
 import com.cb.services.dbService.iDbService.UserDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserDBServiceImpl implements UserDBService {
 
     JdbcTemplate template;
 
-
-//    @Autowired
-//    DataSource dataSource;
-
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }
 
-//    public List<String> getField(){
-//        List<String> weapons = new ArrayList<>();
-//        try(Connection conn = dataSource.getConnection()){
-//            Statement st = conn.createStatement();
-//            ResultSet rs = st.executeQuery("SELECT * FROM weapons");
-//            while(rs.next()){
-//                weapons.add(rs.getString("name"));
-//            }
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//        return weapons;
-//    }
-
-
     @Override
     public List<UserDAL> getUsers() {
-        return template.query("SELECT * FROM users", new BeanPropertyRowMapper<>(UserDAL.class));
+        return template.query("SELECT * FROM users", new BeanPropertyRowMapper(UserDAL.class));
     }
 
     @Override
@@ -52,36 +37,42 @@ public class UserDBServiceImpl implements UserDBService {
         String sql = "select * from users where id=?";
         return template.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(UserDAL.class));
     }
+
     @Override
     public int getUserByEmailAndPassword(UserBL userBL) {
-        if(template.queryForObject("select count(*) from users where email = '" +
-           userBL.getEmail() + "' AND password = '" + userBL.getPassword() + "'",Integer.class).equals(1)){
-           return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "' AND password = '" + userBL.getPassword() + "'",Integer.class);
-        }
-        else {
+        if (template.queryForObject("select count(*) from users where email = '" +
+                userBL.getEmail() + "' AND password = '" + userBL.getPassword() + "'", Integer.class).equals(1)) {
+            return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "' AND password = '" + userBL.getPassword() + "'", Integer.class);
+        } else {
             return -1;
         }
     }
 
     @Override
     public int getUserByEmail(UserBL userBL) {
-        if(template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "'",Integer.class).equals(1)){
-            return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "'",Integer.class);
-        }
-        else{
+        if (template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "'", Integer.class).equals(1)) {
+            return template.queryForObject("select count(*) from users where email = '" + userBL.getEmail() + "'", Integer.class);
+        } else {
             return -1;
         }
     }
 
     @Override
-    public String getUserNameByEmail(UserBL userBL){
-        return template.queryForObject("select userName from users where email = '" + userBL.getEmail() + "'",String.class);
+    public String getUserNameByEmail(UserBL userBL) {
+        return template.queryForObject("select userName from users where email = '" + userBL.getEmail() + "'", String.class);
+    }
+
+    public int getUserIdByEmail(UserBL userBL) {
+
+        return template.queryForObject("select id from users where email = '" + userBL.getEmail() + "'", Integer.class);
+
     }
 
 
     @Override
     public int updateUser(UserBL u) {
-        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getIsAdmin() + "," + "WHERE id = " + u.getId() + "";
+        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getIsAdmin() + "," +
+                "rating = " + "WHERE id = " + u.getId() + "";
         return template.update(sql);
     }
 

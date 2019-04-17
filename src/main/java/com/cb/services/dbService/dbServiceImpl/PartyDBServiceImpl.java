@@ -1,5 +1,6 @@
 package com.cb.services.dbService.dbServiceImpl;
 
+import com.cb.bl.FighterBL;
 import com.cb.dal.PartyDAL;
 import com.cb.services.dbService.iDbService.PartyDBService;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,6 +29,18 @@ public class PartyDBServiceImpl implements PartyDBService {
                 return c;
             }
         });
+    }
+
+    public int getPartyId(FighterBL fighterBL) {
+
+        return template.queryForObject("SELECT Id from main.party where Name = '" + fighterBL.getParty() + "'", Integer.class);
+
+    }
+
+    public String getPartyName(int partyId) {
+
+        return template.queryForObject("SELECT Name from main.party where Id = '" + partyId + "'", String.class);
+
     }
 
 }

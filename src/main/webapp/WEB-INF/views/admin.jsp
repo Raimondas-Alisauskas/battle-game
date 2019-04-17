@@ -11,10 +11,6 @@
                 <th>Password</th>
                 <th>Email</th>
                 <th>Admin</th>
-                <th>Rating</th>
-                <th>Money</th>
-                <th>CharacterId</th>
-                <th>PartyId</th>
                 <th></th>
                 <th></th>
             </tr>
