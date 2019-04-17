@@ -1,6 +1,5 @@
 package com.cb.controllers;
 
-
 import com.cb.bl.UserBL;
 import com.cb.dto.DefaultDTO;
 import com.cb.services.mapService.iMapService.CharacterService;
@@ -33,6 +32,8 @@ public class AdminController {
         m.addAttribute("usersListBL", defaultDTO);
         return "admin";
     }
+
+
 
     @RequestMapping(value = "/insertnewuser", method = RequestMethod.POST)
     public String insertNewUser(@ModelAttribute("userDAL") UserBL userBL) {

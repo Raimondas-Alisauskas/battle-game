@@ -3,7 +3,6 @@ package com.cb.services.dbService.dbServiceImpl;
 import com.cb.bl.UserBL;
 import com.cb.dal.UserDAL;
 import com.cb.services.dbService.iDbService.UserDBService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
