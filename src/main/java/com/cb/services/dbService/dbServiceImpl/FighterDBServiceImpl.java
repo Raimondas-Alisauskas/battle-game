@@ -2,7 +2,6 @@ package com.cb.services.dbService.dbServiceImpl;
 
 import com.cb.bl.FighterBL;
 import com.cb.dal.FighterDAL;
-import com.cb.dal.UserDAL;
 import com.cb.services.dbService.iDbService.FighterDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,12 +32,6 @@ public class FighterDBServiceImpl implements FighterDBService {
     public List<FighterDAL> getFighters() {
         return template.query("SELECT * FROM fighters", new BeanPropertyRowMapper(FighterDAL.class));
     }
-
-//    public FighterDAL getFighterByUserId(int userId) {
-//
-//        return template.queryForObject("SELECT * from main.fighters where userId = '" + userId + "'",new BeanPropertyRowMapper<>(FighterDAL.class));
-//
-//    }
 
     public FighterDAL getFighterByUserId(int userId) {
         String sql = "select * from main.fighters where userId =?";

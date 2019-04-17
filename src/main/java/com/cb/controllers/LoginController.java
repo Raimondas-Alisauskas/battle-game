@@ -38,15 +38,15 @@ public class LoginController {
     FighterService fighterService;
 
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
-    public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c,Model m) {
+    public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model m) {
         int userExist = userService.getUserByEmailAndPassword(userBL);
 
         if (userExist == 1) {
             String userName = userService.getUserNameByEmail(userBL);
             int userId = userService.getUserIdByEmail(userBL);
             HttpSession userSession = req.getSession();
-            userSession.setAttribute("userName", userName);// add name for session
-            userSession.setAttribute("id", userId); // add ID for session
+            userSession.setAttribute("userName", userName);
+            userSession.setAttribute("id", userId);
 
             if (fighterService.getFighterCountByUserId(userId) == 1) {
                 DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
@@ -59,8 +59,8 @@ public class LoginController {
 
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
-            p.addAttribute("partiesList", partiesList);
-            c.addAttribute("charactersList", charactersList);
+            m.addAttribute("partiesList", partiesList);
+            m.addAttribute("charactersList", charactersList);
             return "createCharacter";
         } else if (userExist == -1) {
             model.put("error", "User does not exist");

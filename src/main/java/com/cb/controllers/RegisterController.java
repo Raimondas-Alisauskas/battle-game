@@ -37,7 +37,7 @@ public class RegisterController {
     FighterService fighterService;
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
+    public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model m) {
         int userExist = userService.getUserByEmail(userBL);
         String userName = userBL.getUserName();
 
@@ -53,8 +53,8 @@ public class RegisterController {
             userSession.setAttribute("id", userId);
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
-            p.addAttribute("partiesList", partiesList);
-            c.addAttribute("charactersList", charactersList);
+            m.addAttribute("partiesList", partiesList);
+            m.addAttribute("charactersList", charactersList);
 
             return "createCharacter";
         } else {
