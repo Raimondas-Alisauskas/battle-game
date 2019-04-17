@@ -1,4 +1,4 @@
-package com.cb.dto;
+package com.cb.bl.fight;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DefaultDTO {
-    private boolean isSuccess;
-    private String message;
-    private Object data;
+public class Weapon {
+    private String name;
+    private int power;
+
 }
