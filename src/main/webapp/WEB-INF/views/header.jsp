@@ -1,19 +1,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #313F66;">
-    <a class="navbar-brand" style="color: white" href="#">Home</a>
+    <c:choose>
+        <c:when test="${fighterUser.image != null}">
+            <a class="navbar-brand" style="color: white" href="#">Home</a>
+        </c:when>
+    </c:choose>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" style="color: white">
-                <a class="nav-link" style="color: white" href="#">Find opponent</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" style="color: white" href="#">Shop</a>
-            </li>
+            <c:choose>
+                <c:when test="${fighterUser.image != null}">
+                    <li class="nav-item" style="color: white">
+                        <a class="nav-link" style="color: white" href="#">Find opponent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: white" href="#">Shop</a>
+                    </li>
+                </c:when>
+            </c:choose>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <div class="inset">
