@@ -53,9 +53,7 @@ public class LoginController {
                 DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
                 FighterBL fighterBL = (FighterBL) defaultDTO.getData();
                 m.addAttribute("fighterUser", fighterBL);
-
                 return "home";
-
             }
 
             List<PartyDAL> partiesList = partyService.getParties();
@@ -72,7 +70,7 @@ public class LoginController {
     }
 
     @GetMapping(value = "/loginuser")
-    public String showHome(Model m, UserBL userBL){
+    public String showHome(Model m, UserBL userBL) {
         int userId = userService.getUserIdByEmail(userBL);
         DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
         FighterBL fighterBL = (FighterBL) defaultDTO.getData();

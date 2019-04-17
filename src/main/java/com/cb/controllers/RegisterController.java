@@ -42,7 +42,7 @@ public class RegisterController {
         String userName = userBL.getUserName();
 
 
-        if (userExist == 1) {
+        if (userExist != -1) {
             model.put("error", "User already exist");
             return "index";
         } else if (userExist == -1) {
@@ -55,7 +55,6 @@ public class RegisterController {
             List<CharacterDAL> charactersList = characterService.getCharacters();
             m.addAttribute("partiesList", partiesList);
             m.addAttribute("charactersList", charactersList);
-
             return "createCharacter";
         } else {
             return "errorPage";
@@ -81,8 +80,6 @@ public class RegisterController {
         DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
         fighterBL = (FighterBL) defaultDTO.getData();
         m.addAttribute("fighterUser", fighterBL);
-
         return "home";
-
     }
 }
