@@ -1,6 +1,5 @@
 package com.cb.services.dbService.dbServiceImpl;
 
-import com.cb.bl.FighterBL;
 import com.cb.dal.WeaponsDAL;
 import com.cb.services.dbService.iDbService.ShopDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -18,13 +17,6 @@ public class ShopDBServiceImpl implements ShopDBService {
     public List<WeaponsDAL> getWeapons() {
         return template.query("SELECT * FROM weapons", new BeanPropertyRowMapper<>(WeaponsDAL.class));
     }
-
-
-//    public int getFM(FighterBL fighterBL) {
-//
-//        return template.queryForObject("SELECT money from Main4.fighters where userId = '" + fighterBL.getMember() + "'", Integer.class);
-//
-//    }
 
 
 }
