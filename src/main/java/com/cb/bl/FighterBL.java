@@ -5,11 +5,12 @@ public class FighterBL {
     private int id;
     private int userId;
     private int characterId;
+    private int partyId;
     private int money;
     private int rating;
     private String member;
-    private String party;
     private String image;
+    private String party;
 
     public int getId() {
         return id;
@@ -33,6 +34,14 @@ public class FighterBL {
 
     public void setCharacterId(int characterId) {
         this.characterId = characterId;
+    }
+
+    public int getPartyId() {
+        return partyId;
+    }
+
+    public void setPartyId(int partyId) {
+        this.partyId = partyId;
     }
 
     public int getMoney() {
@@ -59,19 +68,19 @@ public class FighterBL {
         this.member = member;
     }
 
-    public String getParty() {
-        return party;
-    }
-
-    public void setParty(String party) {
-        this.party = party;
-    }
-
     public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getParty() {
+        return party;
+    }
+
+    public void setParty(String party) {
+        this.party = party;
     }
 }

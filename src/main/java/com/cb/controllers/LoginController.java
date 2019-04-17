@@ -1,9 +1,12 @@
 package com.cb.controllers;
 
+import com.cb.bl.FighterBL;
 import com.cb.bl.UserBL;
 import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
+import com.cb.dto.DefaultDTO;
 import com.cb.services.mapService.iMapService.CharacterService;
+import com.cb.services.mapService.iMapService.FighterService;
 import com.cb.services.mapService.iMapService.PartyService;
 import com.cb.services.mapService.iMapService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +34,11 @@ public class LoginController {
     @Autowired
     CharacterService characterService;
 
+    @Autowired
+    FighterService fighterService;
+
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
-    public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
+    public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model m) {
         int userExist = userService.getUserByEmailAndPassword(userBL);
 
         if (userExist == 1) {
@@ -41,10 +47,20 @@ public class LoginController {
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             userSession.setAttribute("id", userId);
+
+            if (fighterService.getFighterCountByUserId(userId) == 1) {
+                DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
+                FighterBL fighterBL = (FighterBL) defaultDTO.getData();
+                m.addAttribute("fighterUser", fighterBL);
+
+                return "home";
+
+            }
+
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
-            p.addAttribute("partiesList", partiesList);
-            c.addAttribute("charactersList", charactersList);
+            m.addAttribute("partiesList", partiesList);
+            m.addAttribute("charactersList", charactersList);
             return "createCharacter";
         } else if (userExist == -1) {
             model.put("error", "User does not exist");

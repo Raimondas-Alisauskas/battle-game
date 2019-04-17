@@ -27,7 +27,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <div class="inset">
-                <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
+                <img src="<c:url value="/resources/images/${fighterUser.image}"/>">
             </div>
             <div class="navbar-text" style="color: white">
                 Welcome, ${sessionScope.userName}
@@ -41,15 +41,15 @@
 
     <div class="container">
         <div class="col">
-            <img id="memberImage" src="${fighter.image}">
+            <img id="memberImage" src="<c:url value="/resources/images/${fighterUser.image}"/>">
             <input id="hidden" name="image" type="hidden">
         </div>
         <div class="col">
             <div>Username: ${sessionScope.userName}</div>
-            <div>Party: ${fighter.party}</div>
-            <div>Character: ${fighter.member}</div>
-            <div>Money: ${fighter.money}</div>
-            <div>Rating: ${fighter.rating}</div>
+            <div>Party: ${fighterUser.party}</div>
+            <div>Character: ${fighterUser.member}</div>
+            <div>Money: ${fighterUser.money}</div>
+            <div>Rating: ${fighterUser.rating}</div>
         </div>
     </div>
 </div>

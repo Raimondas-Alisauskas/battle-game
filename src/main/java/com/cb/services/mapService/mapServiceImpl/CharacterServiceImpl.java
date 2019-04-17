@@ -27,4 +27,16 @@ public class CharacterServiceImpl implements CharacterService {
 
     }
 
+    public String getCharacterName(int charId) {
+
+        return characterDBService.getCharacterName(charId);
+
+    }
+
+    public String getImageReference(int charId) {
+
+        return characterDBService.getImageReference(charId);
+
+    }
+
 }

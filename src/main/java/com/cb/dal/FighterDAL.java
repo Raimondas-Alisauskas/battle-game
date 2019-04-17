@@ -5,6 +5,7 @@ public class FighterDAL {
     private int id;
     private int userId;
     private int characterId;
+    private int partyId;
     private int money;
     private int rating;
 
@@ -32,6 +33,14 @@ public class FighterDAL {
         this.characterId = characterId;
     }
 
+    public int getPartyId() {
+        return partyId;
+    }
+
+    public void setPartyId(int partyId) {
+        this.partyId = partyId;
+    }
+
     public int getMoney() {
         return money;
     }
@@ -47,5 +56,4 @@ public class FighterDAL {
     public void setRating(int rating) {
         this.rating = rating;
     }
-
 }
