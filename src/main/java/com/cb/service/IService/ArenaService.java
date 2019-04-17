@@ -62,7 +62,6 @@ public class ArenaService {
 
     public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fight, List<Attack> attackList) {
 
-
         return fightDTO;
     }
 }
