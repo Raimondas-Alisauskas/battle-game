@@ -1,8 +1,12 @@
 package com.cb.services.dbService.dbServiceImpl;
 
 import com.cb.bl.FighterBL;
+import com.cb.dal.FighterDAL;
 import com.cb.services.dbService.iDbService.FighterDBService;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 public class FighterDBServiceImpl implements FighterDBService {
 
@@ -16,6 +20,10 @@ public class FighterDBServiceImpl implements FighterDBService {
         String sql = "INSERT INTO fighters(userId, characterId, money, rating) " +
                 "VALUES ('" + fighterBL.getUserId() + "','" + fighterBL.getCharacterId() + "','" + fighterBL.getMoney() + "'," + fighterBL.getRating() + ")";
         return template.update(sql);
+    }
+
+    public List<FighterDAL> getFighters(){
+        return template.query("SELECT * FROM users", new BeanPropertyRowMapper(FighterDAL.class));
     }
 
 }

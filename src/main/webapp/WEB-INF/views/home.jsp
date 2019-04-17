@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" style="color: white">
-                <a class="nav-link" style="color: white" href="#">Find opponent</a>
+                <a class="nav-link" style="color: white" href="selectopponent">Find opponent</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" style="color: white" href="#">Shop</a>
