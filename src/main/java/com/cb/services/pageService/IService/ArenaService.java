@@ -1,4 +1,4 @@
-package com.cb.service.IService;
+package com.cb.services.pageService.IService;
 
 import com.cb.bl.FighterArenaBL;
 import com.cb.bl.fight.Attack;

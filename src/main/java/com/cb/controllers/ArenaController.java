@@ -2,19 +2,13 @@ package com.cb.controllers;
 
 import com.cb.bl.fight.Attack;
 import com.cb.bl.fight.Fight;
-import com.cb.bl.fight.FightAction;
-import com.cb.bl.fight.Weapon;
 import com.cb.dto.DefaultDTO;
-import com.cb.service.IService.ArenaService;
+import com.cb.services.pageService.IService.ArenaService;
 import com.cb.utils.fightUtils.ControllerUtility;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletContext;
