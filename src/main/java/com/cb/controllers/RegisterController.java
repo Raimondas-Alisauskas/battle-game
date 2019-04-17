@@ -5,6 +5,7 @@ import com.cb.bl.FighterBL;
 import com.cb.bl.UserBL;
 import com.cb.dal.CharacterDAL;
 import com.cb.dal.PartyDAL;
+import com.cb.dto.DefaultDTO;
 import com.cb.services.mapService.iMapService.CharacterService;
 import com.cb.services.mapService.iMapService.FighterService;
 import com.cb.services.mapService.iMapService.PartyService;
@@ -36,7 +37,7 @@ public class RegisterController {
     FighterService fighterService;
 
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
-    public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model p, Model c) {
+    public String registerUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model m) {
         int userExist = userService.getUserByEmail(userBL);
         String userName = userBL.getUserName();
         int userId = userService.getUserIdByEmail(userBL);
@@ -52,8 +53,8 @@ public class RegisterController {
             userSession.setAttribute("id", userId);
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
-            p.addAttribute("partiesList", partiesList);
-            c.addAttribute("charactersList", charactersList);
+            m.addAttribute("partiesList", partiesList);
+            m.addAttribute("charactersList", charactersList);
 
             return "createCharacter";
         } else {
@@ -64,15 +65,23 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.POST)
-    public String createNewCharacter(HttpServletRequest req, @ModelAttribute FighterBL fighterBL, Model f) {
+    public String createNewCharacter(HttpServletRequest req, @ModelAttribute FighterBL fighterBL, Model m) {
 
         HttpSession httpSession = req.getSession();
         int userId = (int) httpSession.getAttribute("id");
+
         int characterId = characterService.getCharacterId(fighterBL);
+        int partyId = partyService.getPartyId(fighterBL);
+
         fighterBL.setUserId(userId);
         fighterBL.setCharacterId(characterId);
+        fighterBL.setPartyId(partyId);
+
         fighterService.insertFighter(fighterBL);
-        f.addAttribute("fighter", fighterBL);
+
+        DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
+        fighterBL = (FighterBL) defaultDTO.getData();
+        m.addAttribute("fighterUser", fighterBL);
 
         return "home";
 

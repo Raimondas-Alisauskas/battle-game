@@ -12,4 +12,8 @@ public interface CharacterDBService {
 
     int getCharacterId(FighterBL fighterBL);
 
+    String getCharacterName(int charId);
+
+    String getImageReference(int charId);
+
 }
