@@ -78,6 +78,8 @@ public class LoginController {
         return "home";
     }
 
+
+
     @RequestMapping(value = "/signout")
     public String signOut(HttpServletRequest req) {
         HttpSession userSession = req.getSession();
