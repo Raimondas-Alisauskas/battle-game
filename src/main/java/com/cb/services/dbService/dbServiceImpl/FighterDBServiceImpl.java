@@ -29,8 +29,8 @@ public class FighterDBServiceImpl implements FighterDBService {
 
     }
 
-    public List<FighterDAL> getFighters() {
-        return template.query("SELECT * FROM fighters", new BeanPropertyRowMapper(FighterDAL.class));
+    public List<FighterDAL> getFighters(int userId) {
+        return template.query("SELECT * FROM main.fighters where userId not in ('" + userId + "')", new BeanPropertyRowMapper(FighterDAL.class));
     }
 
     public FighterDAL getFighterByUserId(int userId) {

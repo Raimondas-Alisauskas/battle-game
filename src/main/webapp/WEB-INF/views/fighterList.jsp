@@ -11,6 +11,19 @@
 </head>
 <body class="main">
 <%@include file="header.jsp" %>
+
+<c:forEach var="f" items="${fighterList.data}">
+    <tr>
+        <td>${f.member}</td>
+            <%--<td>${u.userName}</td>--%>
+            <%--<td>${u.password}</td>--%>
+            <%--<td>${u.email}</td>--%>
+            <%--<td>${u.isAdmin}</td>--%>
+            <%--<td><a href="edituser/${u.id}">Edit</a></td>--%>
+            <%--<td><a href="deleteuser/${u.id}">Delete</a></td>--%>
+    </tr>
+</c:forEach>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
