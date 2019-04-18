@@ -1,10 +1,9 @@
 package com.cb.services.pageService.IService;
 
 import com.cb.bl.FighterArenaBL;
-import com.cb.bl.fight.Attack;
-import com.cb.bl.fight.Fight;
-import com.cb.bl.fight.Weapon;
+import com.cb.bl.fight.*;
 import com.cb.dto.DefaultDTO;
+import com.cb.utils.fightUtils.FightResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ public class ArenaService {
 
     public static final int WINNER_REWARD_SCORE = 10;
     @Autowired
-    DefaultDTO fightDTO;
+    DefaultDTO defaultDTO;
 
     public DefaultDTO createFight(int id1, int id2) {
         Fight fight = new Fight();
@@ -24,8 +23,17 @@ public class ArenaService {
         fight.setFighter1(fighterArenaBL1);
         FighterArenaBL fighterArenaBL2 = createMockFighter(id2);
         fight.setFighter2(fighterArenaBL2);
-        return new DefaultDTO(true,"Pasiruošk kovoti!",fight);
+        return new DefaultDTO(true,"Pasiruošk kovoti! kovotojai sukurti",fight);
     }
+
+//    private List<FighterAction> createFighterActionList(){
+//        List<FighterAction> fighterActionList = new ArrayList<>();
+//        FighterAction fighterAction = new FighterAction();
+//        fighterAction.setFighterActionNo(0);
+//        fighterAction.setNoOfWinnings(0);
+//        fighterActionList.add(fighterAction);
+//        return fighterActionList;
+//    }
 
     private FighterArenaBL createMockFighter(int id) {
 
@@ -43,25 +51,83 @@ public class ArenaService {
         return new FighterArenaBL(id, 100, 100, 100, weaponList);
     }
 
-    public DefaultDTO adjustFightContent(int id, Fight fightSL) {
+    public Fight adjustFightContent(int id, Fight fightSL) {
         if(fightSL.getFighter1().getId() != id){
-            Fight fightBL = new Fight();
-            fightBL.setFighter1(fightSL.getFighter2());
-            fightBL.setFighter2(fightSL.getFighter1());
-            fightBL.setFighter1ActionList(fightSL.getFighter2ActionList());
-            fightBL.setFighter2ActionList(fightSL.getFighter1ActionList());
-            fightDTO.setData(fightBL);
-        } else {fightDTO.setData(fightSL);}
-        fightDTO.setMessage("Pirmyn į kovą!");
-        return fightDTO;
+            Fight fightSL2 = new Fight();
+            fightSL2.setFighter1(fightSL.getFighter2());
+            fightSL2.setFighter2(fightSL.getFighter1());
+            fightSL2.setFighter1ActionList(fightSL.getFighter2ActionList());
+            fightSL2.setFighter2ActionList(fightSL.getFighter1ActionList());
+            return fightSL2;
+        } else {return fightSL;}
+
     }
 
-    public DefaultDTO askToWait(Fight fightSL){
-        return new DefaultDTO(true,"Priešininkas grybauja. Reikia palaukti",fightSL);
+    public DefaultDTO askToWait(Fight fight){
+        return new DefaultDTO(true,"Priešininkas grybauja. Reikia palaukti",fight);
     }
 
-    public DefaultDTO fillActionListOrGetResult(int fighterId, Fight fight, List<Attack> attackList) {
-
-        return fightDTO;
+    public DefaultDTO addActionList(int fighterId, Fight fight, List<Attack> attackList) {
+        if (fight.getFighter1().getId() == fighterId) {
+            List<FighterAction> fighterActionList = new ArrayList<>();
+            fighterActionList.add(new FighterAction(attackList, 0));
+            fight.setFighter1ActionList(fighterActionList);
+        } else if (fight.getFighter2().getId() == fighterId) {
+            List<FighterAction> fighterActionList = new ArrayList<>();
+            fighterActionList.add(new FighterAction(attackList, 0));
+            fight.setFighter2ActionList(fighterActionList);
+        }
+        return askToWait(fight);
     }
+
+    public DefaultDTO appendActionList(int fighterId, Fight fight, List<Attack> attackList) {
+
+        if (fight.getFighter1().getId() == fighterId){
+                FighterAction fighterAction = new FighterAction(attackList,0);
+                List<FighterAction> fighterActionList = fight.getFighter1ActionList();
+                fighterActionList.add(fighterAction);
+                fight.setFighter1ActionList(fighterActionList);
+            } else
+        if (fight.getFighter2().getId() == fighterId){
+            FighterAction fighterAction = new FighterAction(attackList,0);
+            List<FighterAction> fighterActionList = fight.getFighter2ActionList();
+            fighterActionList.add(fighterAction);
+            fight.setFighter2ActionList(fighterActionList);
+        }
+        return askToWait(fight);
+    }
+
+    public DefaultDTO calculateResults(int fighterId,Fight fight) {
+        FightResolver fightResolver = new FightResolver();
+        FighterAction fighterAction1 = fight.getFighter1ActionList().get(fight.getFighter1ActionList().size() -1);
+        FighterAction fighterAction2 = fight.getFighter2ActionList().get(fight.getFighter2ActionList().size() -1);
+        FightActionsResult fightActionsResult = fightResolver.getFightActionResult(fighterAction1, fighterAction2);
+
+        int figter1Winnings = fightActionsResult.getFighter1Action().getNoOfWinnings();
+        int figter2Winnings = fightActionsResult.getFighter2Action().getNoOfWinnings();
+
+        if(figter1Winnings == figter2Winnings){
+            defaultDTO = new DefaultDTO(true, "Lygiosios", fight);
+        } else if (figter1Winnings > figter2Winnings){
+            if (fighterId == fight.getFighter1().getId()){
+                defaultDTO = new DefaultDTO(true, "Valio, laimėjai", fight);
+            } else {
+                defaultDTO = new DefaultDTO(true, "Pralaimėjai", fight);
+            }
+        } else{
+            if (fighterId == fight.getFighter1().getId()){
+                defaultDTO = new DefaultDTO(true, "Pralaimėjai", fight);
+            } else {
+                defaultDTO = new DefaultDTO(true, "Valio, laimėjai", fight);
+            }
+        }
+        Fight currentFight = (Fight) defaultDTO.getData();
+        int actionsCompleted = currentFight.getActionsCompleted();
+        currentFight.setActionsCompleted(actionsCompleted + 1);
+        defaultDTO.setData(currentFight);
+
+        return defaultDTO;
+    }
+
+
 }

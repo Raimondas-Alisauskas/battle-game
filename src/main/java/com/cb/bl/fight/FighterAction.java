@@ -9,8 +9,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FightAction {
-    private int fightActionNo;
+public class FighterAction {
+//    private int fighterActionNo;
     private List<Attack> attackList;
     private int noOfWinnings;
 }

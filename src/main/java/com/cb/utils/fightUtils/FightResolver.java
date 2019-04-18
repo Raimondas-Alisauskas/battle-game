@@ -1,7 +1,7 @@
 package com.cb.utils.fightUtils;
 
 import com.cb.bl.fight.Attack;
-import com.cb.bl.fight.FightAction;
+import com.cb.bl.fight.FighterAction;
 import com.cb.bl.fight.FightActionsResult;
 import com.cb.constants.AttackType;
 
@@ -36,14 +36,14 @@ public class FightResolver {
         }return  2;
     }
 
-    public FightActionsResult getFightActionResult(FightAction fightAction1, FightAction fightAction2){
+    public FightActionsResult getFightActionResult(FighterAction fighterAction1, FighterAction fighterAction2){
         FightActionsResult fightActionsResult = new FightActionsResult();
 
         int noOfWinnings1 = 0;
         int noOfWinnings2 = 0;
 
-        for (int i = 0; i < fightAction1.getAttackList().size(); i++) {
-            int attack1Winner = getAttackWinner(fightAction1.getAttackList().get(i), fightAction2.getAttackList().get(i));
+        for (int i = 0; i < fighterAction1.getAttackList().size(); i++) {
+            int attack1Winner = getAttackWinner(fighterAction1.getAttackList().get(i), fighterAction2.getAttackList().get(i));
             if(attack1Winner == 1){
                 noOfWinnings1 ++ ;
             } else if(attack1Winner == 2){
@@ -51,11 +51,11 @@ public class FightResolver {
             }
         }
 
-        fightAction1.setNoOfWinnings(noOfWinnings1);
-        fightAction2.setNoOfWinnings(noOfWinnings2);
+        fighterAction1.setNoOfWinnings(noOfWinnings1);
+        fighterAction2.setNoOfWinnings(noOfWinnings2);
 
-        fightActionsResult.setFighter1Action(fightAction1);
-        fightActionsResult.setFighter2Action(fightAction2);
+        fightActionsResult.setFighter1Action(fighterAction1);
+        fightActionsResult.setFighter2Action(fighterAction2);
         return fightActionsResult;
     }
 

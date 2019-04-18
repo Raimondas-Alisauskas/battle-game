@@ -21,6 +21,9 @@ import java.util.List;
 @Controller
 public class ArenaController extends HttpServlet {
 
+    Fight fightSL = new Fight();
+    int fighterId;
+
     @Autowired
     ArenaService arenaService;
 
@@ -42,18 +45,16 @@ public class ArenaController extends HttpServlet {
 
         req.getSession().setAttribute("fighterId", id1);//Temporary code.
 
-        int id = (int) req.getSession().getAttribute("fighterId");
+        fighterId = (int) req.getSession().getAttribute("fighterId");
         ServletContext servletContext = req.getServletContext();
-        Fight fightSL = (Fight) servletContext.getAttribute("fightSL");
+        fightSL = (Fight) servletContext.getAttribute("fightSL");
         if(fightSL == null) {
             defaultDTO = arenaService.createFight(id1, id2);
             servletContext.setAttribute("fightSL", defaultDTO.getData());
         }else{
-            defaultDTO = arenaService.adjustFightContent(id, fightSL);
+            defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightSL));
         }
-
         m.addAttribute("defaultDTO", defaultDTO);
-
         return "arenaTst";
     }
 
@@ -63,35 +64,58 @@ public class ArenaController extends HttpServlet {
                         Model m, HttpServletRequest req ){
 
         ServletContext servletContext = req.getServletContext();
-        Fight fightSL = (Fight) servletContext.getAttribute("fightSL");
+        fightSL = (Fight) servletContext.getAttribute("fightSL");
 
-        int fighterId = (int) req.getSession().getAttribute("fighterId");
+        fighterId = (int) req.getSession().getAttribute("fighterId");
 
         List<Attack> attackList = new ArrayList<>();
         Attack attack1 = new Attack(1,conUtil.getWeaponFromAttribute(weapon1),conUtil.getAttackTypeFromString(attType1), false);
-        attackList.add(1,attack1);
+        attackList.add(attack1);
 
-        if(fightSL.getFighter1ActionList().size() == fightSL.getActionsCompleted()
-                || fightSL.getFighter2ActionList().size() == fightSL.getActionsCompleted()){
-
-            defaultDTO = arenaService.fillActionListOrGetResult(fighterId, fightSL, attackList);
-
-        } else {
-
-            defaultDTO = arenaService.askToWait(fightSL);
+        if (fightSL.getFighter1ActionList() == null || fightSL.getFighter2ActionList() == null ){
+            defaultDTO = arenaService.addActionList(fighterId, fightSL, attackList);
+            fightSL = (Fight) defaultDTO.getData();
+        } else if(fighterId == fightSL.getFighter1().getId() && fightSL.getFighter1ActionList().size() == fightSL.getActionsCompleted()){
+            defaultDTO = arenaService.appendActionList(fighterId, fightSL, attackList);
+            fightSL = (Fight) defaultDTO.getData();
+        } else if(fighterId == fightSL.getFighter2().getId() && fightSL.getFighter2ActionList().size() == fightSL.getActionsCompleted()){
+            defaultDTO = arenaService.appendActionList(fighterId, fightSL, attackList);
+            fightSL = (Fight) defaultDTO.getData();
         }
-        fightSL = (Fight) defaultDTO.getData();
+
+        if(fightSL.getFighter1ActionList() != null && fightSL.getFighter1ActionList().size() > fightSL.getActionsCompleted()
+            && fightSL.getFighter2ActionList() != null &&fightSL.getFighter2ActionList().size() > fightSL.getActionsCompleted()){
+            defaultDTO = arenaService.calculateResults(fighterId, fightSL );
+            fightSL = (Fight) defaultDTO.getData();
+        } else{
+            defaultDTO = arenaService.askToWait(fightSL);
+            fightSL = (Fight) defaultDTO.getData();
+        }
+        defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightSL)) ;
         servletContext.setAttribute("fightSL", fightSL);
         m.addAttribute("defaultDTO", defaultDTO);
         return "arenaTst";
     }
 
+//    @RequestMapping(value = "arena/refresh")
+//    public String refresh (Model m, HttpServletRequest req){
+//        ServletContext servletContext = req.getServletContext();
+//        Fight fightSL = (Fight) servletContext.getAttribute("fightSL");
+//        fighterId = (int) req.getSession().getAttribute("fighterId");
+//        defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightSL));
+//        m.addAttribute("defaultDTO", defaultDTO);
+//        return "arenaTst";
+//    }
+
     //Temporary, for tests
     @RequestMapping(value = "arena/deletefight")
     public String deleteFight (Model m, HttpServletRequest req){
-        Fight fightBL = (Fight) req.getServletContext().getAttribute("fightS");
-        req.getServletContext().setAttribute("fightS", null);
+        ServletContext servletContext = req.getServletContext();
+        Fight fightBL = (Fight) servletContext.getAttribute("fightSL");
         defaultDTO.setData(fightBL);
+        req.getServletContext().setAttribute("fightSL", null);
+        fightBL = (Fight) servletContext.getAttribute("fightSL");
+
         m.addAttribute("defaultDTO", defaultDTO);
         return "arenaTst";
     }

@@ -14,8 +14,8 @@ public class Fight {
     private int fightId;
     private FighterArenaBL fighter1;
     private FighterArenaBL fighter2;
-    private List<FightAction> fighter1ActionList;
-    private List<FightAction> fighter2ActionList;
+    private List<FighterAction> fighter1ActionList;
+    private List<FighterAction> fighter2ActionList;
     private int actionsCompleted;
 
 }

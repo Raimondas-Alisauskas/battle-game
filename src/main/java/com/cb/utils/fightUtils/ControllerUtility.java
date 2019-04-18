@@ -6,8 +6,8 @@ import com.cb.constants.AttackType;
 public class ControllerUtility {
 
     public Weapon getWeaponFromAttribute(String string){
-        String[] arr = string.split(":");
-        return  new Weapon(arr[0],Integer.getInteger(arr[1]));
+        String[] arr = string.split("--");
+        return  new Weapon(arr[0],Integer.parseInt(arr[1]));
     }
 
     public AttackType getAttackTypeFromString (String string){
