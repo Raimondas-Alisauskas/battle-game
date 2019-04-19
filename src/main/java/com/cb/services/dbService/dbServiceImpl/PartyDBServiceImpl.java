@@ -33,13 +33,13 @@ public class PartyDBServiceImpl implements PartyDBService {
 
     public int getPartyId(FighterBL fighterBL) {
 
-        return template.queryForObject("SELECT Id from main.party where Name = '" + fighterBL.getParty() + "'", Integer.class);
+        return template.queryForObject("SELECT Id from party where Name = '" + fighterBL.getParty() + "'", Integer.class);
 
     }
 
     public String getPartyName(int partyId) {
 
-        return template.queryForObject("SELECT Name from main.party where Id = '" + partyId + "'", String.class);
+        return template.queryForObject("SELECT Name from party where Id = '" + partyId + "'", String.class);
 
     }
 
