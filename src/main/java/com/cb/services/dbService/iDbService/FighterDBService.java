@@ -17,4 +17,6 @@ public interface FighterDBService {
 
     int getFighterIdByUserId(int userId);
 
+    int getFighterMoneyByUserId(int userId);
+
 }
