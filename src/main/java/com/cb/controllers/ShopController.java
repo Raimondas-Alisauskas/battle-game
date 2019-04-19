@@ -3,6 +3,7 @@ package com.cb.controllers;
 import com.cb.bl.UserBL;
 import com.cb.dto.DefaultDTO;
 import com.cb.services.dbService.dbServiceImpl.UserDBServiceImpl;
+import com.cb.services.dbService.iDbService.FighterDBService;
 import com.cb.services.mapService.iMapService.ShopService;
 import com.cb.services.mapService.iMapService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class ShopController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    FighterDBService fighterDBService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/shop")
     public String getWeaponsTable(Model m, HttpServletRequest req) {
         DefaultDTO defaultDTO = shopService.getWeapons();
@@ -36,10 +40,8 @@ public class ShopController {
         int userid = (int) userSession.getAttribute("id");
         String username = (String) userSession.getAttribute("userName");
         m.addAttribute("username", username);
-
-       System.out.println(userid);
-       System.out.println(username);
-
+        int money = fighterDBService.getFighterMoneyByUserId(userid);
+        m.addAttribute("money", money);
         return "shop";
     }
 

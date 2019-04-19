@@ -44,4 +44,8 @@ public class FighterDBServiceImpl implements FighterDBService {
 
     }
 
+    public int getFighterMoneyByUserId(int userId) {
+        return template.queryForObject("SELECT money FROM fighters where userId = '" + userId + "'", Integer.class);
+    }
+
 }

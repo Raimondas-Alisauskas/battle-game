@@ -18,9 +18,9 @@
 <c:choose>
     <c:when test ="${weaponsListBL.success == 'true'}" >
 
-        <h1>Ginklu parduotuve</h1>
-        <h2>Sveiki atvyke, ${username}</h2>
-        <h3>Jus turite pinigu ${fighterUser.money}</h3>
+        <h1>Ginklų parduotuvė</h1>
+        <h2>Sveiki atvykę, ${username}!</h2>
+        <h3>Jūsų turimi pinigai: ${money}</h3>
         <table border="2" width="70%" cellpadding="2">
             <tr>
                 <th>Pavadinimas</th>
