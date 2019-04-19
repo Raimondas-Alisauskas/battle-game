@@ -2,8 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #313F66;">
     <c:choose>
-        <c:when test="${fighterUser.image != null}">
-            <a class="navbar-brand" style="color: white" href="#">Home</a>
+        <c:when test="${sessionScope.fighterId != null}">
+            <a class="navbar-brand" style="color: white" href="home">Home</a>
         </c:when>
     </c:choose>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <c:choose>
-                <c:when test="${fighterUser.image != null}">
+                <c:when test="${sessionScope.fighterId != null}">
                     <li class="nav-item" style="color: white">
                         <a class="nav-link" style="color: white" href="fighterlist">Find opponent</a>
                     </li>
@@ -26,11 +26,8 @@
         <form class="form-inline my-2 my-lg-0">
             <div class="inset">
                 <c:choose>
-                    <c:when test="${fighterUser.image != null}">
-                        <img src="<c:url value="/resources/images/${fighterUser.image}"/>">
-                    </c:when>
-                    <c:when test="${fighterUser.image == null}">
-                        <img src="http://rs775.pbsrc.com/albums/yy35/PhoenyxStar/link-1.jpg~c200">
+                    <c:when test="${sessionScope.fighterId != null}">
+                        <img src="<c:url value="/resources/images/${sessionScope.fighterImage}"/>">
                     </c:when>
                 </c:choose>
             </div>
