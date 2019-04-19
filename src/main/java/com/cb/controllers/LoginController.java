@@ -55,7 +55,6 @@ public class LoginController {
                 FighterBL fighterBL = (FighterBL) defaultDTO.getData();
                 m.addAttribute("fighterUser", fighterBL);
                 userSession.setAttribute("fighterImage",fighterBL.getImage());
-                System.out.println("Image after login: " + fighterBL.getImage());
 
                 return "home";
 

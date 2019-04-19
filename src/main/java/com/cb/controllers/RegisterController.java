@@ -83,8 +83,6 @@ public class RegisterController {
         httpSession.setAttribute("fighterId", fighterId);
         httpSession.setAttribute("fighterImage", fighterBL.getImage());
 
-        System.out.println("Image after registration: " + fighterBL.getImage());
-
         DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
         fighterBL = (FighterBL) defaultDTO.getData();
         m.addAttribute("fighterUser", fighterBL);
