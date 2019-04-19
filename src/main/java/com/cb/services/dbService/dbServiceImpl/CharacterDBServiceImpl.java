@@ -25,25 +25,25 @@ public class CharacterDBServiceImpl implements CharacterDBService {
     @Override
     public List<CharacterDAL> getCharacters() {
 
-        return template.query("SELECT * FROM Main4.character", new BeanPropertyRowMapper(CharacterDAL.class));
+        return template.query("SELECT * FROM main5.character", new BeanPropertyRowMapper(CharacterDAL.class));
 
     }
 
     public int getCharacterId(FighterBL fighterBL) {
 
-       return template.queryForObject("SELECT Id from Main4.character where Charname = '" + fighterBL.getMember() + "'", Integer.class);
+       return template.queryForObject("SELECT Id from main5.character where Charname = '" + fighterBL.getMember() + "'", Integer.class);
 
     }
 
     public String getCharacterName(int charId) {
 
-        return template.queryForObject("SELECT Charname from Main4.character where Id = '" + charId + "'", String.class);
+        return template.queryForObject("SELECT Charname from main5.character where Id = '" + charId + "'", String.class);
 
     }
 
     public String getImageReference(int charId) {
 
-        return template.queryForObject("SELECT imageReference from Main4.character where Id = '" + charId + "'", String.class);
+        return template.queryForObject("SELECT imageReference from main5.character where Id = '" + charId + "'", String.class);
 
     }
 

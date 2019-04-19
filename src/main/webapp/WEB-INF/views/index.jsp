@@ -12,7 +12,7 @@
 <a href="userstable">Modify Users</a> <br>
 <a href="arena">Arena</a> <br>
 <a href="home">HomePage</a>
-<a href="shop">Shop</a>
+<%--<a href="shop">Shop</a>--%>
 
 <div class="login-html">
     <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
