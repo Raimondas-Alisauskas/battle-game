@@ -65,3 +65,17 @@ body {
     transform: translate(-50%, -45%);
     border-radius: 25px;
 }
+
+.fighter {
+
+    background: rgba(40, 57, 101, .9);
+    border-radius: 100px;
+    padding: 1rem;
+
+}
+
+.allfighters {
+
+    padding: 0.5rem;
+
+}

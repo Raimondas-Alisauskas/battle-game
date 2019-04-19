@@ -38,4 +38,10 @@ public class FighterDBServiceImpl implements FighterDBService {
         return template.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper<>(FighterDAL.class));
     }
 
+    public int getFighterIdByUserId(int userId) {
+
+        return template.queryForObject("SELECT id FROM main.fighters where userId = '" + userId + "'", Integer.class);
+
+    }
+
 }

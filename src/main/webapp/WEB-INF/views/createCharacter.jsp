@@ -144,8 +144,8 @@
         }
 
         document.getElementById("memberImage").src = "<c:url value="/resources/images/"/>" + imageName;
-        document.getElementById("memberImage").value = "<c:url value="/resources/images/"/>" + imageName;
-        document.getElementById("hidden").value = "<c:url value="/resources/images/"/>" + imageName;
+        document.getElementById("memberImage").value = imageName;
+        document.getElementById("hidden").value = imageName;
 
     }
 
