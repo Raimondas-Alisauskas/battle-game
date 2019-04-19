@@ -22,7 +22,7 @@
                 <a class="nav-link" style="color: white" href="#">Find opponent</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="color: white" href="#">Shop</a>
+                <a class="nav-link" style="color: white" href="shop">Shop</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
