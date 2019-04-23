@@ -30,4 +30,6 @@ public interface UserService {
     DefaultDTO deleteUserById(int id);
 
     int getUserByEmailAndPassword(UserBL userBL);
+
+    String getUserNameById(int userId);
 }

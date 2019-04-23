@@ -73,11 +73,15 @@ public class RegisterController {
         int characterId = characterService.getCharacterId(fighterBL);
         int partyId = partyService.getPartyId(fighterBL);
 
+
         fighterBL.setUserId(userId);
         fighterBL.setCharacterId(characterId);
         fighterBL.setPartyId(partyId);
 
         fighterService.insertFighter(fighterBL);
+        int fighterId = fighterService.getFighterIdByUserId(userId);
+        httpSession.setAttribute("fighterId", fighterId);
+        httpSession.setAttribute("fighterImage", fighterBL.getImage());
 
         DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
         fighterBL = (FighterBL) defaultDTO.getData();
