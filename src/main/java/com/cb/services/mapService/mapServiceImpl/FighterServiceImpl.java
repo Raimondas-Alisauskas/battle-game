@@ -5,6 +5,7 @@ import com.cb.bl.UserBL;
 import com.cb.dal.FighterDAL;
 import com.cb.dal.UserDAL;
 import com.cb.dto.DefaultDTO;
+import com.cb.services.dbService.iDbService.FightCallsDBService;
 import com.cb.services.dbService.iDbService.FighterDBService;
 import com.cb.services.mapService.iMapService.CharacterService;
 import com.cb.services.mapService.iMapService.FighterService;
@@ -21,6 +22,9 @@ public class FighterServiceImpl implements FighterService {
 
     @Autowired
     FighterDBService fighterDBService;
+
+    @Autowired
+    FightCallsDBService fightCallsDBService;
 
     @Autowired
     CharacterService characterService;
@@ -78,10 +82,10 @@ public class FighterServiceImpl implements FighterService {
         return defaultDTO;
     }
 
-    public DefaultDTO getFighters(int userId) {
+    public DefaultDTO getFighters(int fighterId) {
 
         try {
-            List<FighterDAL> fighterListDAL = fighterDBService.getFighters(userId);
+            List<FighterDAL> fighterListDAL = fighterDBService.getFighters(fighterId);
             List<FighterBL> fighterListBL = ObjectMapperUtils.mapAll(fighterListDAL, FighterBL.class);
 
             for (int i = 0; i < fighterListBL.size(); i++) {
@@ -89,10 +93,15 @@ public class FighterServiceImpl implements FighterService {
                 String partyName = partyService.getPartyName(fighterListBL.get(i).getPartyId());
                 String imageReference = characterService.getImageReference(fighterListBL.get(i).getCharacterId());
                 String userName = userService.getUserNameById(fighterListBL.get(i).getUserId());
+                int isCalled = fightCallsDBService.isFighterCalled(fighterId, fighterListBL.get(i).getId());
+
+                System.out.println(isCalled);
+
                 fighterListBL.get(i).setMember(characterName);
                 fighterListBL.get(i).setParty(partyName);
                 fighterListBL.get(i).setImage(imageReference);
                 fighterListBL.get(i).setUserName(userName);
+                fighterListBL.get(i).setIsCalled(isCalled);
             }
 
             defaultDTO.setSuccess(true);
