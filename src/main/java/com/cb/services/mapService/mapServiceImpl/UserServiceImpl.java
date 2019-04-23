@@ -137,4 +137,10 @@ public class UserServiceImpl implements UserService {
         return userDBService.getUserByEmailAndPassword(userBL);
     }
 
+    public String getUserNameById(int userId) {
+
+        return userDBService.getUserNameById(userId);
+
+    }
+
 }
