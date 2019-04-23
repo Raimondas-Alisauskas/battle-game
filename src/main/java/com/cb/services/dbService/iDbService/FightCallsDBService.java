@@ -12,4 +12,6 @@ public interface FightCallsDBService {
 
     int insertFightCall(int fighterId,int calledFighterId);
 
+    List<FightCallsDAL> getCallingFighterId(int fighterId);
+
 }

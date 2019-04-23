@@ -1,6 +1,7 @@
 package com.cb.services.dbService.dbServiceImpl;
 
 import com.cb.dal.FightCallsDAL;
+import com.cb.dal.FighterDAL;
 import com.cb.services.dbService.iDbService.FightCallsDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,7 +32,13 @@ public class FightCallsDBServiceImpl implements FightCallsDBService {
     public int insertFightCall(int fighterId, int calledFighterId) {
 
         return template.update("INSERT INTO fight_calls (callingFighter, calledFighter, onFight)" +
-                " VALUES (" + fighterId + ", " + calledFighterId + "," + false +")");
+                " VALUES (" + fighterId + ", " + calledFighterId + "," + false + ")");
+
+    }
+
+    public List<FightCallsDAL> getCallingFighterId(int fighterId) {
+
+        return template.query("SELECT callingFighter from fight_calls where calledFighter = " + fighterId + " AND onFight = " + false, new BeanPropertyRowMapper(FightCallsDAL.class));
 
     }
 

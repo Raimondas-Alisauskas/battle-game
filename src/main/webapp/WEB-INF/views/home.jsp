@@ -25,6 +25,33 @@
             <div>Money: ${fighterUser.money}</div>
             <div>Rating: ${fighterUser.rating}</div>
         </div>
+
+        <c:forEach var="f" items="${fighterList.data}">
+            <div class="allfighters">
+                <form class="fighter form-inline my-2 my-lg-0" action="callfight" method="post">
+                    <div class="inset">
+                        <img src="<c:url value="/resources/images/${f.image}"/>">
+                    </div>
+                    <input value="${f.id}" name="calledFighter" type="hidden">
+                    <div class="navbar-text" style="color: white">
+                            ${f.userName}
+                    </div>
+                    <div class="navbar-text" style="color: white">
+                            ${f.party}
+                    </div>
+                    <div class="navbar-text" style="color: white">
+                            ${f.member}
+                    </div>
+                    <div class="navbar-text" style="color: white">
+                            ${f.rating}
+                    </div>
+                    <button id="accept" type="submit" class="btn btn-secondary" value="accept" name="action">Accept</button>
+                    <button id="decline" type="submit" class="btn btn-success" value="decline" name="action">Decline</button>
+
+                </form>
+            </div>
+        </c:forEach>
+
     </div>
 </div>
 

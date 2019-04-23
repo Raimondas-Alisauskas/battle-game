@@ -78,6 +78,6 @@ public class LoginController {
     public String signOut(HttpServletRequest req) {
         HttpSession userSession = req.getSession();
         userSession.invalidate();
-        return "index";
+        return "redirect:/";
     }
 }
