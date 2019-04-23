@@ -24,4 +24,6 @@ public interface UserDBService {
     int updateUser(UserBL userBL);
 
     int deleteUserById(int id);
+
+    String getUserNameById(int userId);
 }

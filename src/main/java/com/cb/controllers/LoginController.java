@@ -44,14 +44,17 @@ public class LoginController {
         if (userExist == 1) {
             String userName = userService.getUserNameByEmail(userBL);
             int userId = userService.getUserIdByEmail(userBL);
+            int fighterId = fighterService.getFighterIdByUserId(userId);
             HttpSession userSession = req.getSession();
             userSession.setAttribute("userName", userName);
             userSession.setAttribute("id", userId);
+            userSession.setAttribute("fighterId", fighterId);
 
             if (fighterService.getFighterCountByUserId(userId) == 1) {
                 DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
                 FighterBL fighterBL = (FighterBL) defaultDTO.getData();
                 m.addAttribute("fighterUser", fighterBL);
+                userSession.setAttribute("fighterImage",fighterBL.getImage());
 
                 return "home";
 

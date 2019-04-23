@@ -38,6 +38,12 @@ public class UserDBServiceImpl implements UserDBService {
         return template.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(UserDAL.class));
     }
 
+    public String getUserNameById(int userId) {
+
+        return template.queryForObject("SELECT userName from users where id = '" + userId + "'", String.class);
+
+    }
+
     @Override
     public int getUserByEmailAndPassword(UserBL userBL) {
         if (template.queryForObject("select count(*) from users where email = '" +

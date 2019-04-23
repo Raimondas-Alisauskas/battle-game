@@ -4,6 +4,7 @@ public class FighterBL {
 
     private int id;
     private int userId;
+    private String userName;
     private int characterId;
     private int partyId;
     private int money;
@@ -26,6 +27,14 @@ public class FighterBL {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getCharacterId() {
