@@ -150,8 +150,6 @@ public class FighterServiceImpl implements FighterService {
                 fighterListBL.add(fighterBL);
 
             }
-
-
             defaultDTO.setSuccess(true);
             defaultDTO.setData(fighterListBL);
         } catch (Exception e) {

@@ -1,7 +1,6 @@
 package com.cb.services.dbService.dbServiceImpl;
 
 import com.cb.dal.FightCallsDAL;
-import com.cb.dal.FighterDAL;
 import com.cb.services.dbService.iDbService.FightCallsDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
