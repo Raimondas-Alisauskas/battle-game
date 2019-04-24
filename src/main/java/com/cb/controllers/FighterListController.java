@@ -29,8 +29,6 @@ public class FighterListController {
         int userId = (int) httpSession.getAttribute("id");
         int fighterId = (int) httpSession.getAttribute("fighterId");
 
-        System.out.println(fighterId);
-
         DefaultDTO defaultDTO = fighterService.getFighters(fighterId);
 
 

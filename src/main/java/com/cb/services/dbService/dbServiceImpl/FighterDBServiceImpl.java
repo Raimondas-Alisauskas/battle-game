@@ -42,4 +42,9 @@ public class FighterDBServiceImpl implements FighterDBService {
         return template.queryForObject("SELECT id FROM fighters where userId = '" + userId + "'", Integer.class);
     }
 
+    public FighterDAL getFighterByFighterId(int fighterId) {
+        String sql = "select * from fighters where id =?";
+        return template.queryForObject(sql, new Object[]{fighterId}, new BeanPropertyRowMapper<>(FighterDAL.class));
+    }
+
 }

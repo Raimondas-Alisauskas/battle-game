@@ -54,9 +54,9 @@ public class LoginController {
                 DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
                 FighterBL fighterBL = (FighterBL) defaultDTO.getData();
                 m.addAttribute("fighterUser", fighterBL);
-                userSession.setAttribute("fighterImage",fighterBL.getImage());
+                userSession.setAttribute("fighterImage", fighterBL.getImage());
 
-                //here we need to get calling fighters
+                m.addAttribute("callingFighters", fighterService.getCallingFighters(fighterId));
 
                 return "home";
 
