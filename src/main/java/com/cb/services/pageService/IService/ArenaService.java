@@ -28,19 +28,8 @@ public class ArenaService {
         fight.setFighter1ActionList(fighter1ActionList);
         fight.setFighter2ActionList(fighter2ActionList);
 
-//        fight.setResultsAreViewedById1(-1);
-//        fight.setCanceledById(-1);
         return new DefaultDTO(true,"Pasiruošk kovoti! kovotojai sukurti",fight);
     }
-
-//    private List<FighterAction> createFighterActionList(){
-//        List<FighterAction> fighterActionList = new ArrayList<>();
-//        FighterAction fighterAction = new FighterAction();
-//        fighterAction.setFighterActionNo(0);
-//        fighterAction.setNoOfWinnings(0);
-//        fighterActionList.add(fighterAction);
-//        return fighterActionList;
-//    }
 
     private FighterArenaBL createMockFighter(int id) {
 
@@ -74,19 +63,6 @@ public class ArenaService {
     public DefaultDTO askToWait(Fight fight){
         return new DefaultDTO(true,"Priešininkas grybauja. Reikia palaukti",fight);
     }
-
-//    public DefaultDTO addActionList(int fighterId, Fight fight, List<Attack> attackList) {
-//        if (fight.getFighter1().getId() == fighterId) {
-////            List<FighterAction> fighterActionList = new ArrayList<>();
-//            fighterActionList.add(new FighterAction(attackList, 0));
-//            fight.setFighter1ActionList(fighterActionList);
-//        } else if (fight.getFighter2().getId() == fighterId) {
-//            List<FighterAction> fighterActionList = new ArrayList<>();
-//            fighterActionList.add(new FighterAction(attackList, 0));
-//            fight.setFighter2ActionList(fighterActionList);
-//        }
-//        return askToWait(fight);
-//    }
 
     public DefaultDTO appendActionList(int fighterId, Fight fight, List<Attack> attackList) {
 
@@ -122,7 +98,7 @@ public class ArenaService {
         Fight currentFight = (Fight) defaultDTO.getData();
         int actionsCompleted = currentFight.getActionsCompleted();
         currentFight.setActionsCompleted(actionsCompleted + 1);
-//        currentFight.setResultsAreViewedById1(fighterId);
+
         defaultDTO.setData(currentFight);
 
         return defaultDTO;
@@ -149,7 +125,6 @@ public class ArenaService {
         }
         return defaultDTO;
     }
-
 
     public DefaultDTO askForMoveMessage() {
         return new DefaultDTO(true, "Nespaudinėk beleko, daryk veiksmą", null);

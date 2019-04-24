@@ -18,7 +18,4 @@ public class Fight implements Serializable {
     private List<FighterAction> fighter1ActionList;
     private List<FighterAction> fighter2ActionList;
     private int actionsCompleted;
-    private int resultsAreViewedById1;
-    private int resultsAreViewedById2;
-    private int canceledById;
 }
