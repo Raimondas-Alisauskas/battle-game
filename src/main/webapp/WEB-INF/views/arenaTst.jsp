@@ -57,25 +57,34 @@
 </div>
 <div>
 <button type = "submit" form="fightForm">Važiuojam!</button><br>
+<form action="getresults" method="get">
+    <button type = "submit">Rezultatai</button><br>
+</form>
 <a href="deletefight">DeleteFight</a>
 </div>
 
 <div style="display: inline-flex">
     <div>
-    <c:forEach var="al" items="${defaultDTO.data.fighter1ActionList}">
-        <p></p>
-        <c:forEach var="a" items="${al.attackList}">
-            <p>${a.targetId} ${a.weapon} ${a.attackType} ${a.isWinned}</p>
-        </c:forEach>
-    </c:forEach>
+        <table>
+            <c:forEach var="al" items="${defaultDTO.data.fighter1ActionList}">
+
+                <c:forEach var="a" items="${al.attackList}">
+                    <tr>${a.targetId} ${a.weapon} ${a.attackType} ${a.isWinned}</tr>
+                    <p>-----------------------------</p>
+                </c:forEach>
+            </c:forEach>
+        </table>
     </div>
     <div>
-        <c:forEach var="al" items="${defaultDTO.data.fighter2ActionList}">
-            <p></p>
-            <c:forEach var="a" items="${al.attackList}">
-                <p>${a.targetId} ${a.weapon} ${a.attackType} ${a.isWinned}</p>
+        <table>
+            <c:forEach var="al" items="${defaultDTO.data.fighter2ActionList}">
+
+                <c:forEach var="a" items="${al.attackList}">
+                    <tr style="height: 2em">${a.targetId} ${a.weapon} ${a.attackType} ${a.isWinned}</tr>
+                    <p>-----------------------------</p>
+                </c:forEach>
             </c:forEach>
-        </c:forEach>
+        </table>
     </div>
 </div>
 
