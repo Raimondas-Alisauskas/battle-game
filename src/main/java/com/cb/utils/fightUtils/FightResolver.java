@@ -1,12 +1,16 @@
 package com.cb.utils.fightUtils;
 
+import com.cb.bl.FighterArenaBL;
 import com.cb.bl.fight.Attack;
+import com.cb.bl.fight.Fight;
 import com.cb.bl.fight.FighterAction;
 import com.cb.bl.fight.FightActionsResult;
 import com.cb.constants.AttackType;
 
 
 public class FightResolver {
+
+    public static final int HONOR_REDUCING_SCORE = 20;
 
     public int getAttackWinner(Attack attack1, Attack attack2){
         int attackWinnerNo = -1;
@@ -59,6 +63,16 @@ public class FightResolver {
         return fightActionsResult;
     }
 
-
+    public Fight getHonorLeftResults (Fight fight, FightActionsResult fightActionsResult){
+        int figter1Winnings = fightActionsResult.getFighter1Action().getNoOfWinnings();
+        int figter2Winnings = fightActionsResult.getFighter2Action().getNoOfWinnings();
+        FighterArenaBL fighterArenaBL1 = fight.getFighter1();
+        FighterArenaBL fighterArenaBL2 = fight.getFighter2();
+        fighterArenaBL1.setHonorLeft(fighterArenaBL1.getHonorLeft() - figter2Winnings * HONOR_REDUCING_SCORE);
+        fighterArenaBL2.setHonorLeft(fighterArenaBL2.getHonorLeft() - figter1Winnings * HONOR_REDUCING_SCORE);
+        fight.setFighter1(fighterArenaBL1);
+        fight.setFighter2(fighterArenaBL2);
+        return fight;
+    }
 
 }

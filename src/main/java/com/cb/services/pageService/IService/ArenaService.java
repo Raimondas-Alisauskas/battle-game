@@ -13,7 +13,6 @@ import java.util.List;
 @Service
 public class ArenaService {
 
-    public static final int WINNER_REWARD_SCORE = 10;
     @Autowired
     DefaultDTO defaultDTO;
 
@@ -94,6 +93,8 @@ public class ArenaService {
         fight.getFighter1ActionList().get(fight.getFighter1ActionList().size() -1).setNoOfWinnings(figter1Winnings);
         fight.getFighter2ActionList().get(fight.getFighter2ActionList().size() -1).setNoOfWinnings(figter2Winnings);
 
+        fight = fightResolver.getHonorLeftResults(fight,fightActionsResult);
+
         defaultDTO = getResultMessage(fighterId, fight);
         Fight currentFight = (Fight) defaultDTO.getData();
         int actionsCompleted = currentFight.getActionsCompleted();
@@ -112,19 +113,20 @@ public class ArenaService {
             defaultDTO = new DefaultDTO(true, "Lygiosios", fight);
         } else if (figter1Winnings > figter2Winnings){
             if (fighterId == fight.getFighter1().getId()){
-                defaultDTO = new DefaultDTO(true, "Valio, laimėjai", fight);
+                defaultDTO = new DefaultDTO(true, "Valio! laimėjai :)", fight);
             } else {
-                defaultDTO = new DefaultDTO(true, "Pralaimėjai", fight);
+                defaultDTO = new DefaultDTO(true, "Pralaimėjai :(", fight);
             }
         } else{
             if (fighterId == fight.getFighter1().getId()){
-                defaultDTO = new DefaultDTO(true, "Pralaimėjai", fight);
+                defaultDTO = new DefaultDTO(true, "Pralaimėjai :(", fight);
             } else {
-                defaultDTO = new DefaultDTO(true, "Valio, laimėjai", fight);
+                defaultDTO = new DefaultDTO(true, "Valio! laimėjai :)", fight);
             }
         }
         return defaultDTO;
     }
+
 
     public DefaultDTO askForMoveMessage() {
         return new DefaultDTO(true, "Nespaudinėk beleko, daryk veiksmą", null);

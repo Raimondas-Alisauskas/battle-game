@@ -18,9 +18,4 @@ public class FighterArenaBL implements Serializable {
     private int honorLeft;
     private List<Weapon> weaponList;
 
-    //Character
-//    private String name;
-//    private String party;
-//    private Blob picture;
-
 }
