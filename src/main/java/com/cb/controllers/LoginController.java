@@ -48,7 +48,6 @@ public class LoginController {
             int userId = userService.getUserIdByEmail(userBL);
             int fighterId = fighterService.getFighterIdByUserId(userId);
             HttpSession userSession = req.getSession();
-            assert (userSession.isNew());
             userSession.setAttribute("userName", userName);
             userSession.setAttribute("id", userId);
             userSession.setAttribute("fighterId", fighterId);

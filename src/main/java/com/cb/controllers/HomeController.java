@@ -12,13 +12,6 @@ public class HomeController {
 
     @RequestMapping(value = "/")
     public String home(HttpServletRequest req) {
-        HttpSession userSession = req.getSession();
-
-        if(userSession.isNew()) {
-            return "index";
-        } else {
-            return null;
-        }
+        return "index";
     }
-
 }
