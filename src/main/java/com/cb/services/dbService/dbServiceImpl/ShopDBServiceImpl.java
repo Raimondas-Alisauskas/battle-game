@@ -19,12 +19,4 @@ public class ShopDBServiceImpl implements ShopDBService {
         return template.query("SELECT * FROM weapons", new BeanPropertyRowMapper<>(WeaponsDAL.class));
     }
 
-
-//    public int getFM(FighterBL fighterBL) {
-//
-//        return template.queryForObject("SELECT money from Main4.fighters where userId = '" + fighterBL.getMember() + "'", Integer.class);
-//
-//    }
-
-
 }
