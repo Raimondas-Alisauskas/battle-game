@@ -56,6 +56,8 @@ public class LoginController {
                 m.addAttribute("fighterUser", fighterBL);
                 userSession.setAttribute("fighterImage",fighterBL.getImage());
 
+                //here we need to get calling fighters
+
                 return "home";
 
             }
