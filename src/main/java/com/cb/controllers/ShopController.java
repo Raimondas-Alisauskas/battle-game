@@ -45,6 +45,11 @@ public class ShopController {
         return "shop";
     }
 
+    @RequestMapping(method=RequestMethod.POST, value="fighter-weapon-map")
+    public void insertFighterWeapons(Model m, HttpServletRequest req) {
+
+    }
+
 
 
 }

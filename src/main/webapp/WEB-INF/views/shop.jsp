@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/resources/styles/home.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/styles/shop.css" />"/>
+
 </head>
 <body>
 <%@include file="header.jsp" %>
@@ -20,7 +22,7 @@
 
         <h1>Ginklų parduotuvė</h1>
         <h2>Sveiki atvykę, ${username}!</h2>
-        <h3>Jūsų turimi pinigai: ${money}</h3>
+        <h3>Jūsų turimi pinigai: <strong id="user-money"> ${money} </strong></h3>
         <table border="2" width="70%" cellpadding="2">
             <tr>
                 <th>Pavadinimas</th>
@@ -33,17 +35,59 @@
                     <td>${u.name}</td>
                     <td>${u.target}</td>
                     <td>${u.power}</td>
-                    <td>Pirkti</td>
+                    <td><button id="${u.name}" onclick="buyThis(this.id); this.disabled=true;" value="${u.power}">Pirkti</button></td>
                 </tr>
             </c:forEach>
-
         </table>
+        <br>
+
+        <form id="shop-basket" method="post" action="fighter-weapon-map">
+        <h3>Jūsų užsakymas:</h3>
+        <div id="order-details"></div>
+            <br>
+            <button id="submit-order" onclick="submitOrder()" type="submit">Patvirtinti pirkimą</button>
+        </form>
+            <button id="cancel-order" onclick="clearOrder()">Anuliuoti krepšelį</button>
 </c:when>
 <c:otherwise>
     <br>
     ${weaponsListBL.message}
 </c:otherwise>
 </c:choose>
+
+<script>
+    function buyThis(id) {
+        let userMoney = Number(document.getElementById("user-money").innerHTML);
+        let price = Number(document.getElementById(id).value);
+
+        if (userMoney >= price) {
+            let moneyAfter = userMoney - price;
+
+            document.getElementById("user-money").innerHTML = moneyAfter;
+
+            let divNode = document.createElement("INPUT");
+            divNode.setAttribute("value", id);
+            divNode.style.width = "600px";
+            divNode.disabled = true;
+            document.getElementById("order-details").appendChild(divNode);
+            document.getElementById("order-details").appendChild(document.createElement("BR"));
+            document.getElementById(id).disabled = true;
+        }
+    }
+
+    function submitOrder() {
+
+    }
+
+    function clearOrder() {
+
+        let list = document.getElementById("order-details");
+
+        while (list.hasChildNodes()) {
+            list.removeChild(list.firstChild);
+        }
+    }
+</script>
 
 </body>
 </html>
