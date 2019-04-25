@@ -54,7 +54,9 @@ public class LoginController {
                 DefaultDTO defaultDTO = fighterService.getFighterByUserId(userId);
                 FighterBL fighterBL = (FighterBL) defaultDTO.getData();
                 m.addAttribute("fighterUser", fighterBL);
-                userSession.setAttribute("fighterImage",fighterBL.getImage());
+                userSession.setAttribute("fighterImage", fighterBL.getImage());
+
+                m.addAttribute("callingFighters", fighterService.getCallingFighters(fighterId));
 
                 return "home";
 
@@ -78,6 +80,6 @@ public class LoginController {
     public String signOut(HttpServletRequest req) {
         HttpSession userSession = req.getSession();
         userSession.invalidate();
-        return "index";
+        return "redirect:/";
     }
 }
