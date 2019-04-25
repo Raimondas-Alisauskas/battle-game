@@ -68,7 +68,7 @@
             let divNode = document.createElement("INPUT");
             divNode.setAttribute("value", id);
             divNode.style.width = "600px";
-            divNode.disabled = true;
+            divNode.readOnly = true;
             document.getElementById("order-details").appendChild(divNode);
             document.getElementById("order-details").appendChild(document.createElement("BR"));
             document.getElementById(id).disabled = true;
