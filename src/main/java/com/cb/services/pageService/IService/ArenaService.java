@@ -95,10 +95,11 @@ public class ArenaService {
 
         fight = fightResolver.getHonorLeftResults(fight,fightActionsResult);
 
-
         fight.setIdHasNoHonorLeft(idWhitchHasNoHonorLeft(fight));
 
-
+        if(fight.getIdHasNoHonorLeft() > 0){
+        fight = fightResolver.resolveRating(fight);
+        }
 
         defaultDTO = getResultMessage(fighterId, fight);
         Fight currentFight = (Fight) defaultDTO.getData();
@@ -123,15 +124,17 @@ public class ArenaService {
         return idWithNoHonor;
     }
 
+
+
     public DefaultDTO getResultMessage(int fighterId, Fight fight){
         int figter1Winnings = fight.getFighter1ActionList().get(fight.getFighter1ActionList().size() -1).getNoOfWinnings();
         int figter2Winnings = fight.getFighter2ActionList().get(fight.getFighter2ActionList().size() -1).getNoOfWinnings();
 
         if(fight.getIdHasNoHonorLeft() > 0){
             if(fight.getIdHasNoHonorLeft() == fighterId){
-                defaultDTO = new DefaultDTO(true, "Žaidimas baigtas. Nebeturi garbės", fight);
+                defaultDTO = new DefaultDTO(true, "Kova baigta. Nebeturi garbės", fight);
             }else {
-                defaultDTO = new DefaultDTO(true, "Žaidimas baigtas. Priešininkas prarado visą garbę", fight);
+                defaultDTO = new DefaultDTO(true, "Kova baigta. Priešininkas prarado visą garbę", fight);
             }
 
         }else if(figter1Winnings == figter2Winnings){

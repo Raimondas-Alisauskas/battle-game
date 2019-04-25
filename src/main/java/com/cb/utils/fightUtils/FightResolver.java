@@ -11,6 +11,7 @@ import com.cb.constants.AttackType;
 public class FightResolver {
 
     public static final int HONOR_REDUCING_SCORE = 50;
+    public static final int RATE_CHANGE_SCORE = 30;
 
     public int getAttackWinner(Attack attack1, Attack attack2){
         int attackWinnerNo = -1;
@@ -75,4 +76,14 @@ public class FightResolver {
         return fight;
     }
 
+    public Fight resolveRating(Fight fight){
+        if (fight.getIdHasNoHonorLeft() == fight.getFighter1().getId()){
+            fight.getFighter1().setRate(fight.getFighter1().getRate() + RATE_CHANGE_SCORE );
+            fight.getFighter2().setRate(fight.getFighter2().getRate() - RATE_CHANGE_SCORE );
+        } else{
+            fight.getFighter1().setRate(fight.getFighter1().getRate() - RATE_CHANGE_SCORE );
+            fight.getFighter2().setRate(fight.getFighter2().getRate() + RATE_CHANGE_SCORE );
+        }
+        return fight;
+    }
 }
