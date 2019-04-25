@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #313F66;">
     <c:choose>
         <c:when test="${sessionScope.fighterId != null}">
-            <a class="navbar-brand" style="color: white" href="home">Home</a>
+            <a class="navbar-brand" style="color: white" href="loginuser">Home</a>
         </c:when>
     </c:choose>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

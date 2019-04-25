@@ -11,8 +11,12 @@ public interface FighterService {
 
     DefaultDTO getFighterByUserId(int userId);
 
-    DefaultDTO getFighters(int userId);
+    DefaultDTO getFighters(int fighterId);
 
     int getFighterIdByUserId(int userId);
+
+    DefaultDTO getCallingFighters(int fighterId);
+
+    FighterBL getFighterByFighterId(int fighterId);
 
 }

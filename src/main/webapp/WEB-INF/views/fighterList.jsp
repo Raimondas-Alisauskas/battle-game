@@ -13,11 +13,11 @@
 <%@include file="header.jsp" %>
 <c:forEach var="f" items="${fighterList.data}">
     <div class="allfighters">
-        <form class="fighter form-inline my-2 my-lg-0">
+        <form class="fighter form-inline my-2 my-lg-0" action="callfight" method="post">
             <div class="inset">
                 <img src="<c:url value="/resources/images/${f.image}"/>">
             </div>
-            <div name="calledFighter" style="display: none";>${f.id}</div>
+            <input value="${f.id}" name="calledFighter" type="hidden">
             <div class="navbar-text" style="color: white">
                     ${f.userName}
             </div>
@@ -30,22 +30,15 @@
             <div class="navbar-text" style="color: white">
                     ${f.rating}
             </div>
-            <button id="letsfight" type="button" onclick="changeButton()" class="btn btn-success">Let's fight!</button>
+            <c:if test="${f.isCalled == 1}">
+                <button id="letsfight" class="btn btn-secondary" disabled>Waiting for response</button>
+            </c:if>
+            <c:if test="${f.isCalled == 0}">
+                <button id="letsfight" type="submit" class="btn btn-success">Let's fight!</button>
+            </c:if>
         </form>
     </div>
 </c:forEach>
-
-<script>
-
-    function changeButton() {
-
-        document.getElementById("letsfight").classList.remove('btn-success');
-        document.getElementById("letsfight").classList.add('btn-secondary');
-        document.getElementById("letsfight").innerHTML = "Waiting for response";
-
-    }
-
-</script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

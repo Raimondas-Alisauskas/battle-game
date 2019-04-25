@@ -54,6 +54,10 @@
         <property name="template" ref="jt"/>
     </bean>
 
+    <bean id="fightCallsDBService" class="com.cb.services.dbService.dbServiceImpl.FightCallsDBServiceImpl">
+        <property name="template" ref="jt"/>
+    </bean>
+
     <bean id="defaultDTO" class="com.cb.dto.DefaultDTO"/>
 
     <bean id="controllerUtility" class="com.cb.utils.fightUtils.ControllerUtility"/>

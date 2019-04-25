@@ -29,8 +29,8 @@ public class FighterDBServiceImpl implements FighterDBService {
 
     }
 
-    public List<FighterDAL> getFighters(int userId) {
-        return template.query("SELECT * FROM fighters where userId not in ('" + userId + "')", new BeanPropertyRowMapper(FighterDAL.class));
+    public List<FighterDAL> getFighters(int fighterId) {
+        return template.query("SELECT * FROM fighters where id != " + fighterId, new BeanPropertyRowMapper(FighterDAL.class));
     }
 
     public FighterDAL getFighterByUserId(int userId) {
@@ -39,9 +39,12 @@ public class FighterDBServiceImpl implements FighterDBService {
     }
 
     public int getFighterIdByUserId(int userId) {
-
         return template.queryForObject("SELECT id FROM fighters where userId = '" + userId + "'", Integer.class);
+    }
 
+    public FighterDAL getFighterByFighterId(int fighterId) {
+        String sql = "select * from fighters where id =?";
+        return template.queryForObject(sql, new Object[]{fighterId}, new BeanPropertyRowMapper<>(FighterDAL.class));
     }
 
 }
