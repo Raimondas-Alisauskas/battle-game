@@ -10,8 +10,14 @@ public interface FightCallsDBService {
 
     int isFighterCalled(int fighterId, int calledFighterId);
 
+    int isFighterAccepted(int fighterId, int calledFighterId);
+
     int insertFightCall(int fighterId,int calledFighterId);
 
     List<FightCallsDAL> getCallingFighterId(int fighterId);
+
+    int updateFightCallRowSetOnFightTrue(int fighter1, int fighter2);
+
+    int deleteFightCallRow(int fighter1,int fighter2);
 
 }

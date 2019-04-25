@@ -6,6 +6,7 @@ public class FightCallsBL {
     private int callingFighter;
     private int calledFighter;
     private boolean onFight;
+    private String action;
 
     public int getId() {
         return id;
@@ -38,5 +39,12 @@ public class FightCallsBL {
     public void setOnFight(boolean onFight) {
         this.onFight = onFight;
     }
-    
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
 }

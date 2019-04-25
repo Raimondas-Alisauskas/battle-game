@@ -21,15 +21,32 @@ public class FightCallsServiceImpl implements FightCallsService {
 
     }
 
+    public int isFighterAccepted(int fighterId, int calledFighterId) {
+
+        return fightCallsDBService.isFighterAccepted(fighterId, calledFighterId);
+
+    }
+
     public int insertFightCall(int fighterId, int calledFighterId) {
 
         return fightCallsDBService.insertFightCall(fighterId, calledFighterId);
 
     }
 
-    public DefaultDTO getCallingFighter(int fighterId) {
-
+    public DefaultDTO getCallingFighter(int fighterId) { // need to change this method
         return defaultDTO;
+
+    }
+
+    public int updateFightCallRowSetOnFightTrue(int fighter1, int fighter2) {
+
+        return fightCallsDBService.updateFightCallRowSetOnFightTrue(fighter1, fighter2);
+
+    }
+
+    public int deleteFightCallRow(int fighter1, int fighter2) {
+
+        return fightCallsDBService.deleteFightCallRow(fighter1, fighter2);
 
     }
 

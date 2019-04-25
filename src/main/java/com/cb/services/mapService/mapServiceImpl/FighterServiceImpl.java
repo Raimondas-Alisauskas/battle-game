@@ -95,11 +95,14 @@ public class FighterServiceImpl implements FighterService {
                 String imageReference = characterService.getImageReference(fighterListBL.get(i).getCharacterId());
                 String userName = userService.getUserNameById(fighterListBL.get(i).getUserId());
                 int isCalled = fightCallsDBService.isFighterCalled(fighterId, fighterListBL.get(i).getId());
+                int isAccepted = fightCallsDBService.isFighterAccepted(fighterId, fighterListBL.get(i).getId());
                 fighterListBL.get(i).setMember(characterName);
                 fighterListBL.get(i).setParty(partyName);
                 fighterListBL.get(i).setImage(imageReference);
                 fighterListBL.get(i).setUserName(userName);
                 fighterListBL.get(i).setIsCalled(isCalled);
+                fighterListBL.get(i).setIsAccepted(isAccepted);
+
             }
 
             defaultDTO.setSuccess(true);

@@ -33,8 +33,11 @@
             <c:if test="${f.isCalled == 1}">
                 <button id="letsfight" class="btn btn-secondary" disabled>Waiting for response</button>
             </c:if>
-            <c:if test="${f.isCalled == 0}">
+            <c:if test="${f.isCalled == 0 && f.isAccepted == 0}">
                 <button id="letsfight" type="submit" class="btn btn-success">Let's fight!</button>
+            </c:if>
+            <c:if test="${f.isAccepted == 1}">
+                <button id="letsfight" type="submit" class="btn btn-danger">Go to Arena for  fight!</button>
             </c:if>
         </form>
     </div>

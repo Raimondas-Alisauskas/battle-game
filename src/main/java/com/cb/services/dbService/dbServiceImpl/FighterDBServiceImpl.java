@@ -31,6 +31,8 @@ public class FighterDBServiceImpl implements FighterDBService {
 
     public List<FighterDAL> getFighters(int fighterId) {
         return template.query("SELECT * FROM fighters where id != " + fighterId, new BeanPropertyRowMapper(FighterDAL.class));
+//        return template.query("SELECT * FROM fighters where id != (" + fighterId +" AND (SELECT callingFighter FROM fight_calls WHERE (callingFighter = " + fighterId + " AND onFight = true) OR (calledFighter = " + fighterId + " AND onFight = true) AND (SELECT calledFighter FROM fight_calls WHERE (callingFighter = " + fighterId + " AND onFight = true) OR (calledFighter = " + fighterId + " AND onFight = true)))", new BeanPropertyRowMapper(FighterDAL.class));
+
     }
 
     public FighterDAL getFighterByUserId(int userId) {
