@@ -140,7 +140,7 @@ public class FighterServiceImpl implements FighterService {
         try {
 
             List<FightCallsDAL> fightCallsListDAL = fightCallsDBService.getCallingFighterId(fighterId);
-            List<FightCallsBL> fightCallsListBL = ObjectMapperUtils.mapAll(fightCallsListDAL, FightCallsBL.class); // getting fightCallsListBl
+            List<FightCallsBL> fightCallsListBL = ObjectMapperUtils.mapAll(fightCallsListDAL, FightCallsBL.class);
 
             List<FighterBL> fighterListBL = new ArrayList<>();
 
