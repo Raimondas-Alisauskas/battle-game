@@ -10,7 +10,7 @@ import com.cb.constants.AttackType;
 
 public class FightResolver {
 
-    public static final int HONOR_REDUCING_SCORE = 20;
+    public static final int HONOR_REDUCING_SCORE = 50;
 
     public int getAttackWinner(Attack attack1, Attack attack2){
         int attackWinnerNo = -1;

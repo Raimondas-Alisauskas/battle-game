@@ -95,6 +95,11 @@ public class ArenaService {
 
         fight = fightResolver.getHonorLeftResults(fight,fightActionsResult);
 
+
+        fight.setIdHasNoHonorLeft(idWhitchHasNoHonorLeft(fight));
+
+
+
         defaultDTO = getResultMessage(fighterId, fight);
         Fight currentFight = (Fight) defaultDTO.getData();
         int actionsCompleted = currentFight.getActionsCompleted();
@@ -105,19 +110,39 @@ public class ArenaService {
         return defaultDTO;
     }
 
+    public int idWhitchHasNoHonorLeft(Fight fight){
+        // Any fighterId will be greater than 0
+        int idWithNoHonor = 0;
+        int honorLeft1 = fight.getFighter1().getHonorLeft();
+        int honorLeft2 = fight.getFighter2().getHonorLeft();
+        if (honorLeft1 < 1){
+            idWithNoHonor = fight.getFighter1().getId();
+        }else if (honorLeft2 < 1){
+            idWithNoHonor = fight.getFighter2().getId();
+        }
+        return idWithNoHonor;
+    }
+
     public DefaultDTO getResultMessage(int fighterId, Fight fight){
         int figter1Winnings = fight.getFighter1ActionList().get(fight.getFighter1ActionList().size() -1).getNoOfWinnings();
         int figter2Winnings = fight.getFighter2ActionList().get(fight.getFighter2ActionList().size() -1).getNoOfWinnings();
 
-        if(figter1Winnings == figter2Winnings){
+        if(fight.getIdHasNoHonorLeft() > 0){
+            if(fight.getIdHasNoHonorLeft() == fighterId){
+                defaultDTO = new DefaultDTO(true, "Žaidimas baigtas. Nebeturi garbės", fight);
+            }else {
+                defaultDTO = new DefaultDTO(true, "Žaidimas baigtas. Priešininkas prarado visą garbę", fight);
+            }
+
+        }else if(figter1Winnings == figter2Winnings){
             defaultDTO = new DefaultDTO(true, "Lygiosios", fight);
-        } else if (figter1Winnings > figter2Winnings){
+        }else if (figter1Winnings > figter2Winnings){
             if (fighterId == fight.getFighter1().getId()){
                 defaultDTO = new DefaultDTO(true, "Valio! laimėjai :)", fight);
             } else {
                 defaultDTO = new DefaultDTO(true, "Pralaimėjai :(", fight);
             }
-        } else{
+        }else{
             if (fighterId == fight.getFighter1().getId()){
                 defaultDTO = new DefaultDTO(true, "Pralaimėjai :(", fight);
             } else {

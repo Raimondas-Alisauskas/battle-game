@@ -86,6 +86,7 @@ public class ArenaController extends HttpServlet {
         if(fightSL.getFighter1ActionList().size() > fightSL.getActionsCompleted()
             && fightSL.getFighter2ActionList().size() > fightSL.getActionsCompleted()){
             defaultDTO = arenaService.calculateResults(fighterId, fightSL );
+
             fightSL = (Fight) defaultDTO.getData();
 
         //if only one ActionList sizes bigger than ActionsCompleted:  ask to wait
@@ -97,7 +98,11 @@ public class ArenaController extends HttpServlet {
 
         servletContext.setAttribute("fightSL", fightSL);
         m.addAttribute("defaultDTO", defaultDTO);
-        return "arenaTst";
+        // Any fighterId will be greater than 0
+        if (fightSL.getIdHasNoHonorLeft() > 0){
+            return "arenaFinish";
+        }else return "arenaTst";
+
     }
 
     @RequestMapping(value = "arena/getresults")
@@ -106,7 +111,7 @@ public class ArenaController extends HttpServlet {
         Fight fightSL = (Fight) servletContext.getAttribute("fightSL");
         Fight fightBL= org.apache.commons.lang3.SerializationUtils.clone(fightSL);
         int fighterId = (int) req.getSession().getAttribute("fighterId");
-        DefaultDTO defaultDTO = new DefaultDTO();
+        DefaultDTO defaultDTO;
 
         if(fightBL.getFighter1ActionList().size() == fightBL.getActionsCompleted() && fightBL.getActionsCompleted() > 0
                 && fightBL.getFighter2ActionList().size() == fightBL.getActionsCompleted() && fightBL.getActionsCompleted() > 0) {
@@ -128,7 +133,10 @@ public class ArenaController extends HttpServlet {
         }
 
         m.addAttribute("defaultDTO", defaultDTO);
-        return "arenaTst";
+        // Any fighterId will be greater than 0
+        if (fightSL.getIdHasNoHonorLeft() > 0){
+            return "arenaFinish";
+        }else return "arenaTst";
     }
 
     //Temporary, for tests
