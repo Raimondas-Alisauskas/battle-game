@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FightActionsResult {
-    private FightAction fighter1Action;
-    private FightAction fighter2Action;
+    private FighterAction fighter1Action;
+    private FighterAction fighter2Action;
 }

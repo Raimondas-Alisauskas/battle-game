@@ -25,14 +25,14 @@
         </tr>
         </thead>
         <tbody>
-        <form id = fightForm action="fight">
+        <form id = fightForm action="fight" method="get">
         <tr>
             <td>Neturtingi rinkėjai</td>
             <td>
                 <select id="priemone1" name = "weapon1" onchange="getValue()">
-                    <option name = "power1" value = 0>--Pasirinkite priemonę--</option>
+                    <option name = "power1" value = "no--0">--Pasirinkite priemonę--</option>
                     <c:forEach var="w" items="${defaultDTO.data.fighter1.weaponList}">
-                    <option value = "${w.name}:${w.power}">${w.name}: ${w.power}</option>
+                    <option value = "${w.name}--${w.power}">${w.name}: ${w.power}</option>
                     </c:forEach>
                 </select>
             </td>
@@ -57,13 +57,41 @@
 </div>
 <div>
 <button type = "submit" form="fightForm">Važiuojam!</button><br>
+<form action="getresults" method="get">
+    <button type = "submit">Rezultatai</button><br>
+</form>
 <a href="deletefight">DeleteFight</a>
+</div>
+
+<div style="display: inline-flex">
+    <div>
+        <table>
+            <c:forEach var="al" items="${defaultDTO.data.fighter1ActionList}">
+
+                <c:forEach var="a" items="${al.attackList}">
+                    <tr>${a.targetId} ${a.weapon} ${a.attackType} ${a.isWinned}</tr>
+                    <p>-----------------------------</p>
+                </c:forEach>
+            </c:forEach>
+        </table>
+    </div>
+    <div>
+        <table>
+            <c:forEach var="al" items="${defaultDTO.data.fighter2ActionList}">
+
+                <c:forEach var="a" items="${al.attackList}">
+                    <tr style="height: 2em">${a.targetId} ${a.weapon} ${a.attackType} ${a.isWinned}</tr>
+                    <p>-----------------------------</p>
+                </c:forEach>
+            </c:forEach>
+        </table>
+    </div>
 </div>
 
 <script>
     function getValue() {
         var val = document.getElementById("priemone1").value;
-        var arr = val.split(':');
+        var arr = val.split('--');
         document.getElementById("powerValue1").innerHTML = arr[arr.length-1];
     }
 </script>

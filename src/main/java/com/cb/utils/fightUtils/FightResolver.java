@@ -1,12 +1,17 @@
 package com.cb.utils.fightUtils;
 
+import com.cb.bl.FighterArenaBL;
 import com.cb.bl.fight.Attack;
-import com.cb.bl.fight.FightAction;
+import com.cb.bl.fight.Fight;
+import com.cb.bl.fight.FighterAction;
 import com.cb.bl.fight.FightActionsResult;
 import com.cb.constants.AttackType;
 
 
 public class FightResolver {
+
+    public static final int HONOR_REDUCING_SCORE = 50;
+    public static final int RATE_CHANGE_SCORE = 30;
 
     public int getAttackWinner(Attack attack1, Attack attack2){
         int attackWinnerNo = -1;
@@ -36,14 +41,14 @@ public class FightResolver {
         }return  2;
     }
 
-    public FightActionsResult getFightActionResult(FightAction fightAction1, FightAction fightAction2){
+    public FightActionsResult getFightActionResult(FighterAction fighterAction1, FighterAction fighterAction2){
         FightActionsResult fightActionsResult = new FightActionsResult();
 
         int noOfWinnings1 = 0;
         int noOfWinnings2 = 0;
 
-        for (int i = 0; i < fightAction1.getAttackList().size(); i++) {
-            int attack1Winner = getAttackWinner(fightAction1.getAttackList().get(i), fightAction2.getAttackList().get(i));
+        for (int i = 0; i < fighterAction1.getAttackList().size(); i++) {
+            int attack1Winner = getAttackWinner(fighterAction1.getAttackList().get(i), fighterAction2.getAttackList().get(i));
             if(attack1Winner == 1){
                 noOfWinnings1 ++ ;
             } else if(attack1Winner == 2){
@@ -51,14 +56,34 @@ public class FightResolver {
             }
         }
 
-        fightAction1.setNoOfWinnings(noOfWinnings1);
-        fightAction2.setNoOfWinnings(noOfWinnings2);
+        fighterAction1.setNoOfWinnings(noOfWinnings1);
+        fighterAction2.setNoOfWinnings(noOfWinnings2);
 
-        fightActionsResult.setFighter1Action(fightAction1);
-        fightActionsResult.setFighter2Action(fightAction2);
+        fightActionsResult.setFighter1Action(fighterAction1);
+        fightActionsResult.setFighter2Action(fighterAction2);
         return fightActionsResult;
     }
 
+    public Fight getHonorLeftResults (Fight fight, FightActionsResult fightActionsResult){
+        int figter1Winnings = fightActionsResult.getFighter1Action().getNoOfWinnings();
+        int figter2Winnings = fightActionsResult.getFighter2Action().getNoOfWinnings();
+        FighterArenaBL fighterArenaBL1 = fight.getFighter1();
+        FighterArenaBL fighterArenaBL2 = fight.getFighter2();
+        fighterArenaBL1.setHonorLeft(fighterArenaBL1.getHonorLeft() - figter2Winnings * HONOR_REDUCING_SCORE);
+        fighterArenaBL2.setHonorLeft(fighterArenaBL2.getHonorLeft() - figter1Winnings * HONOR_REDUCING_SCORE);
+        fight.setFighter1(fighterArenaBL1);
+        fight.setFighter2(fighterArenaBL2);
+        return fight;
+    }
 
-
+    public Fight resolveRating(Fight fight){
+        if (fight.getIdHasNoHonorLeft() == fight.getFighter1().getId()){
+            fight.getFighter1().setRate(fight.getFighter1().getRate() + RATE_CHANGE_SCORE );
+            fight.getFighter2().setRate(fight.getFighter2().getRate() - RATE_CHANGE_SCORE );
+        } else{
+            fight.getFighter1().setRate(fight.getFighter1().getRate() - RATE_CHANGE_SCORE );
+            fight.getFighter2().setRate(fight.getFighter2().getRate() + RATE_CHANGE_SCORE );
+        }
+        return fight;
+    }
 }
