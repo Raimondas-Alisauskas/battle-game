@@ -1,7 +1,7 @@
 package com.cb.utils.fightUtils;
 
 import com.cb.bl.fight.Attack;
-import com.cb.bl.fight.FightAction;
+import com.cb.bl.fight.FighterAction;
 import com.cb.bl.fight.Weapon;
 import com.cb.constants.AttackType;
 import org.junit.Assert;
@@ -56,11 +56,11 @@ public class FightResolverTest {
         attackList2.add(attack2a);
         attackList2.add(attack2a);
 
-        FightAction fightAction1 = new FightAction(1, attackList1, 0);
-        FightAction fightAction2 = new FightAction(1, attackList2, 0);
+        FighterAction fighterAction1 = new FighterAction( attackList1, 0);
+        FighterAction fighterAction2 = new FighterAction( attackList2, 0);
 
-        Assert.assertEquals(0, fightResolver.getFightActionResult(fightAction1,fightAction2).getFighter1Action().getNoOfWinnings());
-        Assert.assertEquals(1, fightResolver.getFightActionResult(fightAction1,fightAction2).getFighter2Action().getNoOfWinnings());
+        Assert.assertEquals(0, fightResolver.getFightActionResult(fighterAction1, fighterAction2).getFighter1Action().getNoOfWinnings());
+        Assert.assertEquals(1, fightResolver.getFightActionResult(fighterAction1, fighterAction2).getFighter2Action().getNoOfWinnings());
     }
 
 }

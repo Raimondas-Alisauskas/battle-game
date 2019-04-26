@@ -4,6 +4,7 @@ import com.cb.bl.fight.Attack;
 import com.cb.bl.fight.Fight;
 import com.cb.dto.DefaultDTO;
 import com.cb.services.pageService.IService.ArenaService;
+
 import com.cb.utils.fightUtils.ControllerUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 @Controller
@@ -42,18 +44,17 @@ public class ArenaController extends HttpServlet {
 
         req.getSession().setAttribute("fighterId", id1);//Temporary code.
 
-        int id = (int) req.getSession().getAttribute("fighterId");
+        int fighterId = (int) req.getSession().getAttribute("fighterId");
         ServletContext servletContext = req.getServletContext();
         Fight fightSL = (Fight) servletContext.getAttribute("fightSL");
+        DefaultDTO defaultDTO = new DefaultDTO();
         if(fightSL == null) {
             defaultDTO = arenaService.createFight(id1, id2);
             servletContext.setAttribute("fightSL", defaultDTO.getData());
         }else{
-            defaultDTO = arenaService.adjustFightContent(id, fightSL);
+            defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightSL));
         }
-
         m.addAttribute("defaultDTO", defaultDTO);
-
         return "arenaTst";
     }
 
@@ -69,48 +70,87 @@ public class ArenaController extends HttpServlet {
 
         List<Attack> attackList = new ArrayList<>();
         Attack attack1 = new Attack(1,conUtil.getWeaponFromAttribute(weapon1),conUtil.getAttackTypeFromString(attType1), false);
-        attackList.add(1,attack1);
+        attackList.add(attack1);
+        DefaultDTO defaultDTO ;
 
-        if(fightSL.getFighter1ActionList().size() == fightSL.getActionsCompleted()
-                || fightSL.getFighter2ActionList().size() == fightSL.getActionsCompleted()){
-
-            defaultDTO = arenaService.fillActionListOrGetResult(fighterId, fightSL, attackList);
-
-        } else {
-
-            defaultDTO = arenaService.askToWait(fightSL);
+        //if actionList size equal actionsCompleted number: add Action to ActionList
+        if(fighterId == fightSL.getFighter1().getId() && fightSL.getFighter1ActionList().size() == fightSL.getActionsCompleted()){
+            defaultDTO = arenaService.appendActionList(fighterId, fightSL, attackList);
+            fightSL = (Fight) defaultDTO.getData();
+        }else if(fighterId == fightSL.getFighter2().getId() && fightSL.getFighter2ActionList().size() == fightSL.getActionsCompleted()){
+            defaultDTO = arenaService.appendActionList(fighterId, fightSL, attackList);
+            fightSL = (Fight) defaultDTO.getData();
         }
-        fightSL = (Fight) defaultDTO.getData();
+
+        //if Results are not viewed and both ActionList sizes bigger than ActionsCompleted: calculate results
+        if(fightSL.getFighter1ActionList().size() > fightSL.getActionsCompleted()
+            && fightSL.getFighter2ActionList().size() > fightSL.getActionsCompleted()){
+            defaultDTO = arenaService.calculateResults(fighterId, fightSL );
+
+            fightSL = (Fight) defaultDTO.getData();
+
+        //if only one ActionList sizes bigger than ActionsCompleted:  ask to wait
+        }else{
+            defaultDTO = arenaService.askToWait(fightSL);
+            fightSL = (Fight) defaultDTO.getData();
+        }
+        defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightSL));
+
         servletContext.setAttribute("fightSL", fightSL);
         m.addAttribute("defaultDTO", defaultDTO);
-        return "arenaTst";
+        // Any fighterId will be greater than 0
+        if (fightSL.getIdHasNoHonorLeft() > 0){
+            return "arenaFinish";
+        }else return "arenaTst";
+
+    }
+
+    @RequestMapping(value = "arena/getresults")
+    public String refresh (Model m, HttpServletRequest req){
+        ServletContext servletContext = req.getServletContext();
+        Fight fightSL = (Fight) servletContext.getAttribute("fightSL");
+        Fight fightBL= org.apache.commons.lang3.SerializationUtils.clone(fightSL);
+        int fighterId = (int) req.getSession().getAttribute("fighterId");
+        DefaultDTO defaultDTO;
+
+        if(fightBL.getFighter1ActionList().size() == fightBL.getActionsCompleted() && fightBL.getActionsCompleted() > 0
+                && fightBL.getFighter2ActionList().size() == fightBL.getActionsCompleted() && fightBL.getActionsCompleted() > 0) {
+            defaultDTO = arenaService.getResultMessage(fighterId, fightSL);
+            defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightSL));
+
+        }else if(fightBL.getFighter1ActionList().size() > fightBL.getActionsCompleted() && fighterId == fightBL.getFighter2().getId() ){
+             fightBL.getFighter1ActionList().remove(fightBL.getFighter1ActionList().size() -1);
+             defaultDTO = arenaService.askForMoveMessage();
+            defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightBL));
+
+        }else if(fightBL.getFighter2ActionList().size() > fightBL.getActionsCompleted() && fighterId == fightBL.getFighter1().getId() ) {
+            fightBL.getFighter2ActionList().remove(fightBL.getFighter2ActionList().size() - 1);
+            defaultDTO = arenaService.askForMoveMessage();
+            defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightBL));
+        }else {
+            defaultDTO = arenaService.askToWait(fightBL);
+            defaultDTO.setData(arenaService.adjustFightContent(fighterId, fightBL));
+        }
+
+        m.addAttribute("defaultDTO", defaultDTO);
+        // Any fighterId will be greater than 0
+        if (fightSL.getIdHasNoHonorLeft() > 0){
+            return "arenaFinish";
+        }else return "arenaTst";
     }
 
     //Temporary, for tests
     @RequestMapping(value = "arena/deletefight")
     public String deleteFight (Model m, HttpServletRequest req){
-        Fight fightBL = (Fight) req.getServletContext().getAttribute("fightS");
-        req.getServletContext().setAttribute("fightS", null);
+        ServletContext servletContext = req.getServletContext();
+        Fight fightBL = (Fight) servletContext.getAttribute("fightSL");
+        DefaultDTO defaultDTO = new DefaultDTO();
         defaultDTO.setData(fightBL);
+        req.getServletContext().setAttribute("fightSL", null);
+        fightBL = (Fight) servletContext.getAttribute("fightSL");
+
         m.addAttribute("defaultDTO", defaultDTO);
         return "arenaTst";
     }
-
-
-
-
-
-
-
-
-
-//    @RequestMapping("/arena/{id1}-{id2}")
-//    public String handleRequest3 (@PathVariable("id1") int id1,
-//                                  @PathVariable("id2") int id2,
-//                                  Model m) {
-//        fight = arenaService.createFight(id1, fight);
-//        m.addAttribute("fighterBL", fight.getFighter2());
-//        return "arenaTst";
-//    }
 
 }

@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FightAction {
-    private int fightActionNo;
+public class FighterAction implements Serializable {
+//    private int fighterActionNo;
     private List<Attack> attackList;
     private int noOfWinnings;
 }
