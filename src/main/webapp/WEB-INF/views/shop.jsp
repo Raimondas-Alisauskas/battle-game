@@ -45,6 +45,7 @@
         <h3>Jūsų užsakymas:</h3>
             <input type="hidden" id="user-money-hidden" name="hidden-field">
         <div id="order-details"></div>
+            <div id="order-details-hidden"></div>
             <br>
             <button id="submit-order"  type="submit">Patvirtinti pirkimą</button>
         </form>
@@ -69,13 +70,18 @@
             document.getElementById("user-money").innerHTML = moneyAfter;
             document.getElementById("user-money-hidden").setAttribute("value", moneyAfter);
 
+            let infoNode = document.createElement("DIV");
+            let textNode = document.createTextNode(name);
+            infoNode.appendChild(textNode);
+
             let divNode = document.createElement("INPUT");
-            divNode.setAttribute("value", name);
+            divNode.setAttribute("value", id);
             divNode.setAttribute("name", id);
+            divNode.setAttribute("type", "hidden");
             divNode.style.width = "600px";
             divNode.readOnly = true;
-            document.getElementById("order-details").appendChild(divNode);
-            document.getElementById("order-details").appendChild(document.createElement("BR"));
+            document.getElementById("order-details-hidden").appendChild(divNode);
+            document.getElementById("order-details").appendChild(infoNode);
             document.getElementById(id).disabled = true;
         }
     }
@@ -83,12 +89,15 @@
 
 
     function clearOrder() {
-
         let list = document.getElementById("order-details");
-
         while (list.hasChildNodes()) {
             list.removeChild(list.firstChild);
         }
+        let listHidden = document.getElementById("order-details-hidden");
+        while (listHidden.hasChildNodes()) {
+            listHidden.removeChild(list.firstChild);
+        }
+
     }
 </script>
 

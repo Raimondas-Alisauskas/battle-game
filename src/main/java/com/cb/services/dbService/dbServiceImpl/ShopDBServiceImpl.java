@@ -20,8 +20,18 @@ public class ShopDBServiceImpl implements ShopDBService {
     }
 
     public void updateFighterMoneyById(int id, int money) {
-        String sql =  "UPDATE main5.fighters SET money =" +money+" WHERE  userId ="+ id;
+        String sql =  "UPDATE fighters SET money =" +money+" WHERE  userId ="+ id;
         template.update(sql);
+    }
+
+    public void printBoughtItemsToConsole(String[] strings, int userid) {
+        for(String a: strings) {
+            if(a !=null) {
+                System.out.println(userid + ": "+a);
+                template.update("INSERT INTO fighter_weapons (fighterId, weaponId)" +
+                        " VALUES (" + userid+ ", " + a + ")");
+            }
+        }
     }
 
 }
