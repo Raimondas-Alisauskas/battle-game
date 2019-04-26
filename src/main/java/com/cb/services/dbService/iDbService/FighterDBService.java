@@ -11,10 +11,12 @@ public interface FighterDBService {
 
     int getFighterCountByUserId(int userId);
 
-    List<FighterDAL> getFighters(int userId);
+    List<FighterDAL> getFighters(int fighterId);
 
     FighterDAL getFighterByUserId(int userId);
 
     int getFighterIdByUserId(int userId);
+
+    FighterDAL getFighterByFighterId(int fighterId);
 
 }

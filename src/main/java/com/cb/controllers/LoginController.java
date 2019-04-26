@@ -57,11 +57,9 @@ public class LoginController {
                 FighterBL fighterBL = (FighterBL) defaultDTO.getData();
                 m.addAttribute("fighterUser", fighterBL);
                 userSession.setAttribute("fighterImage", fighterBL.getImage());
-
+                m.addAttribute("callingFighters", fighterService.getCallingFighters(fighterId));
                 return "home";
-
             }
-
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
             m.addAttribute("partiesList", partiesList);
@@ -78,14 +76,13 @@ public class LoginController {
 
     @GetMapping(value = "/loginuser")
     public String refreshMyProfile() {
-
         return "home";
     }
+  
+    @RequestMapping(value = "/signout")
+    public String signOut(HttpServletRequest req) {
+        HttpSession userSession = req.getSession();
+        userSession.invalidate();
+        return "redirect:/";
 
-        @RequestMapping(value = "/signout")
-        public String signOut (HttpServletRequest req){
-            HttpSession userSession = req.getSession();
-            userSession.invalidate();
-            return "index";
-        }
     }

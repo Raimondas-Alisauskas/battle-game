@@ -12,6 +12,7 @@ public class FighterBL {
     private String member;
     private String image;
     private String party;
+    private int isCalled;
 
     public int getId() {
         return id;
@@ -92,4 +93,13 @@ public class FighterBL {
     public void setParty(String party) {
         this.party = party;
     }
+
+    public int getIsCalled() {
+        return isCalled;
+    }
+
+    public void setIsCalled(int isCalled) {
+        this.isCalled = isCalled;
+    }
 }
+
