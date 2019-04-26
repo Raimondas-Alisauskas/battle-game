@@ -12,6 +12,7 @@ import com.cb.services.mapService.iMapService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +41,7 @@ public class LoginController {
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST)
     public String loginUser(HttpServletRequest req, Map<String, String> model, @ModelAttribute("userDAL") UserBL userBL, Model m) {
         int userExist = userService.getUserByEmailAndPassword(userBL);
+        int emailExist = userService.getUserByEmail(userBL);
 
         if (userExist == 1) {
             String userName = userService.getUserNameByEmail(userBL);
@@ -55,31 +57,32 @@ public class LoginController {
                 FighterBL fighterBL = (FighterBL) defaultDTO.getData();
                 m.addAttribute("fighterUser", fighterBL);
                 userSession.setAttribute("fighterImage", fighterBL.getImage());
-
                 m.addAttribute("callingFighters", fighterService.getCallingFighters(fighterId));
-
                 return "home";
-
             }
-
             List<PartyDAL> partiesList = partyService.getParties();
             List<CharacterDAL> charactersList = characterService.getCharacters();
             m.addAttribute("partiesList", partiesList);
             m.addAttribute("charactersList", charactersList);
             return "createCharacter";
-        } else if (userExist == -1) {
-            model.put("error", "User does not exist");
+        } else if (userExist == -1 && emailExist == 1) {
+            model.put("error", "Bad password, please try again");
             return "index";
         } else {
             model.put("error", "General error");
-            return "index";
+            return "errorPage";
         }
     }
 
+    @GetMapping(value = "/loginuser")
+    public String refreshMyProfile() {
+        return "home";
+    }
+  
     @RequestMapping(value = "/signout")
     public String signOut(HttpServletRequest req) {
         HttpSession userSession = req.getSession();
         userSession.invalidate();
         return "redirect:/";
+
     }
-}
