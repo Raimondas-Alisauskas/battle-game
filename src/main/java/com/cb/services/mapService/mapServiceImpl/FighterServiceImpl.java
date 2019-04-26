@@ -104,8 +104,6 @@ public class FighterServiceImpl implements FighterService {
                 fighterListBL.get(i).setIsCalled(isCalled);
                 fighterListBL.get(i).setIsAccepted(isAccepted);
                 fighterListBL.get(i).setAmICalled(amICalled);
-
-
             }
 
             defaultDTO.setSuccess(true);
