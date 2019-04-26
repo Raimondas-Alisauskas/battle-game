@@ -30,9 +30,6 @@ public class FightCallsDBServiceImpl implements FightCallsDBService {
 
     public int isFighterAccepted(int fighterId, int calledFighterId) {
 
-//        return template.queryForObject("SELECT count(*) FROM fight_calls where callingFighter = "
-//                + fighterId + " AND calledFighter = " + calledFighterId + " AND onFight = " + true, Integer.class);
-
         return template.queryForObject("SELECT count(*) FROM fight_calls where callingFighter IN ("+ fighterId + ","+ calledFighterId +") AND calledFighter IN ("+ fighterId + ","+ calledFighterId +") AND  onFight = " + true, Integer.class);
 
     }
