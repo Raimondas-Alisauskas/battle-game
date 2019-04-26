@@ -27,11 +27,10 @@
 
 
     <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url"
-                  value="jdbc:mysql://localhost:3306/main?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:8889/main5?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
         <property name="username" value="root"/>
-        <property name="password" value="admin"/>
+        <property name="password" value="root"/>
     </bean>
 
     <bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -47,6 +46,10 @@
     </bean>
 
     <bean id="characterDBService" class="com.cb.services.dbService.dbServiceImpl.CharacterDBServiceImpl">
+        <property name="template" ref="jt"/>
+    </bean>
+
+    <bean id="shopDBService" class="com.cb.services.dbService.dbServiceImpl.ShopDBServiceImpl">
         <property name="template" ref="jt"/>
     </bean>
 
