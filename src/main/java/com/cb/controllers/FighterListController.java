@@ -28,10 +28,7 @@ public class FighterListController {
         HttpSession httpSession = req.getSession();
         int userId = (int) httpSession.getAttribute("id");
         int fighterId = (int) httpSession.getAttribute("fighterId");
-
         DefaultDTO defaultDTO = fighterService.getFighters(fighterId);
-
-
         m.addAttribute("fighterList", defaultDTO);
 
         return "fighterList";
@@ -39,15 +36,39 @@ public class FighterListController {
     }
 
     @RequestMapping(value = "/callfight")
-    public String callFight(HttpServletRequest req, @ModelAttribute FightCallsBL fightCallsBL , Model m) {
+    public String callFight(HttpServletRequest req, @ModelAttribute FightCallsBL fightCallsBL, Model m) {
+
+
+        if (fightCallsBL.getAction().equals("fight")) {
+
+            return "redirect:/arena/?id1="+req.getSession().getAttribute("fighterId")+"&id2=" + fightCallsBL.getCalledFighter();
+
+        }
 
         HttpSession httpSession = req.getSession();
         int fighterId = (int) httpSession.getAttribute("fighterId");
-        fightCallsService.insertFightCall(fighterId,fightCallsBL.getCalledFighter());
+        fightCallsService.insertFightCall(fighterId, fightCallsBL.getCalledFighter());
 
         return "redirect:/fighterlist";
 
+    }
 
+    @RequestMapping(value = "/takeaction")
+    public String takeAction(HttpServletRequest req, @ModelAttribute FightCallsBL fightCallsBL, Model m) {
+
+        HttpSession userSession = req.getSession();
+
+        if (fightCallsBL.getAction().equals("accept")) {
+
+            fightCallsService.updateFightCallRowSetOnFightTrue(fightCallsBL.getId(), (int) userSession.getAttribute("fighterId"));
+
+        }
+        if (fightCallsBL.getAction().equals("decline")) {
+
+            fightCallsService.deleteFightCallRow(fightCallsBL.getId(), (int) userSession.getAttribute("fighterId"));
+
+        }
+        return "redirect:/loginuser";
     }
 
 

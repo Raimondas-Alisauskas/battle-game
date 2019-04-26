@@ -24,9 +24,7 @@ public class FighterDBServiceImpl implements FighterDBService {
     }
 
     public int getFighterCountByUserId(int userId) {
-
         return template.queryForObject("SELECT count(*) from fighters where userId = '" + userId + "'", Integer.class);
-
     }
 
     public List<FighterDAL> getFighters(int fighterId) {

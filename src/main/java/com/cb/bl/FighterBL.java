@@ -13,6 +13,7 @@ public class FighterBL {
     private String image;
     private String party;
     private int isCalled;
+    private int isAccepted;
 
     public int getId() {
         return id;
@@ -100,6 +101,14 @@ public class FighterBL {
 
     public void setIsCalled(int isCalled) {
         this.isCalled = isCalled;
+    }
+
+    public int getIsAccepted() {
+        return isAccepted;
+    }
+
+    public void setIsAccepted(int isAccepted) {
+        this.isAccepted = isAccepted;
     }
 }
 

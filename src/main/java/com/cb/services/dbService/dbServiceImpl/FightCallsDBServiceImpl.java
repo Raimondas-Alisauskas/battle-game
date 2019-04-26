@@ -28,6 +28,12 @@ public class FightCallsDBServiceImpl implements FightCallsDBService {
 
     }
 
+    public int isFighterAccepted(int fighterId, int calledFighterId) {
+
+        return template.queryForObject("SELECT count(*) FROM fight_calls where callingFighter IN ("+ fighterId + ","+ calledFighterId +") AND calledFighter IN ("+ fighterId + ","+ calledFighterId +") AND  onFight = " + true, Integer.class);
+
+    }
+
     public int insertFightCall(int fighterId, int calledFighterId) {
 
         return template.update("INSERT INTO fight_calls (callingFighter, calledFighter, onFight)" +
@@ -38,6 +44,18 @@ public class FightCallsDBServiceImpl implements FightCallsDBService {
     public List<FightCallsDAL> getCallingFighterId(int fighterId) {
 
         return template.query("SELECT callingFighter from fight_calls where calledFighter = " + fighterId + " AND onFight = " + false, new BeanPropertyRowMapper(FightCallsDAL.class));
+
+    }
+
+    public int updateFightCallRowSetOnFightTrue(int fighter1, int fighter2) {
+
+        return template.update("UPDATE fight_calls SET onFight = true WHERE callingFighter = " + fighter1 + " AND calledFighter = " + fighter2);
+
+    }
+
+    public int deleteFightCallRow(int fighter1, int fighter2) {
+
+        return template.update("DELETE FROM fight_calls WHERE callingFighter = " + fighter1 + " AND calledFighter = " + fighter2);
 
     }
 

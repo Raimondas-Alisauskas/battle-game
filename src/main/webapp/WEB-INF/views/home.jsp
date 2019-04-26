@@ -13,11 +13,11 @@
 <%@include file="header.jsp" %>
 <c:forEach var="f" items="${callingFighters.data}">
     <div class="allfighters">
-        <form class="fighter form-inline my-2 my-lg-0" action="callfight" method="post">
+        <form class="fighter form-inline my-2 my-lg-0" action="takeaction" method="post">
             <div class="inset">
                 <img src="<c:url value="/resources/images/${f.image}"/>">
             </div>
-            <input value="${f.id}" name="calledFighter" type="hidden">
+            <input value="${f.id}" name="id" type="hidden">
             <div class="navbar-text" style="color: white">
                     ${f.userName}
             </div>
