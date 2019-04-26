@@ -19,4 +19,9 @@ public class ShopDBServiceImpl implements ShopDBService {
         return template.query("SELECT * FROM weapons", new BeanPropertyRowMapper<>(WeaponsDAL.class));
     }
 
+    public void updateFighterMoneyById(int id, int money) {
+        String sql =  "UPDATE main5.fighters SET money =" +money+" WHERE  userId ="+ id;
+        template.update(sql);
+    }
+
 }
