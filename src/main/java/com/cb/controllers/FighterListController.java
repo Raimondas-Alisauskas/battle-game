@@ -26,7 +26,6 @@ public class FighterListController {
     public String fighterList(HttpServletRequest req, Model m) {
 
         HttpSession httpSession = req.getSession();
-        int userId = (int) httpSession.getAttribute("id");
         int fighterId = (int) httpSession.getAttribute("fighterId");
         DefaultDTO defaultDTO = fighterService.getFighters(fighterId);
         m.addAttribute("fighterList", defaultDTO);
@@ -36,8 +35,7 @@ public class FighterListController {
     }
 
     @RequestMapping(value = "/callfight")
-    public String callFight(HttpServletRequest req, @ModelAttribute FightCallsBL fightCallsBL, Model m) {
-
+    public String callFight(HttpServletRequest req, @ModelAttribute FightCallsBL fightCallsBL) {
 
         if (fightCallsBL.getAction().equals("fight")) {
 

@@ -27,14 +27,15 @@ public class FightCallsServiceImpl implements FightCallsService {
 
     }
 
-    public int insertFightCall(int fighterId, int calledFighterId) {
+    public int amICalled(int fighterId, int calledFighterId) {
 
-        return fightCallsDBService.insertFightCall(fighterId, calledFighterId);
+        return fightCallsDBService.amICalled(fighterId, calledFighterId);
 
     }
 
-    public DefaultDTO getCallingFighter(int fighterId) { // need to change this method
-        return defaultDTO;
+    public int insertFightCall(int fighterId, int calledFighterId) {
+
+        return fightCallsDBService.insertFightCall(fighterId, calledFighterId);
 
     }
 

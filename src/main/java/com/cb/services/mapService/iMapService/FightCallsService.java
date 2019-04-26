@@ -1,16 +1,14 @@
 package com.cb.services.mapService.iMapService;
 
-import com.cb.dto.DefaultDTO;
-
 public interface FightCallsService {
 
     int isFighterCalled(int fighterId, int calledFighterId);
 
     int isFighterAccepted(int fighterId, int calledFighterId);
 
-    int insertFightCall(int fighterId,int calledFighterId);
+    int amICalled(int fighterId, int calledFighterId);
 
-    DefaultDTO getCallingFighter(int fighterId);
+    int insertFightCall(int fighterId,int calledFighterId);
 
     int updateFightCallRowSetOnFightTrue(int fighter1, int fighter2);
 

@@ -7,10 +7,7 @@ import com.cb.dal.FighterDAL;
 import com.cb.dto.DefaultDTO;
 import com.cb.services.dbService.iDbService.FightCallsDBService;
 import com.cb.services.dbService.iDbService.FighterDBService;
-import com.cb.services.mapService.iMapService.CharacterService;
-import com.cb.services.mapService.iMapService.FighterService;
-import com.cb.services.mapService.iMapService.PartyService;
-import com.cb.services.mapService.iMapService.UserService;
+import com.cb.services.mapService.iMapService.*;
 import com.cb.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +23,9 @@ public class FighterServiceImpl implements FighterService {
 
     @Autowired
     FightCallsDBService fightCallsDBService;
+
+    @Autowired
+    FightCallsService fightCallsService;
 
     @Autowired
     CharacterService characterService;
@@ -94,9 +94,9 @@ public class FighterServiceImpl implements FighterService {
                 String partyName = partyService.getPartyName(fighterListBL.get(i).getPartyId());
                 String imageReference = characterService.getImageReference(fighterListBL.get(i).getCharacterId());
                 String userName = userService.getUserNameById(fighterListBL.get(i).getUserId());
-                int isCalled = fightCallsDBService.isFighterCalled(fighterId, fighterListBL.get(i).getId());
-                int isAccepted = fightCallsDBService.isFighterAccepted(fighterId, fighterListBL.get(i).getId());
-                int amICalled = fightCallsDBService.amICalled(fighterId,fighterListBL.get(i).getId());
+                int isCalled = fightCallsService.isFighterCalled(fighterId, fighterListBL.get(i).getId());
+                int isAccepted = fightCallsService.isFighterAccepted(fighterId, fighterListBL.get(i).getId());
+                int amICalled = fightCallsService.amICalled(fighterId,fighterListBL.get(i).getId());
                 fighterListBL.get(i).setMember(characterName);
                 fighterListBL.get(i).setParty(partyName);
                 fighterListBL.get(i).setImage(imageReference);
