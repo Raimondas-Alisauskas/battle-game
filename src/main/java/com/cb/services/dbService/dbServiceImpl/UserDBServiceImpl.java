@@ -5,6 +5,14 @@ import com.cb.dal.UserDAL;
 import com.cb.services.dbService.iDbService.UserDBService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDBServiceImpl implements UserDBService {
@@ -73,8 +81,7 @@ public class UserDBServiceImpl implements UserDBService {
 
     @Override
     public int updateUser(UserBL u) {
-        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getIsAdmin() + "," +
-                "rating = " + "WHERE id = " + u.getId() + "";
+        String sql = "UPDATE users SET userName = '" + u.getUserName() + "', password = '" + u.getPassword() + "', isAdmin = " + u.getIsAdmin() + "," + "WHERE id = " + u.getId() + "";
         return template.update(sql);
     }
 

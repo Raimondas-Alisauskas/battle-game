@@ -15,7 +15,7 @@
             <c:choose>
                 <c:when test="${sessionScope.fighterId != null}">
                     <li class="nav-item" style="color: white">
-                        <a class="nav-link" style="color: white" href="#">Find opponent</a>
+                        <a class="nav-link" style="color: white" href="fighterlist">Find opponent</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="color: white" href="shop">Shop</a>

@@ -25,22 +25,22 @@ public class FighterDBServiceImpl implements FighterDBService {
 
     public int getFighterCountByUserId(int userId) {
 
-        return template.queryForObject("SELECT count(*) from Main4.fighters where userId = '" + userId + "'", Integer.class);
+        return template.queryForObject("SELECT count(*) from fighters where userId = '" + userId + "'", Integer.class);
 
     }
 
-    public List<FighterDAL> getFighters() {
-        return template.query("SELECT * FROM fighters", new BeanPropertyRowMapper(FighterDAL.class));
+    public List<FighterDAL> getFighters(int userId) {
+        return template.query("SELECT * FROM fighters where userId not in ('" + userId + "')", new BeanPropertyRowMapper(FighterDAL.class));
     }
 
     public FighterDAL getFighterByUserId(int userId) {
-        String sql = "select * from Main4.fighters where userId =?";
+        String sql = "select * from fighters where userId =?";
         return template.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper<>(FighterDAL.class));
     }
 
     public int getFighterIdByUserId(int userId) {
 
-        return template.queryForObject("SELECT id FROM main.fighters where userId = '" + userId + "'", Integer.class);
+        return template.queryForObject("SELECT id FROM fighters where userId = '" + userId + "'", Integer.class);
 
     }
 
