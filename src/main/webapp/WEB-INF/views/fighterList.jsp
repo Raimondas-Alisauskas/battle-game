@@ -12,35 +12,40 @@
 <body class="main">
 <%@include file="header.jsp" %>
 <c:forEach var="f" items="${fighterList.data}">
-    <div class="allfighters">
-        <form class="fighter form-inline my-2 my-lg-0" action="callfight" method="post">
-            <div class="inset">
-                <img src="<c:url value="/resources/images/${f.image}"/>">
-            </div>
-            <input value="${f.id}" name="calledFighter" type="hidden">
-            <div class="navbar-text" style="color: white">
-                    ${f.userName}
-            </div>
-            <div class="navbar-text" style="color: white">
-                    ${f.party}
-            </div>
-            <div class="navbar-text" style="color: white">
-                    ${f.member}
-            </div>
-            <div class="navbar-text" style="color: white">
-                    ${f.rating}
-            </div>
-            <c:if test="${f.isCalled == 1}">
-                <button name="action" id="letsfight" class="btn btn-secondary" disabled>Waiting for response</button>
-            </c:if>
-            <c:if test="${f.isCalled == 0 && f.isAccepted == 0}">
-                <button name="action" id="letsfight" type="submit" class="btn btn-success">Let's fight!</button>
-            </c:if>
-            <c:if test="${f.isAccepted == 1}">
-                <button name="action" value="fight" id="letsfight" type="submit" class="btn btn-danger">Go to Arena for  fight!</button>
-            </c:if>
-        </form>
-    </div>
+    <c:if test="${f.amICalled != 1}">
+        <div class="allfighters">
+            <form class="fighter form-inline my-2 my-lg-0" action="callfight" method="post">
+                <div class="inset">
+                    <img src="<c:url value="/resources/images/${f.image}"/>">
+                </div>
+                <input value="${f.id}" name="calledFighter" type="hidden">
+                <div class="navbar-text" style="color: white">
+                        ${f.userName}
+                </div>
+                <div class="navbar-text" style="color: white">
+                        ${f.party}
+                </div>
+                <div class="navbar-text" style="color: white">
+                        ${f.member}
+                </div>
+                <div class="navbar-text" style="color: white">
+                        ${f.rating}
+                </div>
+                <c:if test="${f.isCalled == 1}">
+                    <button name="action" id="letsfight" class="btn btn-secondary" disabled>Waiting for response
+                    </button>
+                </c:if>
+                <c:if test="${f.isCalled == 0 && f.isAccepted == 0}">
+                    <button name="action" id="letsfight" type="submit" class="btn btn-success">Let's fight!</button>
+                </c:if>
+                <c:if test="${f.isAccepted == 1}">
+                    <button name="action" value="fight" id="letsfight" type="submit" class="btn btn-danger">Go to Arena
+                        for fight!
+                    </button>
+                </c:if>
+            </form>
+        </div>
+    </c:if>
 </c:forEach>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
