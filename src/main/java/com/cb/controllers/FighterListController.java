@@ -41,7 +41,7 @@ public class FighterListController {
 
         if (fightCallsBL.getAction().equals("fight")) {
 
-            return "redirect:/fighterlist";
+            return "redirect:/arena/?id1="+req.getSession().getAttribute("fighterId")+"&id2=" + fightCallsBL.getCalledFighter();
 
         }
 
