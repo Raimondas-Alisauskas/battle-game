@@ -35,7 +35,7 @@
                     <td>${u.name}</td>
                     <td>${u.target}</td>
                     <td>${u.power}</td>
-                    <td><button id="${u.name}" onclick="buyThis(this.id); this.disabled=true;" value="${u.power}">Pirkti</button></td>
+                    <td><button id="${u.id}" onclick="buyThis(this.id, this.name); this.disabled=true;" value="${u.power}" name="${u.name}">Pirkti</button></td>
                 </tr>
             </c:forEach>
         </table>
@@ -43,12 +43,15 @@
 
         <form id="shop-basket" method="post" action="fighter-weapon-map">
         <h3>Jūsų užsakymas:</h3>
+            <input type="hidden" id="user-money-hidden" name="hidden-field">
         <div id="order-details"></div>
             <br>
-            <button id="submit-order" onclick="submitOrder()" type="submit">Patvirtinti pirkimą</button>
+            <button id="submit-order"  type="submit">Patvirtinti pirkimą</button>
         </form>
-            <button id="cancel-order" onclick="clearOrder()">Anuliuoti krepšelį</button>
-</c:when>
+        <form>
+            <button id="cancel-order" onclick="clearOrder()" type="submit" method="post" action="get-fighter-money">Anuliuoti krepšelį</button>
+          </form>
+            </c:when>
 <c:otherwise>
     <br>
     ${weaponsListBL.message}
@@ -56,7 +59,7 @@
 </c:choose>
 
 <script>
-    function buyThis(id) {
+    function buyThis(id, name) {
         let userMoney = Number(document.getElementById("user-money").innerHTML);
         let price = Number(document.getElementById(id).value);
 
@@ -64,9 +67,11 @@
             let moneyAfter = userMoney - price;
 
             document.getElementById("user-money").innerHTML = moneyAfter;
+            document.getElementById("user-money-hidden").setAttribute("value", moneyAfter);
 
             let divNode = document.createElement("INPUT");
-            divNode.setAttribute("value", id);
+            divNode.setAttribute("value", name);
+            divNode.setAttribute("name", id);
             divNode.style.width = "600px";
             divNode.readOnly = true;
             document.getElementById("order-details").appendChild(divNode);
@@ -75,9 +80,7 @@
         }
     }
 
-    function submitOrder() {
 
-    }
 
     function clearOrder() {
 
