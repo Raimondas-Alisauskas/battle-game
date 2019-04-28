@@ -15,8 +15,8 @@ public class ShopDBServiceImpl implements ShopDBService {
     public void setTemplate(JdbcTemplate template) { this.template = template;
     }
     @Override
-    public List<WeaponsDAL> getWeapons() {
-        return template.query("SELECT * FROM weapons", new BeanPropertyRowMapper<>(WeaponsDAL.class));
+    public List<WeaponsDAL> getWeapons(int userId) {
+        return template.query("SELECT * FROM weapons where Id not in (SELECT weaponId FROM fighter_weapons where fighterId in (" + userId+ "))", new BeanPropertyRowMapper<>(WeaponsDAL.class));
     }
 
     public void updateFighterMoneyById(int id, int money) {

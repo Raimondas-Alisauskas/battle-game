@@ -5,5 +5,5 @@ import com.cb.dal.WeaponsDAL;
 import java.util.List;
 
 public interface ShopDBService {
-    List<WeaponsDAL> getWeapons();
+    List<WeaponsDAL> getWeapons(int userId);
 }

@@ -19,9 +19,9 @@ public class ShopServiceImpl implements ShopService {
     @Autowired
     DefaultDTO defaultDTO;
 
-    public DefaultDTO getWeapons() {
+    public DefaultDTO getWeapons(int userId) {
         try {
-            List<WeaponsDAL> weaponsListDAL = shopDBService.getWeapons();
+            List<WeaponsDAL> weaponsListDAL = shopDBService.getWeapons(userId);
             List<ShopBL> weaponsListBL = ObjectMapperUtils.mapAll(weaponsListDAL, ShopBL.class);
             defaultDTO.setSuccess(true);
             defaultDTO.setData(weaponsListBL);

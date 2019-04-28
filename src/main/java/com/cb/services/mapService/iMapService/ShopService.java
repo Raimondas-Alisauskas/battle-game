@@ -4,5 +4,5 @@ import com.cb.dto.DefaultDTO;
 
 public interface ShopService {
 
-    DefaultDTO getWeapons();
+    DefaultDTO getWeapons(int userId);
 }

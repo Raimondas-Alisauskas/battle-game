@@ -41,8 +41,6 @@ public class ShopController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/shop")
     public String getWeaponsTable(Model m, HttpServletRequest req) {
-        DefaultDTO defaultDTO = shopService.getWeapons();
-        m.addAttribute("weaponsListBL", defaultDTO);
 
         HttpSession userSession = req.getSession();
         int userid = (int) userSession.getAttribute("id");
@@ -50,6 +48,8 @@ public class ShopController {
         m.addAttribute("username", username);
         int money = fighterDBService.getFighterMoneyByUserId(userid);
         m.addAttribute("money", money);
+        DefaultDTO defaultDTO = shopService.getWeapons(userid);
+        m.addAttribute("weaponsListBL", defaultDTO);
         return "shop";
     }
 
