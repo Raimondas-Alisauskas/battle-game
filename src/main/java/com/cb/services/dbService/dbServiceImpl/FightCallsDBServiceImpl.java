@@ -28,6 +28,13 @@ public class FightCallsDBServiceImpl implements FightCallsDBService {
 
     }
 
+    public int amICalled(int fighterId, int calledFighterId) {
+
+        return template.queryForObject("SELECT count(*) FROM fight_calls where callingFighter = "
+                + calledFighterId + " AND calledFighter = " + fighterId + " AND onFight = " + false, Integer.class);
+
+    }
+
     public int isFighterAccepted(int fighterId, int calledFighterId) {
 
         return template.queryForObject("SELECT count(*) FROM fight_calls where callingFighter IN ("+ fighterId + ","+ calledFighterId +") AND calledFighter IN ("+ fighterId + ","+ calledFighterId +") AND  onFight = " + true, Integer.class);

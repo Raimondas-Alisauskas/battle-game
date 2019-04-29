@@ -14,6 +14,7 @@ public class FighterBL {
     private String party;
     private int isCalled;
     private int isAccepted;
+    private int amICalled;
 
     public int getId() {
         return id;
@@ -109,6 +110,14 @@ public class FighterBL {
 
     public void setIsAccepted(int isAccepted) {
         this.isAccepted = isAccepted;
+    }
+
+    public int getAmICalled() {
+        return amICalled;
+    }
+
+    public void setAmICalled(int amICalled) {
+        this.amICalled = amICalled;
     }
 }
 
