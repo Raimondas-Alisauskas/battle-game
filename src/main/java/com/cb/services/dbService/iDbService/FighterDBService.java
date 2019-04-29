@@ -19,4 +19,6 @@ public interface FighterDBService {
 
     FighterDAL getFighterByFighterId(int fighterId);
 
+    int getFighterMoneyByUserId(int userId);
+
 }
