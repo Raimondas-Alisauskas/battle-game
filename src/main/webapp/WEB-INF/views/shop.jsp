@@ -16,7 +16,6 @@
 <body>
 <%@include file="header.jsp" %>
 
-
 <c:choose>
     <c:when test ="${weaponsListBL.success == 'true'}" >
 
@@ -86,8 +85,6 @@
         }
     }
 
-
-
     function clearOrder() {
         let list = document.getElementById("order-details");
         while (list.hasChildNodes()) {
@@ -97,10 +94,8 @@
         while (listHidden.hasChildNodes()) {
             listHidden.removeChild(list.firstChild);
         }
-
     }
 </script>
-
 </body>
 </html>
 

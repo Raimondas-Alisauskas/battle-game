@@ -34,12 +34,12 @@ public class ShopController {
     public String getWeaponsTable(Model m, HttpServletRequest req) {
 
         HttpSession userSession = req.getSession();
-        int userid = (int) userSession.getAttribute("id");
+        int userId = (int) userSession.getAttribute("id");
         String username = (String) userSession.getAttribute("userName");
         m.addAttribute("username", username);
-        int money = fighterDBService.getFighterMoneyByUserId(userid);
+        int money = fighterDBService.getFighterMoneyByUserId(userId);
         m.addAttribute("money", money);
-        DefaultDTO defaultDTO = shopService.getWeapons(userid);
+        DefaultDTO defaultDTO = shopService.getWeapons(userId);
         m.addAttribute("weaponsListBL", defaultDTO);
         return "shop";
     }
@@ -59,15 +59,12 @@ public class ShopController {
                                        @RequestParam(value = "hidden-field", required=false) int moneyLeft) {
 
         HttpSession userSession = req.getSession();
-        int userid = (int) userSession.getAttribute("id");
+        int userId = (int) userSession.getAttribute("id");
 
         String[] strings = {s1,s2,s3,s4,s5,s6,s7,s8,s9,s10};
 
-        System.out.println("The current user id is: "+userid + " and this user bought " + s1);
-
-        System.out.println("moneyLeft " + moneyLeft);
-        shopDBService.updateFighterMoneyById(userid, moneyLeft);
-        shopDBService.printBoughtItemsToConsole(strings, userid);
+        shopDBService.updateFighterMoneyById(userId, moneyLeft);
+        shopDBService.printBoughtItemsToConsole(strings, userId);
 
         return "shop";
     }
@@ -75,8 +72,8 @@ public class ShopController {
     @RequestMapping(method=RequestMethod.POST, value="get-fighter-money")
     public void getFighterMoney (Model m,HttpServletRequest req) {
         HttpSession userSession = req.getSession();
-        int userid = (int) userSession.getAttribute("id");
-        int money = fighterDBService.getFighterMoneyByUserId(userid);
+        int userId = (int) userSession.getAttribute("id");
+        int money = fighterDBService.getFighterMoneyByUserId(userId);
         m.addAttribute("money", money);
     }
 

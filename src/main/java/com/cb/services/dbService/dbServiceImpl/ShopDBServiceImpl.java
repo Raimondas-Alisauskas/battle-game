@@ -24,12 +24,12 @@ public class ShopDBServiceImpl implements ShopDBService {
         template.update(sql);
     }
 
-    public void printBoughtItemsToConsole(String[] strings, int userid) {
+    public void printBoughtItemsToConsole(String[] strings, int userId) {
         for(String a: strings) {
             if(a !=null) {
-                System.out.println(userid + ": "+a);
+                System.out.println(userId + ": "+a);
                 template.update("INSERT INTO fighter_weapons (fighterId, weaponId)" +
-                        " VALUES (" + userid+ ", " + a + ")");
+                        " VALUES (" + userId+ ", " + a + ")");
             }
         }
     }
