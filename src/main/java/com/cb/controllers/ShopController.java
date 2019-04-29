@@ -1,15 +1,11 @@
 package com.cb.controllers;
 
-import com.cb.bl.UserBL;
 import com.cb.dto.DefaultDTO;
 import com.cb.services.dbService.dbServiceImpl.ShopDBServiceImpl;
-import com.cb.services.dbService.dbServiceImpl.UserDBServiceImpl;
 import com.cb.services.dbService.iDbService.FighterDBService;
-import com.cb.services.dbService.iDbService.ShopDBService;
 import com.cb.services.mapService.iMapService.ShopService;
 import com.cb.services.mapService.iMapService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,15 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
 public class ShopController {
-
-    @Autowired
-    UserDBServiceImpl userDAL;
 
     @Autowired
     ShopService shopService;
@@ -87,9 +78,7 @@ public class ShopController {
         int userid = (int) userSession.getAttribute("id");
         int money = fighterDBService.getFighterMoneyByUserId(userid);
         m.addAttribute("money", money);
-
     }
-
 
 
 }

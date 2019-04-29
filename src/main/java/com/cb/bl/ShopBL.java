@@ -7,7 +7,6 @@ public class ShopBL {
     private String target;
     private int power;
 
-
     public ShopBL() {
     }
 
